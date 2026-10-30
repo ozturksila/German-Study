@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutschkurs — A1 to C2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="page-head">
+    <p>Grammatik · Wortschatz · Übungen</p>
+    <h1>🥨 Deutschkurs — A1 bis C2</h1>
+    <p>Six levels, one engine: every unit is a set of short lessons, a culture page, a vocabulary recap, and a mixed checkpoint after every three units.</p>
+    <div class="badges">
+      <span id="bTotalUnits">— units</span>
+      <span id="bTotalTopics">— topics</span>
+      <span>6 levels</span>
+      <span>Progress saved locally</span>
+    </div>
+  </header>
+
+  <nav class="level-switch" id="levelSwitch" aria-label="Choose a level"></nav>
+
+  <div class="draft-banner">
+    <strong>🚧 Draft outline.</strong> The structure, levels, subjects and exercise engine are in place.
+    Lesson content — explanations, vocabulary, dialogues and exercises — is still to be written, one topic at a time.
+    Every page that has no content yet says so instead of pretending otherwise.
+  </div>
+
+  <div class="profile-bar" id="profileBar"></div>
+
+  <div class="level-grid" id="levelGrid"></div>
+
+  <div class="level-grid" style="margin-top:18px">
+    <div class="level-card" style="border-top-color:#27806a">
+      <h2>🎓 Exam Preparation <span class="lv-tag">telc · Goethe · ÖSD</span></h2>
+      <p class="lv-goal">Which certificate exists at each level, what each part contains, how long it takes, and what to train — plus TestDaF and DSH for university entry.</p>
+      <div class="lv-foot"><a class="lv-btn" href="exam.html">Open exam guide →</a><span class="lv-stat">all six levels</span></div>
+    </div>
+    <div class="level-card" style="border-top-color:#c4801f">
+      <h2>📐 Grammar Reference <span class="lv-tag">all levels</span></h2>
+      <p class="lv-goal">Every table in one place — cases, verb forms, word order, adjective endings, prepositions — independent of the unit you are on.</p>
+      <div class="lv-foot"><a class="lv-btn" href="grammar.html">Open reference →</a><span class="lv-stat">outline only</span></div>
+    </div>
+  </div>
+
+  <footer class="page-foot">Runs from a static folder — no build step, no server needed beyond <code>./serve.sh</code>.</footer>
+</div>
+
+<script src="progress.js"></script>
+<script src="builders.js"></script>
+<script src="data/a1.js"></script>
+<script src="data/a2.js"></script>
+<script src="data/b1.js"></script>
+<script src="data/b2.js"></script>
+<script src="data/c1.js"></script>
+<script src="data/c2.js"></script>
+<script>
+(function () {
+  const esc = DK.esc;
+  const codes = DK.LEVEL_CODES;
+
+  function unitCount() { return codes.reduce(function (s, c) { return s + (LEVELS[c] ? LEVELS[c].units.length : 0); }, 0); }
+  function topicCount() {
+    return codes.reduce(function (s, c) {
+      return s + (LEVELS[c] ? LEVELS[c].units.reduce(function (n, u) { return n + u.topics.length; }, 0) : 0);
+    }, 0);
+  }
+
+  function renderSwitch() {
+    document.getElementById('levelSwitch').innerHTML = codes.map(function (c) {
+      const L = LEVELS[c];
+      if (!L) return '<span class="soon"><b>' + c.toUpperCase() + '</b><small>planned</small></span>';
+      return '<a href="course.html?level=' + c + '"><b>' + L.label + '</b><small>' + L.units.length + ' units</small></a>';
+    }).join('');
+  }
+
+  function renderGrid() {
+    document.getElementById('levelGrid').innerHTML = codes.map(function (c) {
+      const L = LEVELS[c];
+      if (!L) return '';
+      const P = DK.level(c);
+      const topics = L.units.reduce(function (n, u) { return n + u.topics.length; }, 0);
+      const pages = L.units.reduce(function (n, u) { return n + u.topics.length + 2; }, 0);
+      const seen = Object.keys(P.pages).length;
+      const pct = pages ? Math.round(Math.min(seen, pages) / pages * 100) : 0;
+      const subjects = L.units.map(function (u) { return '<li>' + esc(u.subject) + '</li>'; }).join('');
+      return '<div class="level-card lv-' + c + '">' +
+        '<h2>' + L.label + ' <span class="lv-tag">' + esc(L.name.split('—')[1] ? L.name.split('—')[1].trim() : L.name) + '</span></h2>' +
+        '<p class="lv-goal">' + esc(L.goal) + '</p>' +
+        '<ul class="subjects">' + subjects + '</ul>' +
+        '<div class="pb-bar-track"><div class="pb-bar-fill" style="width:' + pct + '%"></div></div>' +
+        '<div class="lv-foot"><a class="lv-btn" href="course.html?level=' + c + '">Open ' + L.label + ' →</a>' +
+        '<span class="lv-stat">' + L.units.length + ' units · ' + topics + ' topics · ' + pct + '% visited</span></div>' +
+        '</div>';
+    }).join('');
+  }
+
+  function renderProfileBar() {
+    const d = DK.get();
+    document.getElementById('profileBar').innerHTML =
+      '<span>👋 <span class="pb-name">' + esc(d.name || 'Studentin') + '</span></span>' +
+      '<span class="pb-pct">Pick a level below — the course remembers where you stopped in each one.</span>' +
+      '<span class="pb-save" id="pbSave"></span>' +
+      '<button onclick="resetAll()">🔄 Reset everything</button>';
+    DK.setBadge('saved');
+  }
+  window.resetAll = function () {
+    if (!confirm('Reset saved progress for every level? This cannot be undone.')) return;
+    DK.reset();
+    renderProfileBar(); renderGrid();
+  };
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    document.getElementById('bTotalUnits').textContent = unitCount() + ' units';
+    document.getElementById('bTotalTopics').textContent = topicCount() + ' topics';
+    renderSwitch();
+    await DK.load();
+    document.body.classList.toggle('genders-off', DK.get().display !== 'genders');
+    renderProfileBar();
+    renderGrid();
+  });
+})();
+</script>
+</body>
+</html>

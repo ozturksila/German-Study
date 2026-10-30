@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Reference — Deutschkurs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="page-head">
+    <p>Nachschlagen statt suchen</p>
+    <h1>📐 Grammar Reference</h1>
+    <p>Every table in one place, independent of the unit you happen to be on.</p>
+    <div class="badges"><span>All levels</span><span>12 sections</span><span>Draft outline</span></div>
+  </header>
+
+  <div class="draft-banner">
+    <strong>🚧 Draft.</strong> The section list below is final; the tables themselves are still to be filled in.
+    Each one will be cross-linked from the unit that introduces it.
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="course-nav" id="refNav"></nav>
+      <p class="progress-note"><a href="index.html">← All levels</a></p>
+    </aside>
+    <main class="lecture" id="refPane"></main>
+  </div>
+  <footer class="page-foot">Deutschkurs · Grammar Reference</footer>
+</div>
+
+<script src="progress.js"></script>
+<script>
+(function () {
+  const esc = DK.esc;
+  const SECTIONS = [
+    { icon: '🎨', title: 'Artikel und Genus', level: 'A1', items: [
+      'Definite, indefinite and zero article', 'Gender rules and reliable endings',
+      'der / die / das colour system used across the course', 'Plural formation, all five patterns'] },
+    { icon: '📦', title: 'Die vier Kasus', level: 'A1–B1', items: [
+      'Nominative, accusative, dative, genitive in one table', 'Which verbs demand which case',
+      'Pronoun declension', 'Case after prepositions'] },
+    { icon: '🔤', title: 'Pronomen', level: 'A1–B2', items: [
+      'Personal, possessive, reflexive', 'Demonstrative and indefinite',
+      'Relative pronouns, all cases', 'da- and wo- compounds'] },
+    { icon: '⚙️', title: 'Verben — Präsens', level: 'A1', items: [
+      'Regular endings', 'Stem-changing verbs: fahren → fährst', 'sein, haben, werden',
+      'Separable and inseparable prefixes'] },
+    { icon: '⏮️', title: 'Verben — Vergangenheit', level: 'A1–B1', items: [
+      'Perfekt with haben and sein', 'Participle formation, regular and irregular',
+      'Präteritum', 'Plusquamperfekt', 'Irregular verb list'] },
+    { icon: '🔮', title: 'Verben — Zukunft und Modus', level: 'A2–C1', items: [
+      'Futur I and II', 'Konjunktiv II: hätte, wäre, würde, Modalverben',
+      'Konjunktiv I and indirect speech', 'Imperative, all forms'] },
+    { icon: '🎚️', title: 'Modalverben', level: 'A1–B2', items: [
+      'The six modals and their meanings', 'Present, past and Perfekt forms',
+      'Objective vs. subjective use', 'Common confusions: müssen / sollen / dürfen'] },
+    { icon: '🔄', title: 'Passiv', level: 'A2–C1', items: [
+      'Vorgangspassiv and Zustandspassiv', 'Passive in every tense',
+      'Passive with modal verbs', 'Alternatives: man, sich lassen, sein + zu'] },
+    { icon: '🏷️', title: 'Adjektive', level: 'A2–B1', items: [
+      'Declension after definite, indefinite and no article', 'Comparative and superlative',
+      'Participles as adjectives', 'Extended participial attributes'] },
+    { icon: '📍', title: 'Präpositionen', level: 'A1–B2', items: [
+      'Accusative, dative and two-way prepositions', 'Genitive prepositions',
+      'Verbs with fixed prepositions', 'Prepositions of time, place and direction'] },
+    { icon: '🧩', title: 'Satzbau', level: 'A1–C1', items: [
+      'Position of the verb in every clause type', 'Sentence bracket (Satzklammer)',
+      'Connector classes and their word order', 'Tekamolo: order of adverbials',
+      'Negation and its scope'] },
+    { icon: '🧱', title: 'Wortbildung und Stil', level: 'B2–C2', items: [
+      'Compound nouns', 'Prefixes and suffixes that change meaning',
+      'Nominal vs. verbal style', 'Funktionsverbgefüge', 'Register ladder'] }
+  ];
+
+  let active = 0;
+  function renderNav() {
+    document.getElementById('refNav').innerHTML = SECTIONS.map(function (s, i) {
+      return '<button class="nav-item' + (i === active ? ' active' : '') + '" onclick="openSection(' + i + ')">' +
+        '<span class="ni-title">' + s.icon + ' ' + esc(s.title) + '</span>' +
+        '<span class="ni-meta">' + s.level + ' · ' + s.items.length + ' tables</span></button>';
+    }).join('');
+  }
+  function renderPane() {
+    const s = SECTIONS[active];
+    document.getElementById('refPane').innerHTML =
+      '<div class="lecture-crumb">Grammar reference · ' + s.level + '</div>' +
+      '<h3 class="lecture-title">' + s.icon + ' ' + esc(s.title) + '</h3>' +
+      '<div class="pending-box"><span class="pb-ico">🚧</span><strong>Tables not written yet</strong>' +
+      '<p>This section will hold:</p></div>' +
+      '<div class="lecture-block"><h4>📋 Planned contents</h4><ul class="goals">' +
+      s.items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' +
+      '<div class="lecture-nav">' +
+      '<button onclick="openSection(' + Math.max(0, active - 1) + ')" ' + (active === 0 ? 'disabled' : '') + '>◀ Zurück</button>' +
+      '<div class="lecture-dots"></div>' +
+      '<button onclick="openSection(' + Math.min(SECTIONS.length - 1, active + 1) + ')" ' +
+      (active === SECTIONS.length - 1 ? 'disabled' : '') + '>Weiter ▶</button></div>';
+  }
+  window.openSection = function (i) { active = i; renderNav(); renderPane(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  document.addEventListener('DOMContentLoaded', function () { renderNav(); renderPane(); });
+})();
+</script>
+</body>
+</html>

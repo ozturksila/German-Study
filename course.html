@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutschkurs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="page-head" id="levelHead"></header>
+
+  <nav class="level-switch" id="levelSwitch" aria-label="Choose a level"></nav>
+  <div class="profile-bar" id="profileBar"></div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="course-nav" id="courseNav"></nav>
+      <p class="progress-note">Each unit runs: lessons → unit practice → reading → listening → writing → flashcards → culture → vocabulary recap. A mixed checkpoint follows every three units, plus a final one over the whole level.</p>
+      <p class="progress-note"><a href="index.html">← All levels</a> · <a href="grammar.html">Grammar reference</a> · <a href="exam.html" id="examLink">Exam preparation</a></p>
+    </aside>
+
+    <main class="lecture" id="lecturePane">
+      <div class="lecture-placeholder"><span class="big">🎓</span>Loading the course…</div>
+    </main>
+  </div>
+
+  <footer class="page-foot">Deutschkurs · draft outline — lesson content is being filled in topic by topic.</footer>
+</div>
+
+<script src="progress.js"></script>
+<script src="builders.js"></script>
+<script src="data/a1.js"></script>
+<script src="data/a2.js"></script>
+<script src="data/b1.js"></script>
+<script src="data/b2.js"></script>
+<script src="data/c1.js"></script>
+<script src="data/c2.js"></script>
+<script src="checker.js"></script>
+<script src="data/explain-de.js"></script>
+<script src="judge.js"></script>
+<script src="engine.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam Preparation — Deutschkurs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="page-head">
+    <p>telc · Goethe · ÖSD · TestDaF · DSH</p>
+    <h1>🎓 Prüfungsvorbereitung</h1>
+    <p>Which certificate exists at your level, what it is made of, and how to train for it.</p>
+    <div class="badges"><span>6 levels</span><span>All major providers</span><span>Format · timing · tactics</span></div>
+  </header>
+
+  <nav class="level-switch" id="levelSwitch" aria-label="Choose a level"></nav>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="course-nav" id="examNav"></nav>
+      <p class="progress-note">Formats change. Always download the current <em>Modellsatz</em> from the provider before booking.</p>
+      <p class="progress-note"><a href="index.html">← All levels</a> · <a href="grammar.html">Grammar reference</a></p>
+    </aside>
+    <main class="lecture" id="examPane"></main>
+  </div>
+  <footer class="page-foot">Deutschkurs · exam preparation</footer>
+</div>
+
+<script src="progress.js"></script>
+<script src="builders.js"></script>
+<script src="data/a1.js"></script>
+<script src="data/a2.js"></script>
+<script src="data/b1.js"></script>
+<script src="data/b2.js"></script>
+<script src="data/c1.js"></script>
+<script src="data/c2.js"></script>
+<script src="data/exams.js"></script>
+<script>
+(function () {
+  const esc = DK.esc;
+  const codes = DK.LEVEL_CODES;
+  const params = new URLSearchParams(location.search);
+  let active = (params.get('level') || 'b2').toLowerCase();
+  if (codes.indexOf(active) < 0) active = 'b2';
+
+  function renderSwitch() {
+    document.getElementById('levelSwitch').innerHTML = codes.map(function (c) {
+      const L = LEVELS[c];
+      return '<a href="exam.html?level=' + c + '"' + (c === active ? ' aria-current="page"' : '') + '><b>' +
+        (L ? L.label : c.toUpperCase()) + '</b><small>' + (EXAMS[c] ? EXAMS[c].exams.length + ' exams' : '—') + '</small></a>';
+    }).join('');
+  }
+  function renderNav() {
+    document.getElementById('examNav').innerHTML = codes.map(function (c) {
+      const e = EXAMS[c];
+      return '<button class="nav-item' + (c === active ? ' active' : '') + '" onclick="openLevel(\'' + c + '\')">' +
+        '<span class="ni-title">🎓 ' + (LEVELS[c] ? LEVELS[c].label : c.toUpperCase()) + '</span>' +
+        '<span class="ni-meta">' + (e ? e.exams.map(function (x) { return x.name.split(/[—:]/)[0].trim().split(' ')[0]; })
+          .filter(function (v, i, a) { return a.indexOf(v) === i; }).join(' · ') : '—') + '</span></button>';
+    }).join('') +
+    '<button class="nav-item cp" onclick="openLevel(\'general\')">' +
+    '<span class="ni-title">🧭 Choosing &amp; preparing</span><span class="ni-meta">Advice for any exam</span></button>';
+  }
+
+  function examCard(x) {
+    let h = '<div class="exam-card ' + x.cls + '"><h4>' + esc(x.name) + '</h4><p class="e-sub">' + x.sub + '</p>';
+    h += '<table class="exam-parts"><tr><th>Part</th><th>Time</th><th>What it is</th></tr>';
+    x.parts.forEach(function (p) {
+      h += '<tr><td><strong>' + esc(p[0]) + '</strong></td><td class="mins">' + esc(p[1] || '—') + '</td><td>' + esc(p[2] || '') + '</td></tr>';
+    });
+    h += '</table>';
+    h += '<p class="note" style="margin-top:9px"><strong>Pass mark:</strong> ' + esc(x.pass) + '</p>';
+    if (x.note) h += '<p class="note">' + x.note + '</p>';
+    return h + '</div>';
+  }
+
+  function renderPane() {
+    const pane = document.getElementById('examPane');
+    if (active === 'general') {
+      pane.innerHTML =
+        '<div class="lecture-crumb">Exam preparation · any level</div>' +
+        '<h3 class="lecture-title">🧭 Choosing and preparing</h3>' +
+        '<div class="lecture-block"><h4>Which certificate?</h4><ul class="goals">' +
+        EXAM_GENERAL.choosing.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+        '<div class="lecture-block"><h4>How to prepare</h4><ul class="goals">' +
+        EXAM_GENERAL.preparing.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>' +
+        '<div class="exam-tip"><strong>One warning:</strong> this page summarises formats as a study aid. ' +
+        'Providers change parts, timings and pass marks. Before you book, download the current Modellsatz from ' +
+        'goethe.de, telc.net, osd.at or testdaf.de and work from that.</div>';
+      return;
+    }
+    const e = EXAMS[active], L = LEVELS[active];
+    let h = '<div class="lecture-crumb">Exam preparation · Level ' + (L ? L.label : active.toUpperCase()) + '</div>';
+    h += '<h3 class="lecture-title">🎓 ' + (L ? L.label + ' — ' + esc(L.name) : active.toUpperCase()) + '</h3>';
+    h += '<div class="skill-intro">' + e.intro + '</div>';
+    h += '<div class="lecture-block"><h4>📋 The certificates at this level</h4><div class="exam-grid">' +
+      e.exams.map(examCard).join('') + '</div></div>';
+    h += '<div class="lecture-block"><h4>🎯 What to train for this level</h4>' +
+      e.tips.map(function (t) { return '<div class="exam-tip">' + t + '</div>'; }).join('') + '</div>';
+    if (L) {
+      h += '<div class="lecture-block"><h4>📚 Practising inside this course</h4>' +
+        '<p>Every unit of ' + L.label + ' has a reading, a listening and a writing task built to this level, ' +
+        'plus a mixed checkpoint after every three units. The writing tasks are marked against the CEFR criteria for ' +
+        L.label + ', which is the same thing the examiners mark.</p>' +
+        '<p><a class="lv-btn" href="course.html?level=' + active + '">Open the ' + L.label + ' course →</a></p></div>';
+    }
+    pane.innerHTML = h;
+  }
+
+  window.openLevel = function (c) {
+    active = c;
+    history.replaceState(null, '', c === 'general' ? 'exam.html' : 'exam.html?level=' + c);
+    renderNav(); renderPane();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  document.addEventListener('DOMContentLoaded', function () { renderSwitch(); renderNav(); renderPane(); });
+})();
+</script>
+</body>
+</html>
