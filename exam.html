@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <div class="wrap">
@@ -24,22 +24,22 @@
     <aside class="sidebar">
       <nav class="course-nav" id="examNav"></nav>
       <p class="progress-note">Formats change. Always download the current <em>Modellsatz</em> from the provider before booking.</p>
-      <p class="progress-note"><a href="index.html">← All levels</a> · <a href="grammar.html">Grammar reference</a></p>
+      <p class="progress-note"><a href="index.html">← All levels</a> · <a href="grammar-topics.html">Grammar reference</a></p>
     </aside>
     <main class="lecture" id="examPane"></main>
   </div>
   <footer class="page-foot">Deutschkurs · exam preparation</footer>
 </div>
 
-<script src="progress.js"></script>
-<script src="builders.js"></script>
-<script src="data/a1.js"></script>
-<script src="data/a2.js"></script>
-<script src="data/b1.js"></script>
-<script src="data/b2.js"></script>
-<script src="data/c1.js"></script>
-<script src="data/c2.js"></script>
-<script src="data/exams.js"></script>
+<script src="progress.js?v=5"></script>
+<script src="builders.js?v=4"></script>
+<script src="data/a1.js?v=5"></script>
+<script src="data/a2.js?v=4"></script>
+<script src="data/b1.js?v=4"></script>
+<script src="data/b2.js?v=4"></script>
+<script src="data/c1.js?v=4"></script>
+<script src="data/c2.js?v=4"></script>
+<script src="data/exams.js?v=4"></script>
 <script>
 (function () {
   const esc = DK.esc;
@@ -121,5 +121,6 @@
   document.addEventListener('DOMContentLoaded', function () { renderSwitch(); renderNav(); renderPane(); });
 })();
 </script>
+<script src="nav.js?v=4"></script>
 </body>
 </html>

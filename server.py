@@ -140,6 +140,28 @@ class Handler(SimpleHTTPRequestHandler):
     def log_message(self, fmt, *args):  # one tidy line per request
         sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))
 
+    # Pages that moved: old address -> new address (browsers may still hold the old link).
+    MOVED = {"/grammar.html": "/grammar-topics.html"}
+
+    def end_headers(self):
+        # Never keep a copy: edits to the course files must show on a normal reload.
+        self.send_header("Cache-Control", "no-store, max-age=0")
+        # Purge anything an older run of this server let the browser keep (Chrome/Firefox;
+        # Safari ignores it). Only on page loads, so scripts and styles are not re-fetched twice.
+        if self.path.split("?")[0] in ("/", "/index.html", "/course.html", "/grammar-topics.html"):
+            self.send_header("Clear-Site-Data", '"cache"')
+        super().end_headers()
+
+    def _redirect_moved(self):
+        path, _, query = self.path.partition("?")
+        if path in self.MOVED:
+            self.send_response(301)
+            self.send_header("Location", self.MOVED[path] + ("?" + query if query else ""))
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return True
+        return False
+
     def _json(self, code, payload):
         body = json.dumps(payload).encode("utf-8")
         self.send_response(code)
@@ -148,7 +170,14 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def do_HEAD(self):
+        if self._redirect_moved():
+            return
+        super().do_HEAD()
+
     def do_GET(self):
+        if self._redirect_moved():
+            return
         if self.path.split("?")[0] == "/api/judge":
             prov, key = resolve_provider()
             self._json(200, {"ready": bool(key), "provider": prov or None, "model_proxy": True})

@@ -68,7 +68,63 @@
         t('📄', 'Rental contracts', 'Kaution, Kündigungsfrist, Hausordnung'),
         t('🔧', 'Problems with the flat', 'Mängel melden, Mietminderung'),
         t('🏗️', 'Urban development', 'Gentrifizierung, Wohnungsnot, Mietpreise'),
-        t('🤝', 'Neighbours and conflict', 'Complaining and negotiating politely'),
+        {
+          icon: '🤝', title: 'Neighbours and conflict', note: 'Complaining and negotiating politely',
+          explanation:
+            '<p>In a conflict with a neighbour or landlord, <em>how</em> you say something matters as much as <em>what</em> you say. A direct command (<span class="de">Seien Sie leiser!</span>) starts a fight. German softens requests and complaints with the <strong>Konjunktiv II</strong>: <span class="de">Könnten Sie bitte etwas leiser sein?</span></p>' +
+            '<p>There are three jobs for it at B1. <strong>1. Polite requests</strong> with <span class="de">könnten / würden</span>. <strong>2. Soft complaints and wishes</strong> with <span class="de">Es wäre schön, wenn …</span> and <span class="de">Ich wäre Ihnen dankbar, wenn …</span>. <strong>3. Criticism about the past</strong> with <span class="de">hätte … sollen</span>: what someone should have done.</p>' +
+            '<p>The modal verbs have their own Konjunktiv II forms: <span class="de">sollen → sollte</span>, <span class="de">müssen → müsste</span>, <span class="de">dürfen → dürfte</span>, <span class="de">können → könnte</span>. As advice, <span class="de">Sie sollten …</span> is firmer than <span class="de">Sie könnten …</span>.</p>',
+          vocab: vocabTable([
+            ['Könnten Sie bitte … ?', 'Could you please … ?'],
+            ['Würden Sie bitte … ?', 'Would you please … ?'],
+            ['Es wäre schön, wenn …', 'It would be nice if …'],
+            ['Ich wäre Ihnen dankbar, wenn …', 'I would be grateful if …'],
+            ['Sie hätten mir Bescheid sagen sollen.', 'You should have told me.'],
+            ['Ich hätte erwartet, dass …', 'I would have expected that …'],
+            ['die Ruhezeit', 'quiet hours'],
+            ['der Lärm', 'noise'],
+            ['sich beschweren', 'to complain'],
+            ['die Hausordnung', 'house rules'],
+            ['eine Lösung finden', 'to find a solution'],
+            ['entgegenkommen', 'to meet someone halfway']
+          ]),
+          grammar:
+            '<div class="grammar-point">' +
+            '<p><strong>Tone ladder</strong> — the same request, from blunt to polite:</p>' +
+            '<ul class="goals">' +
+            '<li>Seien Sie leiser! <span class="note">(order — avoid)</span></li>' +
+            '<li>Können Sie leiser sein? <span class="note">(neutral)</span></li>' +
+            '<li><strong>Könnten</strong> Sie bitte leiser sein? <span class="note">(polite)</span></li>' +
+            '<li>Es <strong>wäre</strong> schön, wenn Sie nach 22 Uhr leiser <strong>wären</strong>. <span class="note">(very polite, still clear)</span></li>' +
+            '</ul>' +
+            '<p><strong>Past criticism</strong> uses <strong>hätte + Infinitiv + sollen</strong>:</p>' +
+            '<div class="example-box">' +
+            'Sie <strong>hätten</strong> mir vorher Bescheid sagen <strong>sollen</strong>.<br>' +
+            'Wir <strong>hätten</strong> früher darüber sprechen <strong>können</strong>.<br>' +
+            'Wenn ich das gewusst <strong>hätte</strong>, <strong>wäre</strong> ich nicht eingezogen.' +
+            '</div>' +
+            '<p class="note">For the past, use <strong>hätte</strong> + Partizip II for most verbs and <strong>wäre</strong> + Partizip II for verbs of movement or change (<span class="de">gegangen, gekommen, eingezogen</span>). With a modal verb, two infinitives stand at the end.</p>' +
+            '</div>',
+          dialogs: dialogBox('Dialog — a conversation about noise', [
+            ['Frau Berger', 'Guten Abend, Herr Yilmaz. Hätten Sie kurz Zeit? Es geht um die Musik gestern.'],
+            ['Herr Yilmaz', 'Natürlich. Hat sie gestört?'],
+            ['Frau Berger', 'Ja, leider bis nach Mitternacht. Sie hätten mir vorher Bescheid sagen sollen.'],
+            ['Herr Yilmaz', 'Sie haben recht. Das tut mir leid. Ich hätte nicht so laut feiern dürfen.'],
+            ['Frau Berger', 'Es wäre schön, wenn Sie nach 22 Uhr die Lautstärke reduzieren könnten.'],
+            ['Herr Yilmaz', 'Kein Problem. Und Sie könnten klopfen, wenn es zu laut wird.'],
+            ['Frau Berger', 'Gut, so machen wir es.']
+          ]),
+          exercises: exerciseList([
+            exInput('Politely: ___________ Sie bitte die Musik leiser machen? (können)', 'könnten'),
+            exInput('Es ___________ schön, wenn Sie nach 22 Uhr leiser wären. (sein)', 'wäre'),
+            exInput('Ich ___________ Ihnen dankbar, wenn Sie das ändern könnten. (sein)', 'wäre'),
+            exInput('Sie ___________ mir vorher Bescheid sagen sollen. (haben, Konjunktiv II)', 'hätten'),
+            exInput('Wenn ich das gewusst ___________, wäre ich nicht eingezogen. (haben)', 'hätte'),
+            exInput('Du ___________ mit ihm reden. (sollen — advice, Konjunktiv II)', 'solltest'),
+            exSelect('Which sentence is the most polite?', 'Es wäre schön, wenn Sie leiser wären.', ['Seien Sie leiser!', 'Können Sie leiser sein?', 'Es wäre schön, wenn Sie leiser wären.']),
+            exSelect('„Er hätte anrufen sollen“ means:', 'He should have called.', ['He called.', 'He should have called.', 'He will call.'])
+          ])
+        },
         t('🏡', 'City versus countryside', 'Comparing quality of life')
       ], ['Deal with a rental problem in writing and speech', 'Discuss housing policy in simple terms'],
          ['Konjunktiv II for complaints and requests', 'Nominal constructions with prepositions']),

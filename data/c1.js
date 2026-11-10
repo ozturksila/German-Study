@@ -50,7 +50,63 @@
         t('🤔', 'Reading a philosophical text', 'Dense abstraction without panic'),
         t('🧩', 'Defining abstract concepts', 'Freiheit, Gerechtigkeit, Verantwortung'),
         t('⚖️', 'Constructing a rigorous argument', 'Premise, inference, objection'),
-        t('🔁', 'Thought experiments', 'Hypothetical language at full range'),
+        {
+          icon: '🔁', title: 'Thought experiments', note: 'Hypothetical language at full range',
+          explanation:
+            '<p>A thought experiment asks the reader to <em>imagine</em> a world and follow its consequences: <span class="de">Man stelle sich vor, alle Menschen handelten nur im eigenen Interesse …</span> At C1 you are expected to run the whole machinery of unreality fluently and to choose the register on purpose.</p>' +
+            '<p><strong>Synthetic forms.</strong> Where learners say <span class="de">würde kommen</span>, careful writers use the short Konjunktiv II of common strong verbs: <span class="de">käme, ginge, gäbe, wüsste, nähme, ließe, bliebe, fände</span>. They read cleaner and sound more literary; <span class="de">würde</span> remains fine for rare or regular verbs, and in speech.</p>' +
+            '<p><strong>Range beyond “wenn”.</strong> <em>Wishes:</em> <span class="de">Wäre ich doch früher gegangen!</span> <em>Concession:</em> <span class="de">Selbst wenn er recht hätte, wäre sein Ton unangemessen.</span> <em>Condition by absence:</em> <span class="de">Ohne die Verfassung wäre der Staat handlungsunfähig.</span> <em>Near-miss:</em> <span class="de">Er hätte beinahe verloren.</span> <em>Stipulation:</em> <span class="de">Angenommen, … / gesetzt den Fall, … / es sei denn, …</span></p>',
+          vocab: formTable('Short Konjunktiv II of common strong verbs', ['Infinitiv', 'Konjunktiv II', 'Beispiel'], [
+            ['kommen', 'käme', 'Wenn sie Zeit hätte, <strong>käme</strong> sie öfter.'],
+            ['gehen', 'ginge', 'Es <strong>ginge</strong> auch anders.'],
+            ['geben', 'gäbe', 'Wenn es keine Regeln <strong>gäbe</strong>, …'],
+            ['wissen', 'wüsste', 'Wenn ich es <strong>wüsste</strong>, würde ich es sagen.'],
+            ['nehmen', 'nähme', 'Was <strong>nähme</strong> man in Kauf?'],
+            ['lassen', 'ließe', 'Das <strong>ließe</strong> sich begründen.'],
+            ['bleiben', 'bliebe', 'Dann <strong>bliebe</strong> nur eine Lösung.'],
+            ['finden', 'fände', 'Man <strong>fände</strong> kaum Gegenargumente.']
+          ]) +
+          vocabTable([
+            ['Man stelle sich vor, …', 'Imagine that …'],
+            ['Angenommen, …', 'Suppose …'],
+            ['gesetzt den Fall, dass …', 'in the event that …'],
+            ['es sei denn, …', 'unless …'],
+            ['Selbst wenn …', 'Even if …'],
+            ['Ohne … wäre …', 'Without … there would be …'],
+            ['das Gedankenexperiment', 'the thought experiment'],
+            ['die Prämisse', 'the premise'],
+            ['die Konsequenz', 'the consequence'],
+            ['der Schleier des Nichtwissens', 'the veil of ignorance (Rawls)']
+          ]),
+          grammar:
+            '<div class="grammar-point">' +
+            '<p><strong>Register choice — same content, three levels:</strong></p>' +
+            '<div class="example-box">' +
+            'Wenn es keine Regeln geben <strong>würde</strong>, <strong>würde</strong> das Chaos ausbrechen. <span class="note">(learner-safe, spoken)</span><br>' +
+            'Wenn es keine Regeln <strong>gäbe</strong>, <strong>bräche</strong> das Chaos aus. <span class="note">(written, polished)</span><br>' +
+            '<strong>Gäbe</strong> es keine Regeln, <strong>bräche</strong> das Chaos aus. <span class="note">(without wenn — essayistic)</span>' +
+            '</div>' +
+            '<p><strong>Avoid ugly doubles.</strong> Do not stack two <span class="de">würde</span> in one sentence if one short form is available: <span class="de">Wenn ich es wüsste, würde ich es sagen.</span> is better than <span class="de">Wenn ich es wissen würde, würde ich es sagen.</span></p>' +
+            '<p class="note">The <span class="de">es sei denn, dass …</span> clause uses Konjunktiv I of sein — a fixed expression, not a hypothetical.</p>' +
+            '</div>',
+          dialogs: dialogBox('Aus einem Seminar — der Schleier des Nichtwissens', [
+            ['Prof. Lang', 'Angenommen, Sie wüssten nicht, welche Stellung Sie in der Gesellschaft einnähmen. Wie würden Sie die Regeln gestalten?'],
+            ['Studentin', 'Ich würde auf Chancengleichheit bestehen. Ginge es mir schlecht, wäre ich auf sie angewiesen.'],
+            ['Prof. Lang', 'Das ist Rawls’ Gedanke. Selbst wenn alle sich uneigennützig verhielten, bliebe die Frage der Verteilung offen.'],
+            ['Student', 'Gäbe es keine Ungleichheit, bräuchte man das Experiment gar nicht.'],
+            ['Prof. Lang', 'Es sei denn, jemand fände eine bessere Prämisse.']
+          ]),
+          exercises: exerciseList([
+            exInput('Wenn sie mehr Zeit hätte, ___________ sie öfter. (kommen — short Konjunktiv II)', 'käme'),
+            exInput('Wenn es keine Regeln ___________, würde das Chaos ausbrechen. (geben)', 'gäbe'),
+            exInput('Wenn ich es ___________, würde ich es dir sagen. (wissen)', 'wüsste'),
+            exInput('___________ ich doch früher gegangen! (haben/sein — wish, Konjunktiv II)', 'wäre'),
+            exInput('Ohne die Verfassung ___________ der Staat handlungsunfähig. (sein)', 'wäre'),
+            exInput('Er ___________ beinahe das Spiel verloren. (haben, Konjunktiv II der Vergangenheit)', 'hätte'),
+            exSelect('„Selbst wenn er recht hätte, wäre sein Ton unangemessen“ means:', 'Even if he were right, his tone would still be inappropriate.', ['Because he is right, his tone is inappropriate.', 'Even if he were right, his tone would still be inappropriate.', 'He is wrong, so his tone is fine.']),
+            exSelect('Which means “unless”?', 'es sei denn', ['es sei denn', 'zumal', 'wohingegen'])
+          ])
+        },
         t('✍️', 'A philosophical essay', 'Argument-led, 400+ words')
       ], ['Discuss abstract concepts precisely', 'Write a rigorous argumentative essay'],
          ['Irrealis, all forms', 'Concessive and conditional combinations', 'Abstract noun formation']),

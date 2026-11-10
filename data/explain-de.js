@@ -155,3 +155,61 @@ window.DE_TEXT = {
     }
   }
 };
+
+/* ===== Konjunktiv II — one lesson per level (German explanations) ===== */
+(function () {
+  var D = window.DE_TEXT = window.DE_TEXT || {};
+  function put(level, unit, idx, html) {
+    D[level] = D[level] || {};
+    D[level][unit] = D[level][unit] || { topics: [] };
+    D[level][unit].topics[idx] = html;
+  }
+
+  // A1 · Unit 6 · In einem Café
+  put('a1', 5, 3,
+    '<p>Im Café sagt man nicht „Ich will einen Kaffee“. Das klingt unhöflich. Man sagt: <strong>Ich möchte …</strong> oder <strong>Ich hätte gern …</strong>. Das bedeutet: Ich hätte gern etwas.</p>' +
+    '<p>„möchte“ und „hätte“ sind höfliche Formen. Sie heißen <strong>Konjunktiv II</strong>. Im A1-Kurs lernen Sie nur diese zwei Sätze. Mehr kommt später.</p>' +
+    '<p>Der Kellner fragt auch höflich: <strong>Was möchten Sie trinken?</strong> Sie wollen bezahlen? Dann sagen Sie: <strong>Ich möchte bitte zahlen.</strong></p>');
+
+  // A2 · Unit 5 · Höflich, aber bestimmt
+  put('a2', 4, 4,
+    '<p>Im Geschäft oder am Schalter muss man manchmal etwas verlangen, worauf man ein Recht hat: Geld zurück, einen Umtausch, eine Quittung. Sagt man es zu direkt („Geben Sie mir mein Geld!“), klingt es aggressiv. Sagt man es zu leise, hört niemand zu. Die Lösung ist der <strong>Konjunktiv II</strong>: Die Bitte wird höflich, aber sie bleibt klar.</p>' +
+    '<p>„Ich hätte gern …“ und „Ich möchte …“ kennen Sie schon aus A1. Jetzt ändern Sie auch das Verb in der Frage: <strong>Können Sie …?</strong> wird <strong>Könnten Sie …?</strong>, <strong>Haben Sie …?</strong> wird <strong>Hätten Sie …?</strong>, <strong>Ist das möglich?</strong> wird <strong>Wäre das möglich?</strong>. Für alle anderen Verben nehmen Sie <strong>Würden Sie … + Infinitiv?</strong></p>' +
+    '<p>Höflich heißt nicht schwach. Sagen Sie klar, was Sie möchten – <em>Ich hätte gern mein Geld zurück.</em> – und benutzen Sie „bitte“ oder „leider“. Bleiben Sie ruhig und freundlich, aber nennen Sie Ihren Wunsch.</p>');
+
+  // A2 · Unit 14 · Ratschläge geben
+  put('a2', 13, 2,
+    '<p>Eine Freundin hat Stress, schläft schlecht oder hat Rückenschmerzen. Sie möchten helfen, aber Sie sind nicht der Chef. Ein Befehl („Schlaf mehr!“) oder „Du musst …“ ist zu stark. Für Ratschläge benutzt man im Deutschen den <strong>Konjunktiv II</strong>.</p>' +
+    '<p>Die häufigste Form ist <strong>sollte</strong> (von „sollen“): <em>Du solltest mehr schlafen.</em> Das ist eine Empfehlung, keine Regel. Sehr freundlich ist auch: <em>An deiner Stelle würde ich zum Arzt gehen.</em> Man stellt sich vor, man ist die andere Person.</p>' +
+    '<p>Für einen Vorschlag sagt man <strong>Wie wäre es mit …?</strong> + Dativ: <em>Wie wäre es mit einem Spaziergang?</em></p>');
+
+  // A2 · Unit 17 · Irreale Bedingungen
+  put('a2', 16, 3,
+    '<p>Manche „Wenns“ sind real: <em>Wenn ich Zeit habe, komme ich mit.</em> Vielleicht habe ich Zeit. Andere sind nur ein Traum: <em>Wenn ich reich wäre, würde ich reisen.</em> Ich bin nicht reich. Für solche Träume braucht man den <strong>Konjunktiv II</strong>.</p>' +
+    '<p>Sie brauchen nur drei Formen: <strong>wäre</strong> (von sein), <strong>hätte</strong> (von haben) und <strong>würde + Infinitiv</strong> für alle anderen Verben. Auch <strong>könnte</strong> ist oft nützlich.</p>' +
+    '<p>Beide Sätze stehen im Konjunktiv II: <em>Wenn ich Zeit hätte, würde ich kommen.</em> Achtung: Man sagt „ich wäre“, nicht „ich würde sein“.</p>');
+
+  // B1 · Unit 7 · Nachbarn und Konflikte
+  put('b1', 6, 3,
+    '<p>Bei einem Konflikt mit Nachbarn oder Vermietern ist der Ton sehr wichtig. Ein Befehl wie „Seien Sie leiser!“ führt oft zu Streit. Deshalb benutzt man im Deutschen den <strong>Konjunktiv II</strong>: <em>Könnten Sie bitte etwas leiser sein?</em></p>' +
+    '<p>Er hat drei Aufgaben. <strong>Erstens:</strong> höfliche Bitten mit <em>könnten</em> und <em>würden</em>. <strong>Zweitens:</strong> weiche Beschwerden wie <em>Es wäre schön, wenn …</em> oder <em>Ich wäre Ihnen dankbar, wenn …</em>. <strong>Drittens:</strong> Kritik an der Vergangenheit mit <em>hätte … sollen</em>: Was hätte jemand tun sollen?</p>' +
+    '<p>Auch die Modalverben haben Formen: <em>sollte, müsste, dürfte, könnte</em>. Als Rat ist „Sie sollten …“ stärker als „Sie könnten …“.</p>');
+
+  // B2 · Unit 11 · Einen hypothetischen Fall diskutieren
+  put('b2', 10, 4,
+    '<p>Ethische und juristische Argumente leben von Hypothesen: Was wäre geschehen, wenn …? Was hätten Sie an seiner Stelle getan? Hier arbeitet der <strong>Konjunktiv II der Vergangenheit</strong>. Man muss dabei drei Ebenen unterscheiden: was <em>war</em> (Indikativ), was jemand <em>behauptet</em> (Konjunktiv I, Unit 1) und was <em>nie geschehen ist</em> (Konjunktiv II).</p>' +
+    '<p>Die Form lautet <strong>hätte / wäre + Partizip II</strong>: <em>Wenn man früher gehandelt hätte, wäre der Schaden geringer gewesen.</em> Mit Modalverb steht <em>hätte … + Infinitiv + Modalverb</em>: <em>Sie hätten den Vorfall melden müssen.</em></p>' +
+    '<p>Zwei Verfeinerungen: <strong>1.</strong> Man kann „wenn“ weglassen, dann steht das Verb an erster Stelle: <em>Hätte man früher gehandelt, wäre …</em>. <strong>2.</strong> Mit <strong>als ob / als wenn</strong> beschreibt man einen eingebildeten Vergleich: <em>Er tut, als ob er nichts gewusst hätte</em> – oder knapper: <em>… als hätte er nichts gewusst.</em></p>');
+
+  // C1 · Unit 5 · Gedankenexperimente
+  put('c1', 4, 3,
+    '<p>Ein Gedankenexperiment bittet den Leser, sich eine Welt vorzustellen und ihre Folgen zu verfolgen: <em>Man stelle sich vor, alle Menschen handelten nur im eigenen Interesse …</em> Auf C1-Niveau beherrscht man die gesamte Irrealis-Mechanik und wählt das Register bewusst.</p>' +
+    '<p><strong>Synthetische Formen.</strong> Wo Lernende „würde kommen“ sagen, benutzen geübte Schreiber die kurzen Formen starker Verben: <em>käme, ginge, gäbe, wüsste, nähme, ließe, bliebe, fände</em>. Sie lesen sich knapper und literarischer; „würde“ bleibt für seltene oder schwache Verben und für die gesprochene Sprache gut.</p>' +
+    '<p><strong>Mehr als „wenn“.</strong> <em>Wunsch:</em> Wäre ich doch früher gegangen! <em>Einräumung:</em> Selbst wenn er recht hätte, wäre sein Ton unangemessen. <em>Bedingung durch Fehlen:</em> Ohne die Verfassung wäre der Staat handlungsunfähig. <em>Beinahe:</em> Er hätte beinahe verloren. <em>Annahme:</em> Angenommen, … / gesetzt den Fall, … / es sei denn, …</p>');
+
+  // C2 · Unit 1 · Grade der Festlegung
+  put('c2', 0, 3,
+    '<p>Auf C2-Niveau lautet die Frage nicht mehr „Ist mein Satz richtig?“, sondern „<em>Wie viel</em> behaupte ich?“ Das Deutsche bietet dafür eine fein abgestufte Skala, und der <strong>Konjunktiv II der Modalverben</strong> steht in ihrer Mitte. Er ist die Grammatik der wissenschaftlichen Vorsicht.</p>' +
+    '<p><strong>könnte</strong> bezeichnet eine reale Möglichkeit. <strong>dürfte</strong> bedeutet „wahrscheinlich“: Der Sprecher hat Gründe. <strong>müsste</strong> drückt eine begründete Erwartung oder Schlussfolgerung aus – schwächer als <em>muss</em>, das Gewissheit wäre. An den Enden der Skala stehen Adverbien: <em>vielleicht, womöglich</em> (schwach) · <em>vermutlich, wahrscheinlich</em> · <em>sicherlich, zweifellos</em> (stark).</p>' +
+    '<p>Wissenschaftliche Texte kennen außerdem unpersönliche Konstruktionen: <em>Das ließe sich belegen. · Es wäre zu prüfen, ob … · Man könnte argumentieren, dass … · Man dürfte davon ausgehen, dass …</em> Die Abschwächung ist Absicht: Sie zeigt, dass jemand überzeugt ist, aber nicht übertreibt.</p>');
+})();

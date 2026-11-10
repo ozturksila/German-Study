@@ -23,7 +23,7 @@
   };
   window.dialogBox = function (title, lines) {
     let h = '<div class="dialog-box"><h4>' + title + '</h4>';
-    lines.forEach(function (l) { h += '<p class="dialog-line"><span class="speaker">' + l[0] + '</span>' + l[1] + '</p>'; });
+    lines.forEach(function (l) { h += '<p class="dialog-line"><span class="speaker">' + l[0] + '</span><span class="line-text">' + l[1] + '</span></p>'; });
     return h + '</div>';
   };
   // Alternative accepted answers are separated by |

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Übungen per Thema — Deutschkurs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=4">
+<style>
+  .pq { border: 1px solid var(--line); background: var(--card-bg); border-radius: 12px; padding: 14px 16px; margin: 0 0 12px; }
+  .pq .q { font-weight: 600; margin: 0 0 10px; }
+  .pq .q .n { color: var(--muted); font-weight: 500; margin-right: 6px; }
+  .pq .opts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pq .why { margin: 10px 0 0; padding: 9px 12px; border-radius: 9px; font-size: 0.9rem; background: var(--accent-soft); }
+  .pq.ok .why { background: var(--accent2-soft); }
+  .pq .why b { display: block; margin-bottom: 2px; }
+  .p-tools { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 0 0 14px; }
+  .p-tools button, .p-tools select { font: inherit; font-size: 0.9rem; padding: 7px 14px; border-radius: 9px; border: 1px solid var(--accent); background: var(--card-bg); color: var(--accent); cursor: pointer; }
+  .p-tools button.primary { background: var(--accent); color: #fff; }
+  .p-score { border: 2px solid var(--accent2); background: var(--accent2-soft); border-radius: 12px; padding: 14px 16px; margin-top: 16px; }
+  .p-score h4 { margin: 0 0 6px; }
+  .p-bar { height: 6px; background: var(--line); border-radius: 4px; margin: 0 0 14px; overflow: hidden; }
+  .p-bar i { display: block; height: 100%; background: var(--accent2); width: 0; transition: width .25s; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page-head">
+    <p>Üben nach Thema</p>
+    <h1>✏️ Übungen</h1>
+    <p>Pick a subject, answer, read the explanation. Press “New variant” for a fresh set of questions.</p>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="course-nav" id="subjectNav"></nav>
+      <p class="progress-note"><a href="index.html">← All levels</a> · <a href="grammar-topics.html">Grammar reference</a></p>
+    </aside>
+    <main class="lecture" id="pane"></main>
+  </div>
+  <footer class="page-foot">Deutschkurs · Übungen</footer>
+</div>
+
+<script src="progress.js?v=5"></script>
+<script src="data/practice.js?v=4"></script>
+<script>
+(function () {
+  const esc = DK.esc;
+  const SUBJECTS = window.PRACTICE;
+  let active = 0, size = 10, lvl = 'all', set = [], answered = 0, correct = 0, wrongIdx = [];
+  const SEEN = 'deutsch.practice.seen.';
+
+  function getSeen(id) { try { return JSON.parse(localStorage.getItem(SEEN + id) || '[]'); } catch (e) { return []; } }
+  function setSeen(id, a) { try { localStorage.setItem(SEEN + id, JSON.stringify(a)); } catch (e) {} }
+
+  // Draw questions, unseen ones first; once the whole bank has been seen the cycle restarts.
+  function draw(s, n, only) {
+    if (only) return DK.shuffle(only.slice()).map(build);
+    const all = s.questions.map(function (_, i) { return i; }).filter(function (i) { return lvl === 'all' || s.questions[i].lv === lvl; });
+    let seen = getSeen(s.id).filter(function (i) { return all.indexOf(i) >= 0; });
+    let fresh = all.filter(function (i) { return seen.indexOf(i) < 0; });
+    if (fresh.length < n) { seen = []; fresh = all; }
+    const picked = DK.shuffle(fresh.slice()).slice(0, n);
+    setSeen(s.id, seen.concat(picked));
+    return picked.map(build);
+    function build(i) { return i; }
+  }
+  function view(i) {
+    const q = SUBJECTS[active].questions[i];
+    return { i: i, q: q, opts: DK.shuffle([q.a].concat(q.o)) };
+  }
+
+  function levelsOf(s) {
+    const l = [];
+    s.questions.forEach(function (q) { if (l.indexOf(q.lv) < 0) l.push(q.lv); });
+    return l.sort();
+  }
+  function renderNav() {
+    document.getElementById('subjectNav').innerHTML = SUBJECTS.map(function (s, i) {
+      return '<button class="nav-item' + (i === active ? ' active' : '') + '" onclick="openSubject(' + i + ')">' +
+        '<span class="ni-title">' + s.icon + ' ' + esc(s.title) + '</span>' +
+        '<span class="ni-meta">' + s.level + ' · ' + s.questions.length + ' questions</span></button>';
+    }).join('');
+  }
+
+  function newSet(only) {
+    const s = SUBJECTS[active];
+    set = draw(s, size, only).map(view);
+    answered = 0; correct = 0; wrongIdx = [];
+    renderPane();
+  }
+
+  function renderPane() {
+    const s = SUBJECTS[active];
+    let h = '<div class="lecture-crumb">Übungen · ' + s.level + '</div>' +
+      '<h3 class="lecture-title">' + s.icon + ' ' + esc(s.title) + '</h3>' +
+      '<p>' + esc(s.intro) + '</p>' +
+      '<div class="p-tools"><button class="primary" onclick="newVariant()">🔄 New variant</button>' +
+      '<label>Questions <select onchange="setSize(this.value)">' +
+      [5, 10, 20, 30].map(function (n) { return '<option' + (n === size ? ' selected' : '') + '>' + n + '</option>'; }).join('') +
+      '</select></label><label>Level <select onchange="setLevel(this.value)">' +
+      ['all'].concat(levelsOf(s)).map(function (l) { return '<option value="' + l + '"' + (l === lvl ? ' selected' : '') + '>' + (l === 'all' ? 'All levels' : l) + '</option>'; }).join('') +
+      '</select></label><span class="ni-meta" id="pStat"></span></div>' +
+      '<div class="p-bar"><i id="pBar"></i></div>';
+    set.forEach(function (v, n) {
+      h += '<div class="pq" id="pq' + n + '"><p class="q"><span class="n">' + (n + 1) + '.</span>' + esc(v.q.s) + '</p><div class="opts">' +
+        v.opts.map(function (o) { return '<button class="opt" onclick="pick(' + n + ',this)">' + esc(o) + '</button>'; }).join('') +
+        '</div><div id="pw' + n + '"></div></div>';
+    });
+    h += '<div id="pScore"></div>';
+    document.getElementById('pane').innerHTML = h;
+    stat();
+  }
+
+  function stat() {
+    document.getElementById('pStat').textContent = answered + ' / ' + set.length + ' answered · ' + correct + ' correct';
+    document.getElementById('pBar').style.width = (set.length ? answered / set.length * 100 : 0) + '%';
+  }
+
+  window.pick = function (n, btn) {
+    const v = set[n], card = document.getElementById('pq' + n);
+    const ok = btn.textContent === v.q.a;
+    card.querySelectorAll('.opt').forEach(function (b) {
+      b.disabled = true;
+      if (b.textContent === v.q.a) b.classList.add('right');
+    });
+    if (!ok) { btn.classList.add('wrong'); wrongIdx.push(v.i); }
+    card.classList.add(ok ? 'ok' : 'bad');
+    document.getElementById('pw' + n).innerHTML = '<div class="why"><b>' + (ok ? '✓ Richtig' : '✗ Richtig ist: ' + esc(v.q.a)) + '</b>' +
+      esc(v.q.s.replace('___', v.q.a)) + '<br>' + esc(v.q.why) + '</div>';
+    answered++; if (ok) correct++;
+    stat();
+    if (answered === set.length) finish();
+  };
+
+  function finish() {
+    const pct = Math.round(correct / set.length * 100);
+    const msg = pct === 100 ? 'Perfekt! 🎉' : pct >= 80 ? 'Sehr gut!' : pct >= 60 ? 'Gut — noch ein bisschen Übung.' : 'Weiter üben — du schaffst das.';
+    document.getElementById('pScore').innerHTML = '<div class="p-score"><h4>' + msg + ' ' + correct + ' / ' + set.length + ' (' + pct + '%)</h4>' +
+      '<div class="p-tools" style="margin:8px 0 0"><button class="primary" onclick="newVariant()">🔄 New variant</button>' +
+      (wrongIdx.length ? '<button onclick="retryWrong()">↩ Retry my ' + wrongIdx.length + ' mistake' + (wrongIdx.length > 1 ? 's' : '') + '</button>' : '') + '</div></div>';
+    document.getElementById('pScore').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  window.newVariant = function () { newSet(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  window.retryWrong = function () { const w = wrongIdx.slice(); newSet(w); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  window.setLevel = function (v) { lvl = v; newSet(); };
+  window.setSize = function (v) { size = +v; newSet(); };
+  window.openSubject = function (i) { active = i; lvl = 'all'; renderNav(); newSet(); };
+  document.addEventListener('DOMContentLoaded', function () { renderNav(); newSet(); });
+})();
+</script>
+<script src="nav.js?v=4"></script>
+</body>
+</html>

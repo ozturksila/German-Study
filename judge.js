@@ -29,7 +29,7 @@ window.JUDGE = (function () {
     proxy:  { label: 'Local server (key stays on disk)', needsKey: false },
     manual: { label: 'Copy & paste into my own chat (no API)', needsKey: false },
     ollama: { label: 'Local model via Ollama (no key, offline)', needsKey: false,
-              defaultModel: 'llama3.1', defaultBase: 'http://localhost:11434' },
+              defaultModel: 'qwen2.5:14b', defaultBase: 'http://localhost:11434' },
     anthropic: { label: 'Anthropic API key in this browser', needsKey: true,
                  defaultModel: 'claude-sonnet-5-5' },
     gemini: { label: 'Google Gemini API key in this browser', needsKey: true,
@@ -38,6 +38,14 @@ window.JUDGE = (function () {
               defaultModel: 'gpt-4o-mini', defaultBase: 'https://api.openai.com/v1' },
     none:   { label: 'No AI — offline check only', needsKey: false }
   };
+
+  // Models picked for a 36 GB Apple-silicon laptop. Qwen 2.5 is strong in German
+  // and follows a JSON format reliably; Gemma 2 is a lighter fallback.
+  const OLLAMA_PICKS = [
+    { id: 'qwen2.5:14b', size: '≈ 9 GB', note: 'Recommended for your M3 Max: good German, fast enough for a paragraph.' },
+    { id: 'qwen2.5:32b', size: '≈ 20 GB', note: 'Strongest local option. Still fits in 36 GB, but noticeably slower.' },
+    { id: 'gemma2:9b',   size: '≈ 5.5 GB', note: 'Lighter and quick. Adequate German, weaker at fine corrections.' }
+  ];
 
   let proxyAvailable = null; // null = not probed yet
 
@@ -68,6 +76,18 @@ window.JUDGE = (function () {
       proxyAvailable = false;
     }
     return proxyAvailable;
+  }
+
+  // Ollama's own list of installed models; empty if the server is not running.
+  async function ollamaModels(base) {
+    try {
+      const r = await fetch((base || baseFor('ollama')).replace(/\/$/, '') + '/api/tags');
+      if (!r.ok) return null;
+      const j = await r.json();
+      return (j.models || []).map(function (m) { return m.name; });
+    } catch (e) {
+      return null;   // not running, or blocked
+    }
   }
 
   function configured() {
@@ -207,6 +227,7 @@ window.JUDGE = (function () {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: modelFor('ollama'), stream: false, format: 'json',
+          options: { temperature: 0.2, num_ctx: 8192 },
           messages: [{ role: 'system', content: sys }, { role: 'user', content: usr }]
         })
       });
@@ -323,13 +344,12 @@ window.JUDGE = (function () {
   function setupHtml() {
     return '<div class="judge-setup">' +
       '<strong>🤖 AI correction is not set up yet — and it is optional.</strong>' +
-      '<p>The offline check above already runs with no account at all. For feedback on <em>meaning</em> ' +
-      'you have four routes, including two that need no API key:</p>' +
+      '<p>The <strong>offline check</strong> above always runs, with no account, key or network. It measures the ' +
+      'mechanics. For feedback on <em>meaning</em>, nothing is sent anywhere until you choose one of these:</p>' +
       '<ul class="goals">' +
-      '<li><strong>Copy &amp; paste</strong> — the page writes the marking prompt, you paste it into Gemini, ChatGPT or Claude and paste the answer back. No key, no cost beyond what you already pay.</li>' +
-      '<li><strong>A local model</strong> — Ollama on this machine. No key, nothing leaves the computer.</li>' +
-      '<li><strong>Key on disk</strong> — put <code>ANTHROPIC_API_KEY</code> (or <code>GEMINI_API_KEY</code>) in <code>deutsch-kurs/.env</code> and run <code>./serve.sh</code>.</li>' +
-      '<li><strong>Key in this browser</strong> — quickest, least private.</li>' +
+      '<li><strong>Local model (Ollama)</strong> — nothing leaves your computer. Pick a model in this dialog.</li>' +
+      '<li><strong>Copy &amp; paste</strong> — the page writes the marking prompt; paste it into Gemini, ChatGPT or Claude and paste the answer back.</li>' +
+      '<li><strong>An API key</strong> — Anthropic, Gemini or OpenAI. Either in <code>deutsch-kurs/.env</code> (via <code>./serve.sh</code>, never reaches the browser) or pasted here (quicker, less private).</li>' +
       '</ul>' +
       '<button class="check-btn" onclick="JUDGE.askKey()">Choose how to correct</button>' +
       '</div>';
@@ -377,10 +397,44 @@ window.JUDGE = (function () {
     if (def.defaultModel) h += '<input type="text" id="jpModel" placeholder="model (' + esc(def.defaultModel) + ')" value="' + esc(c.model || '') + '">';
     if (def.defaultBase) h += '<input type="text" id="jpBase" placeholder="base URL (' + esc(def.defaultBase) + ')" value="' + esc(c.base || '') + '">';
     if (p === 'manual') h += '<p class="note">You will get a Copy button on the writing page, and a box to paste the answer into.</p>';
-    if (p === 'ollama') h += '<p class="note">Needs Ollama running locally: <code>ollama serve</code>, then e.g. <code>ollama pull llama3.1</code>. A small local model marks grammar reasonably and meaning less well.</p>';
+    if (p === 'ollama') {
+      h += '<div id="jpOllama"><p class="note">Checking what Ollama has installed…</p></div>';
+      setTimeout(function () { populateOllama(c.model || def.defaultModel); }, 0);
+    }
     if (p === 'none') h += '<p class="note">Only the offline check will run. Nothing is sent anywhere.</p>';
     box.innerHTML = h;
   }
+  async function populateOllama(current) {
+    const box = document.getElementById('jpOllama');
+    if (!box) return;
+    const installed = await ollamaModels(null);
+    if (installed === null) {
+      box.innerHTML = '<p class="warn">Ollama is not running. Start it with <code>ollama serve</code> (or open the Ollama app), then reopen this dialog.</p>';
+      return;
+    }
+    const have = {};
+    installed.forEach(function (n) { have[n] = true; });
+    let rows = OLLAMA_PICKS.map(function (m) {
+      const got = !!have[m.id];
+      return '<label class="mj-opt"><input type="radio" name="jpOm" value="' + esc(m.id) + '"' +
+        (current === m.id ? ' checked' : '') + '> <span><strong>' + esc(m.id) + '</strong> ' + esc(m.size) +
+        (got ? ' <em>· installed</em>' : ' <em>· not downloaded yet</em>') +
+        '<br><span class="note">' + esc(m.note) + '</span></span></label>';
+    }).join('');
+    const others = installed.filter(function (n) { return !OLLAMA_PICKS.some(function (m) { return m.id === n; }); });
+    if (others.length) {
+      rows += '<p class="note" style="margin-top:8px">Also installed here: ' + others.map(esc).join(', ') + '. Older or smaller models work less well for German.</p>';
+    }
+    const missing = OLLAMA_PICKS.filter(function (m) { return !have[m.id]; });
+    box.innerHTML = rows +
+      (missing.length ? '<p class="note">To download the recommended model, run in Terminal: <code>ollama pull ' + esc(OLLAMA_PICKS[0].id) + '</code></p>' : '');
+    box.querySelectorAll('input[name=jpOm]').forEach(function (r) {
+      r.addEventListener('change', function () { document.getElementById('jpModel').value = r.value; });
+    });
+    const jm = document.getElementById('jpModel');
+    if (jm && !jm.value) jm.value = current;
+  }
+
   function closeKey() {
     const o = document.querySelector('.profile-modal-overlay');
     if (o) o.remove();
@@ -404,6 +458,7 @@ window.JUDGE = (function () {
     askKey: askKey, saveKey: saveKey, clearKey: clearKey, closeKey: closeKey,
     copyPrompt: copyPrompt, showPrompt: showPrompt, acceptPaste: acceptPaste,
     promptText: promptText, rememberPrompt: rememberPrompt,
-    systemPrompt: systemPrompt, LEVEL_SPEC: LEVEL_SPEC, PROVIDERS: PROVIDERS
+    systemPrompt: systemPrompt, LEVEL_SPEC: LEVEL_SPEC, PROVIDERS: PROVIDERS,
+    ollamaModels: ollamaModels, OLLAMA_PICKS: OLLAMA_PICKS
   };
 })();

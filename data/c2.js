@@ -14,7 +14,58 @@
         t('🔍', 'Near-synonyms', 'erreichen / erzielen / erlangen — what each implies'),
         t('⚖️', 'Connotation', 'Choosing the word that carries your stance'),
         t('🧩', 'Modal particles, fully', 'doch, ja, eben, halt, wohl, schon — in combination'),
-        t('🎯', 'Degrees of commitment', 'From dürfte to zweifellos'),
+        {
+          icon: '🎯', title: 'Degrees of commitment', note: 'From dürfte to zweifellos',
+          explanation:
+            '<p>At C2 the question is no longer “Is my sentence correct?” but “<em>How much</em> am I claiming?” German gives you a finely graded scale, and the <strong>Konjunktiv II of the modal verbs</strong> sits in the middle of it. It is the grammar of scholarly caution.</p>' +
+            '<p><strong>könnte</strong> marks a live possibility (<span class="de">Das könnte stimmen.</span>). <strong>dürfte</strong> says “probably” — the speaker has reasons (<span class="de">Das dürfte stimmen.</span>). <strong>müsste</strong> expresses a well-founded expectation or inference (<span class="de">Er müsste längst da sein.</span>) — weaker than <span class="de">muss</span>, which would be certainty. Compare these with adverbs at the ends of the scale: <span class="de">vielleicht, womöglich</span> (weak) · <span class="de">vermutlich, wahrscheinlich</span> · <span class="de">sicherlich, zweifellos</span> (strong).</p>' +
+            '<p>Scholarly and professional writing adds impersonal Konjunktiv II constructions that avoid <em>ich</em> and keep the claim detached: <span class="de">Das ließe sich belegen. · Es wäre zu prüfen, ob … · Man könnte argumentieren, dass … · Man dürfte davon ausgehen, dass …</span> The hedge is the point: it is how a careful writer says “I believe this, but I am not going to overreach”.</p>',
+          vocab: formTable('The commitment scale', ['Weak', '', '', 'Strong'], [
+            ['vielleicht<br>womöglich', 'Das <strong>könnte</strong> stimmen.', 'Das <strong>dürfte</strong> stimmen.', 'Das stimmt <strong>zweifellos</strong>.'],
+            ['Es ist denkbar, dass …', 'Man <strong>könnte</strong> argumentieren, dass …', 'Man <strong>dürfte</strong> davon ausgehen, dass …', 'Es steht außer Frage, dass …']
+          ]) +
+          vocabTable([
+            ['Das ließe sich belegen.', 'That could be substantiated.'],
+            ['Es wäre zu prüfen, ob …', 'It would need to be checked whether …'],
+            ['Er müsste längst da sein.', 'He ought to have arrived long ago.'],
+            ['Man dürfte davon ausgehen, dass …', 'One may probably assume that …'],
+            ['Das wäre nicht schlecht.', 'That would not be bad. (understatement)'],
+            ['abschwächen', 'to tone down'],
+            ['sich festlegen', 'to commit oneself'],
+            ['unter Vorbehalt', 'with reservation'],
+            ['die Vorsicht', 'caution'],
+            ['überinterpretieren', 'to over-interpret']
+          ]),
+          grammar:
+            '<div class="grammar-point">' +
+            '<p><strong>Reading the scale:</strong></p>' +
+            '<div class="example-box">' +
+            'Die Studie <strong>könnte</strong> auf einen Zusammenhang hindeuten. <span class="note">(possible)</span><br>' +
+            'Die Studie <strong>dürfte</strong> auf einen Zusammenhang hindeuten. <span class="note">(probable)</span><br>' +
+            'Die Studie <strong>deutet</strong> auf einen Zusammenhang hin. <span class="note">(asserted)</span><br>' +
+            'Die Studie belegt <strong>zweifellos</strong> einen Zusammenhang. <span class="note">(emphatic)</span>' +
+            '</div>' +
+            '<p><strong>Do not confuse dürfte with the past.</strong> <span class="de">Er dürfte krank sein</span> is a present-tense guess (“he is probably ill”). To guess about the past, add the perfect infinitive: <span class="de">Er dürfte krank gewesen sein.</span></p>' +
+            '<p class="note">Litotes and understatement also use Konjunktiv II: <span class="de">Das wäre nicht schlecht</span> can mean “that would be excellent”. Tone decides — which is exactly the C2 skill.</p>' +
+            '</div>',
+          dialogs: dialogBox('Gutachten — eine Formulierung abschwächen', [
+            ['Gutachterin', 'In Ihrem Entwurf steht: „Die Maßnahme senkt die Kosten.“ Das ist zu apodiktisch.'],
+            ['Autor', 'Aber die Daten sprechen doch klar dafür.'],
+            ['Gutachterin', 'Sie sprechen dafür, ja. „Die Maßnahme dürfte die Kosten senken“ wäre ehrlicher.'],
+            ['Autor', 'Oder: „Es ließe sich zeigen, dass …“?'],
+            ['Gutachterin', 'Besser. Und der Abschnitt zu den Ausnahmen müsste ohnehin überarbeitet werden. Es wäre zu prüfen, ob die Stichprobe ausreicht.']
+          ]),
+          exercises: exerciseList([
+            exInput('Probably: Das ___________ stimmen. (dürfen, Konjunktiv II)', 'dürfte'),
+            exInput('Possible: Das ___________ stimmen. (können, Konjunktiv II)', 'könnte'),
+            exInput('Expectation: Er ___________ längst da sein. (müssen, Konjunktiv II)', 'müsste'),
+            exInput('Cautious: Das ___________ sich belegen. (lassen, Konjunktiv II)', 'ließe'),
+            exInput('Es ___________ zu prüfen, ob die Daten ausreichen. (sein)', 'wäre'),
+            exInput('Man ___________ argumentieren, dass … (können, cautious)', 'könnte'),
+            exSelect('Which sentence commits the writer the most?', 'Die Studie belegt zweifellos einen Zusammenhang.', ['Die Studie könnte auf einen Zusammenhang hindeuten.', 'Die Studie dürfte auf einen Zusammenhang hindeuten.', 'Die Studie belegt zweifellos einen Zusammenhang.']),
+            exSelect('„Er dürfte krank gewesen sein“ expresses:', 'a probable guess about the past', ['a certain fact about the past', 'a probable guess about the past', 'a guess about the future'])
+          ])
+        },
         t('✂️', 'Removing the last learner markers', 'The patterns that still give you away')
       ], ['Choose between near-synonyms deliberately', 'Shade meaning with particles and adverbs'],
          ['Semantic fields and connotation', 'Full modal particle system', 'Epistemic marking']),

@@ -51,7 +51,63 @@
         t('🧾', 'Complaints and returns', 'Die Rechnung stimmt nicht. Ich möchte reklamieren.'),
         t('🔧', 'Repairs and services', 'Werkstatt, Reinigung, Handwerker'),
         t('📦', 'Online orders and delivery', 'Lieferung, Paket, Rücksendung'),
-        t('💬', 'Being polite but firm', 'Könnten Sie …? Ich hätte gern …')
+        {
+          icon: '💬', title: 'Being polite but firm', note: 'Könnten Sie …? Ich hätte gern …',
+          explanation:
+            '<p>In a shop or at a service desk you sometimes have to ask for something you have a right to: a refund, an exchange, a receipt. If you say it too directly (<span class="de">Geben Sie mir mein Geld!</span>) it sounds aggressive. If you say it too softly, nobody takes it seriously. German solves this with the <strong>Konjunktiv II</strong>: it makes the request polite, while the words stay clear.</p>' +
+            '<p>You already know <span class="de">Ich hätte gern …</span> and <span class="de">Ich möchte …</span> from A1. Now you change the verb in a question in the same way: <span class="de">Können Sie …?</span> becomes <strong>Könnten Sie …?</strong>, <span class="de">Haben Sie …?</span> becomes <strong>Hätten Sie …?</strong>, <span class="de">Ist das möglich?</span> becomes <strong>Wäre das möglich?</strong>, and for every other verb you use <strong>Würden Sie … + Infinitiv?</strong></p>' +
+            '<p>Polite does not mean weak. Say clearly what you want — <span class="de">Ich hätte gern mein Geld zurück.</span> — and add <span class="de">bitte</span> or <span class="de">leider</span>. Stay calm and friendly, but keep the request in the sentence.</p>',
+          vocab: formTable('The four polite forms', ['', 'können', 'haben', 'sein', 'werden'], [
+            ['ich', 'könnte', 'hätte', 'wäre', 'würde'],
+            ['du', 'könntest', 'hättest', 'wärst', 'würdest'],
+            ['er / sie / es', 'könnte', 'hätte', 'wäre', 'würde'],
+            ['wir', 'könnten', 'hätten', 'wären', 'würden'],
+            ['ihr', 'könntet', 'hättet', 'wärt', 'würdet'],
+            ['sie / Sie', 'könnten', 'hätten', 'wären', 'würden']
+          ]) +
+          vocabTable([
+            ['Könnten Sie mir bitte helfen?', 'Could you help me, please?'],
+            ['Hätten Sie das auch in Größe M?', 'Would you have that in size M too?'],
+            ['Wäre das möglich?', 'Would that be possible?'],
+            ['Würden Sie mir bitte eine Quittung geben?', 'Would you give me a receipt, please?'],
+            ['Ich hätte gern mein Geld zurück.', 'I would like my money back.'],
+            ['Ich würde die Jacke gern umtauschen.', 'I would like to exchange the jacket.'],
+            ['umtauschen', 'to exchange (goods)'],
+            ['die Quittung / der Kassenbon', 'the receipt'],
+            ['reklamieren', 'to make a complaint about goods'],
+            ['der Geschäftsführer / die Geschäftsführerin', 'the manager']
+          ]),
+          grammar:
+            '<div class="grammar-point">' +
+            '<p><strong>From normal to polite</strong> — only the verb changes:</p>' +
+            '<div class="example-box">' +
+            '<strong>Können</strong> Sie mir helfen? → <strong>Könnten</strong> Sie mir bitte helfen?<br>' +
+            '<strong>Haben</strong> Sie eine Tüte? → <strong>Hätten</strong> Sie eine Tüte?<br>' +
+            '<strong>Ist</strong> das möglich? → <strong>Wäre</strong> das möglich?<br>' +
+            '<strong>Geben</strong> Sie mir eine Quittung? → <strong>Würden</strong> Sie mir eine Quittung <strong>geben</strong>?' +
+            '</div>' +
+            '<p><strong>Word order.</strong> In a question the polite verb comes <strong>first</strong>; the second verb (the infinitive) goes to the <strong>end</strong>: <span class="de"><strong>Könnten</strong> Sie mir bitte <strong>helfen</strong>?</span> In a statement the polite verb is in position 2: <span class="de">Ich <strong>würde</strong> die Jacke gern <strong>umtauschen</strong>.</span></p>' +
+            '<p class="note">Polite but firm: <span class="de">Das ist leider kaputt. Ich hätte gern mein Geld zurück.</span> — friendly tone, clear request.</p>' +
+            '</div>',
+          dialogs: dialogBox('Dialog — returning a jacket', [
+            ['Kundin', 'Guten Tag. Ich habe diese Jacke letzte Woche gekauft. Leider ist der Reißverschluss kaputt.'],
+            ['Verkäufer', 'Oh, das tut mir leid. Haben Sie den Kassenbon?'],
+            ['Kundin', 'Ja, hier. Ich würde die Jacke gern umtauschen. Hätten Sie die noch in Größe M?'],
+            ['Verkäufer', 'Leider nicht mehr. Ich könnte Ihnen einen Gutschein geben.'],
+            ['Kundin', 'Ein Gutschein hilft mir leider nicht. Ich hätte lieber mein Geld zurück. Wäre das möglich?'],
+            ['Verkäufer', 'Natürlich. Würden Sie hier bitte unterschreiben?']
+          ]),
+          exercises: exerciseList([
+            exInput('___________ Sie mir bitte helfen? (können)', 'könnten'),
+            exInput('___________ Sie den Pullover auch in Größe M? (haben)', 'hätten'),
+            exInput('Ich möchte die Jacke umtauschen. ___________ das möglich? (sein)', 'wäre'),
+            exInput('___________ Sie mir bitte eine Quittung geben? (werden)', 'würden'),
+            exInput('Ich ___________ gern mein Geld zurück. (haben)', 'hätte'),
+            exInput('Ich würde die Jacke gern ___________. (umtauschen)', 'umtauschen'),
+            exSelect('Which request is polite but still clear?', 'Ich hätte gern mein Geld zurück.', ['Geben Sie mir mein Geld!', 'Ich hätte gern mein Geld zurück.', 'Vielleicht, wenn es geht, eventuell Geld …?']),
+            exSelect('In „Könnten Sie mir bitte helfen?“ the word „helfen“ stands:', 'at the end', ['at the end', 'in second position', 'first'])
+          ])
+        }
       ], ['Return goods and make a complaint', 'Arrange a service or repair'],
          ['Konjunktiv II for politeness: hätte, wäre, könnte, würde', 'Verbs with prepositions (introduction)']),
 
@@ -130,7 +186,62 @@
       U('🏃 Unit 14 — Health, Sport and Wellbeing', 'Gesundheit und Sport', [
         t('🏋️', 'Sport and fitness', 'Gym, clubs, training routines'),
         t('🥗', 'Healthy living', 'Schlaf, Stress, Bewegung, Ernährung'),
-        t('🧘', 'Giving advice', 'Du solltest … / An deiner Stelle würde ich …'),
+        {
+          icon: '🧘', title: 'Giving advice', note: 'Du solltest … / An deiner Stelle würde ich …',
+          explanation:
+            '<p>A friend is stressed, sleeps badly or has back pain. You want to help, but you are not the boss. A direct order (<span class="de">Schlaf mehr!</span>) or <span class="de">Du musst …</span> sounds too strong. German gives advice with the <strong>Konjunktiv II</strong>.</p>' +
+            '<p>The most common form is <strong>sollte</strong> (from <span class="de">sollen</span>): <span class="de">Du solltest mehr schlafen.</span> — “You should sleep more.” It is a recommendation, not a rule. A second, very friendly way is to put yourself in the other person’s place: <span class="de">An deiner Stelle würde ich zum Arzt gehen.</span> — “In your place I would go to the doctor.”</p>' +
+            '<p>For a suggestion, use <strong>Wie wäre es mit …?</strong> + dative: <span class="de">Wie wäre es mit einem Spaziergang?</span> — “How about a walk?”</p>',
+          vocab: formTable('sollen → sollte (advice)', ['', 'sollte'], [
+            ['ich', 'sollte'],
+            ['du', 'solltest'],
+            ['er / sie / es', 'sollte'],
+            ['wir', 'sollten'],
+            ['ihr', 'solltet'],
+            ['sie / Sie', 'sollten']
+          ]) +
+          vocabTable([
+            ['Du solltest mehr schlafen.', 'You should sleep more.'],
+            ['Sie sollten zum Arzt gehen.', 'You should go to the doctor. (formal)'],
+            ['An deiner Stelle würde ich …', 'In your place I would …'],
+            ['Ich würde weniger Kaffee trinken.', 'I would drink less coffee.'],
+            ['Wie wäre es mit einem Spaziergang?', 'How about a walk?'],
+            ['Es wäre gut, wenn du Pausen machst.', 'It would be good if you took breaks.'],
+            ['der Rat / der Tipp', 'the advice / the tip'],
+            ['sich ausruhen', 'to rest'],
+            ['sich entspannen', 'to relax'],
+            ['die Rückenschmerzen (Pl.)', 'back pain']
+          ]),
+          grammar:
+            '<div class="grammar-point">' +
+            '<p><strong>Three ways to give advice:</strong></p>' +
+            '<div class="example-box">' +
+            'Du <strong>solltest</strong> mehr Wasser <strong>trinken</strong>.<br>' +
+            'An deiner Stelle <strong>würde</strong> ich mehr Wasser <strong>trinken</strong>.<br>' +
+            'Wie <strong>wäre</strong> es mit mehr Wasser?' +
+            '</div>' +
+            '<p><strong>Word order.</strong> <span class="de">sollte / würde</span> is the verb in position 2; the infinitive goes to the <strong>end</strong>. After <span class="de">An deiner Stelle</span> the verb comes straight next, then the subject: <span class="de">An deiner Stelle <strong>würde ich</strong> …</span> — not <span class="de">An deiner Stelle ich würde</span>.</p>' +
+            '<p><strong>müssen or sollte?</strong> <span class="de">Du musst zum Arzt.</span> = it is necessary (strong). <span class="de">Du solltest zum Arzt gehen.</span> = it is a good idea (advice).</p>' +
+            '</div>',
+          dialogs: dialogBox('Dialog — a friend with back pain', [
+            ['Lena', 'Mein Rücken tut schon seit einer Woche weh.'],
+            ['Tom', 'Oh nein. Du solltest zum Arzt gehen.'],
+            ['Lena', 'Ich habe keine Zeit. Ich arbeite den ganzen Tag am Computer.'],
+            ['Tom', 'An deiner Stelle würde ich jede Stunde eine kurze Pause machen.'],
+            ['Lena', 'Das ist eine gute Idee. Und am Abend?'],
+            ['Tom', 'Wie wäre es mit Yoga? Das hilft mir sehr.']
+          ]),
+          exercises: exerciseList([
+            exInput('Du ___________ mehr schlafen. (sollen)', 'solltest'),
+            exInput('Sie ___________ zum Arzt gehen. (sollen)', 'sollten'),
+            exInput('Ihr ___________ mehr Sport machen. (sollen)', 'solltet'),
+            exInput('An deiner Stelle ___________ ich weniger Kaffee trinken. (werden)', 'würde'),
+            exInput('Wie ___________ es mit einem Spaziergang? (sein)', 'wäre'),
+            exInput('Du solltest mehr Wasser ___________. (trinken)', 'trinken'),
+            exSelect('Which sentence is advice, not an obligation?', 'Du solltest zum Arzt gehen.', ['Du musst zum Arzt.', 'Du solltest zum Arzt gehen.', 'Geh zum Arzt!']),
+            exSelect('Which word order is correct?', 'An deiner Stelle würde ich früher ins Bett gehen.', ['An deiner Stelle würde ich früher ins Bett gehen.', 'An deiner Stelle ich würde früher ins Bett gehen.', 'An deiner Stelle ich früher ins Bett gehen würde.'])
+          ])
+        },
         t('🤕', 'Accidents and injuries', 'Ich habe mir den Arm gebrochen.'),
         t('🩺', 'A longer doctor’s visit', 'Explaining history and asking questions')
       ], ['Give advice and recommendations', 'Describe an injury or longer illness'],
@@ -158,7 +269,58 @@
         t('📅', 'Firm plans', 'Future I with werden and with present + time'),
         t('🌟', 'Wishes', 'Ich würde gern … / Ich hätte Lust auf …'),
         t('🎲', 'Real conditions', 'Wenn ich Zeit habe, komme ich mit.'),
-        t('🌈', 'Unreal conditions', 'Wenn ich reich wäre, würde ich …'),
+        {
+          icon: '🌈', title: 'Unreal conditions', note: 'Wenn ich reich wäre, würde ich …',
+          explanation:
+            '<p>Some “ifs” are real: <span class="de">Wenn ich Zeit habe, komme ich mit.</span> — maybe I will have time. Others are <strong>imaginary</strong>: <span class="de">Wenn ich reich wäre, würde ich um die Welt reisen.</span> — I am not rich; I am dreaming. For imaginary situations German uses the <strong>Konjunktiv II</strong>.</p>' +
+            '<p>You do not need the whole system yet. Three verb forms do almost all the work: <strong>wäre</strong> (from <span class="de">sein</span>), <strong>hätte</strong> (from <span class="de">haben</span>) and <strong>würde + Infinitiv</strong> for everything else. For <span class="de">können</span> you can also use <strong>könnte</strong>.</p>' +
+            '<p>Both parts of the sentence are “unreal”, so both use Konjunktiv II: <span class="de">Wenn ich <strong>hätte</strong> …, <strong>würde</strong> ich …</span>. Do not put <span class="de">würde</span> before <span class="de">wäre</span> or <span class="de">hätte</span> — say <span class="de">ich wäre</span>, never <span class="de">ich würde sein</span>.</p>',
+          vocab: formTable('Konjunktiv II — the key forms', ['', 'sein', 'haben', 'werden → würde', 'können'], [
+            ['ich', 'wäre', 'hätte', 'würde', 'könnte'],
+            ['du', 'wärst', 'hättest', 'würdest', 'könntest'],
+            ['er / sie / es', 'wäre', 'hätte', 'würde', 'könnte'],
+            ['wir', 'wären', 'hätten', 'würden', 'könnten'],
+            ['ihr', 'wärt', 'hättet', 'würdet', 'könntet'],
+            ['sie / Sie', 'wären', 'hätten', 'würden', 'könnten']
+          ]) +
+          vocabTable([
+            ['Wenn ich reich wäre, …', 'If I were rich, …'],
+            ['Wenn ich Zeit hätte, …', 'If I had time, …'],
+            ['Ich würde gern …', 'I would like to …'],
+            ['An deiner Stelle würde ich …', 'In your place I would …'],
+            ['Was würdest du machen, wenn …?', 'What would you do if …?'],
+            ['vielleicht', 'perhaps'],
+            ['träumen', 'to dream'],
+            ['unmöglich', 'impossible']
+          ]),
+          grammar:
+            '<div class="grammar-point">' +
+            '<p><strong>Real or unreal?</strong> Compare the verb in the wenn-clause:</p>' +
+            '<div class="example-box">' +
+            '<strong>Real:</strong> Wenn ich Zeit <strong>habe</strong>, <strong>komme</strong> ich mit.<br>' +
+            '<strong>Unreal:</strong> Wenn ich Zeit <strong>hätte</strong>, <strong>würde</strong> ich mitkommen.' +
+            '</div>' +
+            '<p><strong>Word order.</strong> The wenn-clause sends its verb to the <strong>end</strong>. If it comes first, the main clause then starts with its verb: <span class="de">Wenn ich reich <strong>wäre</strong>, <strong>würde</strong> ich ein Haus kaufen.</span> You can also start with the main clause: <span class="de">Ich <strong>würde</strong> ein Haus kaufen, wenn ich reich <strong>wäre</strong>.</span></p>' +
+            '<p class="note">Questions with <span class="de">würdest du</span> are a favourite game: <span class="de">Was würdest du machen, wenn du im Lotto gewinnen würdest?</span></p>' +
+            '</div>',
+          dialogs: dialogBox('Dialog — daydreaming at lunch', [
+            ['Mia', 'Was würdest du machen, wenn du ein Jahr frei hättest?'],
+            ['Jonas', 'Ich würde nach Japan reisen. Und du?'],
+            ['Mia', 'Wenn ich mehr Geld hätte, würde ich ein Café eröffnen.'],
+            ['Jonas', 'Das wäre toll! Ich würde jeden Tag kommen.'],
+            ['Mia', 'Aber leider habe ich kein Geld und keine Zeit.'],
+            ['Jonas', 'Dann bleibt es ein Traum.']
+          ]),
+          exercises: exerciseList([
+            exInput('Wenn ich reich ___________, würde ich ein Haus kaufen. (sein)', 'wäre'),
+            exInput('Wenn ich mehr Zeit ___________, würde ich öfter kochen. (haben)', 'hätte'),
+            exInput('Wenn wir mehr Geld hätten, ___________ wir ein Auto kaufen. (würden)', 'würden'),
+            exInput('Du ___________ glücklicher, wenn du mehr schlafen würdest. (sein)', 'wärst'),
+            exInput('Ich ___________ gern in Berlin wohnen, wenn die Mieten niedriger wären. (würde)', 'würde'),
+            exSelect('Which sentence is correct?', 'Wenn ich Zeit hätte, würde ich kommen.', ['Wenn ich Zeit habe, würde ich kommen.', 'Wenn ich Zeit hätte, würde ich kommen.', 'Wenn ich Zeit hätte, ich würde kommen.']),
+            exSelect('„Wenn es morgen regnet, bleibe ich zu Hause.“ is:', 'real — it may well happen', ['real — it may well happen', 'unreal — only imagined'])
+          ])
+        },
         t('📝', 'Writing about your future', 'A short structured text')
       ], ['Talk about plans, wishes and hypothetical situations', 'Write a short text about the future'],
          ['Future I', 'Konjunktiv II with würde / hätte / wäre', 'wenn-clauses, real and unreal']),

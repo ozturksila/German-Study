@@ -9,7 +9,7 @@ subject and topic, and the whole exercise/checkpoint engine are in place.
 
 | | |
 | --- | --- |
-| **Written in full** | **B2 Units 1–3** — 5 lessons each plus unit practice, reading, listening, writing, flashcards, culture and recap (210 questions)<br>**A1 Units 1–2** — the same full set (122 questions) |
+| **Written in full** | **B2 Units 1–3** — 5 lessons each plus unit practice, reading, listening, writing, flashcards, culture and recap (210 questions)<br>**A1 Units 1–18** — the whole level: every unit with 5 lessons, unit practice, reading, listening, writing, culture and recap |
 | **Outline only** | Everything else — those pages say so rather than pretending |
 
 ## Run it
@@ -115,7 +115,7 @@ steps and a rewritten version.
 | Route | Needs a key? | Notes |
 | --- | --- | --- |
 | **Copy & paste** | **no** | The page builds the whole marking prompt. Paste it into Gemini, ChatGPT or Claude in your browser, paste the answer back, and it renders like any other feedback. Uses the subscription you already pay for. |
-| **Local model (Ollama)** | **no** | `ollama serve`, then pick a model. Nothing leaves the machine. Marks grammar reasonably, meaning less well. |
+| **Local model (Ollama)** | **no** | Pick a model in the ⚙️ dialog; it lists what Ollama has installed. Recommended for a 36 GB Apple-silicon Mac: `qwen2.5:14b` (`ollama pull qwen2.5:14b`), with `qwen2.5:32b` as the stronger, slower option. Nothing leaves the machine. |
 | **Key on disk** | yes | `ANTHROPIC_API_KEY`, `GEMINI_API_KEY` or `OPENAI_API_KEY` in `deutsch-kurs/.env` — `server.py` also reads `../backend/.env`. The key never reaches the browser. `.env` is gitignored. |
 | **Key in the browser** | yes | Quickest. Stored in local storage, so anything in that browser profile can read it. Anthropic, Gemini or any OpenAI-compatible endpoint. |
 | **None** | — | Only the offline check runs. Nothing is sent anywhere. |
@@ -144,13 +144,16 @@ at each provider's own Modellsatz.
 | --- | --- |
 | `index.html` | Hub: six level cards with their subject lists and your progress |
 | `course.html` | The course shell — `course.html?level=b1` |
-| `grammar.html` | Grammar reference, 12 sections (outline only) |
+| `grammar-topics.html` | Grammar by topic: every lesson on one grammar subject, explanations + exercises, split by level |
+| `data/grammar-map.js` | Which lessons belong to which grammar topic — add new lessons here |
+| `data/grammar-guides.js` | Full study guides (Konnektoren, Konjunktiv II) shown instead of level-split lessons |
 | `engine.js` | Course engine: pages, navigation, exercises, checkpoints, listening, writing, flashcards |
 | `judge.js` | AI writing judge: per-level rubrics, prompt building, five correction routes |
 | `checker.js` | Offline writing check — no key, no network, always runs |
 | `server.py` | Static server + `/api/judge` proxy that keeps the key on disk |
 | `exam.html` | Exam preparation for all six levels |
 | `data/explain-de.js` | German versions of the lesson explanations, one per topic |
+| `data/explain-de-a1.js` | German explanations for A1 Units 3–18 (loaded after `explain-de.js`) |
 | `data/exams.js` | telc / Goethe / ÖSD / TestDaF / DSH formats per level |
 | `builders.js` | `vocabTable`, `formTable`, `dialogBox`, `exInput`, `exSelect` — loaded before the data files that call them |
 | `progress.js` | Shared progress store for all six levels |

@@ -1,7 +1,7 @@
 /* B2 — Vantage.
-   Units 1–3 are written out in full — lessons, unit practice, reading, listening,
+   Units 1–6 are written out in full — lessons, unit practice, reading, listening,
    writing (AI-marked) and the recap that feeds flashcards and checkpoints.
-   Units 4–14 are still outline only. */
+   Units 7–14 are still outline only. */
 (function () {
   window.LEVELS = window.LEVELS || {};
   function t(icon, title, note) { return { icon: icon, title: title, note: note }; }
@@ -1608,32 +1608,1261 @@
         ]
       },
 
-      U('🌍 Unit 4 — Globalisation and Economy', 'Globalisierung und Wirtschaft', [
-        t('🚢', 'Trade and supply chains', 'Explaining dependence and risk'),
-        t('🏦', 'Economic basics in German', 'Inflation, Konjunktur, Wachstum'),
-        t('⚖️', 'Winners and losers', 'Structuring a balanced analysis'),
-        t('🏷️', 'Consumption and ethics', 'Lieferkettengesetz, Fair Trade'),
-        t('✍️', 'An analytical essay', 'Thesis, argument, counter-argument, conclusion')
-      ], ['Analyse an economic issue in writing', 'Present a balanced argument with a clear conclusion'],
-         ['Causal and consecutive clauses: sodass, infolgedessen', 'Genitive constructions in formal style']),
+      { // ===== B2 UNIT 4 — written out in full =====
+        title: '🌍 Unit 4 — Globalisation and Economy',
+        subject: 'Globalisierung und Wirtschaft',
+        canDo: ['Explain a chain of cause and consequence in a supply chain',
+                'Describe economic trends with formal vocabulary and genitive constructions',
+                'Weigh winners against losers in a balanced way',
+                'Discuss ethical responsibility in trade with a clear position'],
+        grammarFocus: ['Consecutive clauses: sodass, so … dass, infolgedessen', 'Genitive constructions in formal style: aufgrund, trotz, während + Genitiv',
+                       'Contrast structures: einerseits … andererseits, zum einen … zum anderen', 'Zu-Infinitiv and Modal + Passiv in ethical debates'],
+        topics: [
+          {
+            icon: '🚢', title: 'Trade and supply chains',
+            explanation:
+              '<p>Modern trade runs on dependence. A German car can contain parts from a dozen countries, and the chain behind it is only as strong as its weakest link. ' +
+              'Three words carry most of the meaning: <span class="de">die Lieferkette</span> is the whole chain, <span class="de">der Engpass</span> is the point where it narrows, ' +
+              'and <span class="de">die Abhängigkeit</span> describes how far a firm or a country relies on a single source.</p>' +
+              '<p>To explain a cause and its consequence, German has two main tools, and both are B2 essentials. <span class="de">sodass</span> joins two clauses into one sentence: ' +
+              'the consequence follows the comma and the verb goes to the end. <span class="de">infolgedessen</span> (or <span class="de">daher</span>, <span class="de">deshalb</span>) starts a new main clause, ' +
+              'so the verb comes straight after it and the subject follows the verb.</p>' +
+              '<p>A third pattern is <span class="de">so … dass</span> with an adjective in between: <span class="de">Die Abhängigkeit war so groß, dass …</span> — the dependence was so great that …</p>',
+            vocab: vocabTable([
+              ['die Lieferkette', 'the supply chain'],
+              ['der Engpass', 'the bottleneck, the shortage'],
+              ['die Abhängigkeit', 'the dependence'],
+              ['der Lieferant', 'the supplier'],
+              ['das Vorprodukt', 'the intermediate product, the component'],
+              ['die Ausfuhr', 'the export'],
+              ['die Einfuhr', 'the import'],
+              ['der Zoll / die Zölle', 'the customs duty / the duties'],
+              ['die Verwundbarkeit', 'the vulnerability'],
+              ['die Diversifizierung', 'diversification'],
+              ['verlagern', 'to relocate'],
+              ['lahmlegen', 'to paralyse, to bring to a standstill'],
+              ['stillstehen', 'to be at a standstill'],
+              ['verzögern', 'to delay'],
+              ['sich verlassen auf', 'to rely on'],
+              ['der Ausfall', 'the failure, the outage'],
+              ['gesperrt', 'closed, blocked'],
+              ['verflechten', 'to interlink'],
+              ['die Reserve', 'the reserve, the buffer'],
+              ['eng verflochten', 'closely interlinked']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              formTable('', ['Pattern', 'Structure', 'Example'], [
+                ['<strong>sodass</strong>', 'Nebensatz — verb at the end', 'Der Hafen war gesperrt, <strong>sodass</strong> die Preise stiegen.'],
+                ['<strong>infolgedessen / daher</strong>', 'Hauptsatz — verb in second place', 'Der Hafen war gesperrt. <strong>Infolgedessen stiegen</strong> die Preise.'],
+                ['<strong>so … dass</strong>', 'Nebensatz after an adjective or adverb', 'Die Abhängigkeit war <strong>so groß, dass</strong> ein Ausfall alles lahmlegte.'],
+                ['<strong>aufgrund / infolge + Genitiv</strong>', 'preposition, formal style', '<strong>Aufgrund des Streiks</strong> verzögerte sich die Lieferung.']
+              ]) +
+              '<div class="example-box">' +
+              'Die Zulieferer lieferten zu spät. <strong>Infolgedessen</strong> <u>stand</u> das Werk eine Woche lang <u>still</u>.<br>' +
+              '<span class="note">infolgedessen = Adverb → Verb auf Platz 2, Subjekt danach</span><br><br>' +
+              'Der Hafen war gesperrt, <strong>sodass</strong> die Lieferungen <u>ausblieben</u>.<br>' +
+              '<span class="note">sodass = Nebensatz → Verb ans Ende</span>' +
+              '</div>' +
+              '<p class="note">Do not confuse <span class="de">sodass</span> (consequence) with <span class="de">damit</span> (purpose: <em>so that … in order to</em>). ' +
+              '<span class="de">Der Hafen war gesperrt, damit niemand hineinkam</span> means the closure was <em>intended</em>.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exInput('Der Hafen war gesperrt, ___________ die Preise stiegen.', 'sodass'),
+              exInput('Die Zulieferer waren spät dran. ___________ fehlten Bauteile.', 'Infolgedessen'),
+              exSelect('Welche Wortstellung stimmt?', 'Der Hafen war gesperrt, sodass die Preise stiegen.', ['Der Hafen war gesperrt, sodass stiegen die Preise.', 'Der Hafen war gesperrt, sodass die Preise stiegen.', 'Der Hafen war gesperrt, sodass die Preise, stiegen.']),
+              exSelect('Die Abhängigkeit war ___ groß, ___ ein Ausfall alles lahmlegte.', 'so … dass', ['so … dass', 'zu … damit', 'als … sodass']),
+              exSelect('„Engpass" bedeutet:', 'a bottleneck, a shortage', ['a surplus', 'a bottleneck, a shortage', 'a customs duty']),
+              exInput('Die Ausfuhr ist das Gegenteil der ___________. (ein Wort)', 'Einfuhr'),
+              exSelect('Welche Präposition mit Genitiv bedeutet „because of" (formal)?', 'aufgrund', ['aufgrund', 'damit', 'sodass']),
+              exSelect('Welches Wort steht für „to relocate production"?', 'verlagern', ['verlagern', 'verzögern', 'verflechten'])
+            ])
+          },
+          {
+            icon: '🏦', title: 'Economic basics in German',
+            explanation:
+              '<p>Business news uses a small set of economic terms again and again, and most of them are compounds you can take apart. ' +
+              '<span class="de">die Konjunktur</span> is the business cycle, and an <span class="de">Aufschwung</span> is an upswing. A <span class="de">Rezession</span> is a downturn, ' +
+              'and economists usually speak of one when output shrinks for two quarters in a row. <span class="de">die Inflation</span> measures rising prices, and what matters for a household is the <span class="de">Kaufkraft</span> — ' +
+              'what the wage can actually buy.</p>' +
+              '<p>In formal writing, the same ideas are often written with genitive constructions instead of <span class="de">von</span> plus dative. Compare ' +
+              '<span class="de">die Entwicklung <strong>der Wirtschaft</strong></span> with <span class="de">die Entwicklung <em>von der Wirtschaft</em></span>: the first is the standard style of reports and newspapers. ' +
+              'The genitive also follows a family of prepositions: <span class="de">aufgrund</span>, <span class="de">infolge</span>, <span class="de">wegen</span>, <span class="de">trotz</span>, <span class="de">während</span>.</p>',
+            vocab: vocabTable([
+              ['die Konjunktur', 'the business cycle, the economic situation'],
+              ['der Aufschwung', 'the upswing, the boom'],
+              ['die Rezession', 'the recession'],
+              ['das Wachstum', 'the growth'],
+              ['die Inflation', 'the inflation'],
+              ['die Kaufkraft', 'purchasing power'],
+              ['die Arbeitslosenquote', 'the unemployment rate'],
+              ['die Nachfrage', 'the demand'],
+              ['die Binnennachfrage', 'domestic demand'],
+              ['der Mittelstand', 'small and medium-sized businesses'],
+              ['die Erwerbsperson', 'member of the labour force'],
+              ['steigen / sinken', 'to rise / to fall'],
+              ['schrumpfen', 'to shrink'],
+              ['sich erholen', 'to recover'],
+              ['sich abschwächen', 'to weaken, to slow down'],
+              ['trotz', 'despite (+ Genitiv)'],
+              ['während', 'during, while (+ Genitiv / Konjunktion)'],
+              ['wegen', 'because of (+ Genitiv)']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              '<p><strong>Genitive in formal German.</strong> The genitive article and ending do the job that <em>of the</em> does in English:</p>' +
+              formTable('', ['Gender', 'Genitive article', 'Example'], [
+                ['masculine / neuter', '<strong>des</strong> (noun + -(e)s)', 'die Inflation <strong>des Landes</strong> · die Lage <strong>eines Unternehmens</strong>'],
+                ['feminine', '<strong>der</strong> (noun unchanged)', 'die Entwicklung <strong>der Wirtschaft</strong>'],
+                ['plural', '<strong>der</strong> (noun + -n where the plural has it)', 'die Zahlen <strong>der Erwerbspersonen</strong>']
+              ]) +
+              '<div class="example-box">' +
+              '<strong>Trotz des Wachstums</strong> blieb die Arbeitslosenquote hoch.<br>' +
+              '<strong>Während der Krise</strong> sank die Nachfrage deutlich.<br>' +
+              '<strong>Wegen der Inflation</strong> ging die Kaufkraft zurück.' +
+              '</div>' +
+              '<p class="note">Careful with <span class="de">wegen</span>: in spoken German it often takes the dative (<span class="de">wegen dem Wetter</span>), but in formal writing the genitive is the standard.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exSelect('Die Inflation ___ Landes ist gestiegen. (Genitiv von „das Land")', 'des', ['des', 'dem', 'der']),
+              exInput('Trotz ___________ (das Wachstum) blieb die Arbeitslosigkeit hoch.', 'des Wachstums'),
+              exInput('Während ___________ (die Krise) sank die Nachfrage deutlich.', 'der Krise'),
+              exSelect('„die Entwicklung der Wirtschaft" statt „die Entwicklung von der Wirtschaft" ist:', 'formeller', ['umgangssprachlich', 'formeller', 'falsch']),
+              exSelect('„Rezession" bedeutet:', 'output shrinking for two quarters in a row', ['sustained rising prices', 'output shrinking for two quarters in a row', 'a surplus in trade']),
+              exSelect('Die Kaufkraft sinkt, wenn:', 'die Preise schneller steigen als die Löhne', ['die Preise schneller steigen als die Löhne', 'die Löhne schneller steigen als die Preise', 'die Arbeitslosigkeit sinkt']),
+              exInput('Die Arbeitslosenquote ist der Anteil der ___________ an den Erwerbspersonen.', 'Arbeitslosen'),
+              exSelect('Welche Form ist richtig?', 'Wegen der Inflation', ['Wegen die Inflation', 'Wegen der Inflation', 'Wegen den Inflation'])
+            ])
+          },
+          {
+            icon: '⚖️', title: 'Winners and losers',
+            explanation:
+              '<p>A balanced analysis does not just list pros and cons; it shows who gains and who loses, and it keeps the two sides in one sentence where they belong together. ' +
+              'German has a set of contrast structures for this. <span class="de">einerseits … andererseits</span> sets two sides against each other, ' +
+              '<span class="de">zum einen … zum anderen</span> lists them, and <span class="de">während</span> or <span class="de">im Gegensatz zu</span> put two facts in direct contrast.</p>' +
+              '<p>The important thing is the structure, not just the words. <span class="de">einerseits</span> and <span class="de">andererseits</span> each take a main clause, so the verb comes second after both. ' +
+              'If you want to introduce a conclusion after the balance, <span class="de">Unter dem Strich</span> (on balance) or <span class="de">Letztlich</span> (ultimately) work well.</p>',
+            vocab: vocabTable([
+              ['der Vorteil', 'the advantage'],
+              ['der Nachteil', 'the disadvantage'],
+              ['die Chance', 'the opportunity'],
+              ['das Risiko', 'the risk'],
+              ['der Gewinner / die Gewinnerin', 'the winner'],
+              ['der Verlierer / die Verliererin', 'the loser'],
+              ['die Ungleichheit', 'inequality'],
+              ['der Wohlstand', 'prosperity'],
+              ['die Arbeitsplätze', 'the jobs'],
+              ['betroffen sein', 'to be affected'],
+              ['profitieren von', 'to benefit from'],
+              ['leiden unter', 'to suffer from'],
+              ['abwägen', 'to weigh up'],
+              ['das Gegenargument', 'the counter-argument'],
+              ['Unter dem Strich', 'on balance'],
+              ['letztlich', 'ultimately'],
+              ['im Gegensatz zu', 'in contrast to'],
+              ['gleichzeitig', 'at the same time']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              formTable('', ['Structure', 'Position of verb', 'Example'], [
+                ['<strong>einerseits … andererseits</strong>', 'verb 2nd after each', '<strong>Einerseits sinken</strong> die Preise, <strong>andererseits verlieren</strong> Industrieregionen Jobs.'],
+                ['<strong>zum einen … zum anderen</strong>', 'verb 2nd after each', '<strong>Zum einen profitieren</strong> Verbraucher, <strong>zum anderen</strong> leidet der Mittelstand.'],
+                ['<strong>während</strong> (contrast)', 'verb at the end', 'Während die Exporte <strong>stiegen</strong>, <strong>schwächelte</strong> der Binnenmarkt.'],
+                ['<strong>im Gegensatz zu</strong> + Dativ', 'preposition', '<strong>Im Gegensatz zu den Exporten</strong> schwächelte der Binnenmarkt.']
+              ]) +
+              '<p class="note">Do not use <span class="de">während</span> as a plain „and": it always signals a contrast or two things at the same time. ' +
+              'For a plain reason, use <span class="de">weil</span> or <span class="de">da</span>.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exInput('Zum einen sinken die Preise. Zum ___________ verlieren Arbeitsplätze in der Industrie.', 'anderen'),
+              exInput('Einerseits profitieren Verbraucher, ___________ leidet der Mittelstand.', 'andererseits'),
+              exSelect('„Während die Exporte stiegen, sank die Binnennachfrage." — Während ist hier:', 'a contrast (while)', ['a reason (since)', 'a contrast (while)', 'a condition (if)']),
+              exSelect('Welcher Satz drückt einen Gegensatz aus?', 'Im Gegensatz zu den Exporten schwächelte der Binnenmarkt.', ['Der Binnenmarkt schwächelte, weil die Exporte stiegen.', 'Im Gegensatz zu den Exporten schwächelte der Binnenmarkt.', 'Infolgedessen stiegen die Exporte.']),
+              exSelect('Welches Wort leitet die Schlussbilanz ein?', 'Unter dem Strich', ['Zum einen', 'Unter dem Strich', 'Einerseits']),
+              exSelect('Wie sagt man „to benefit from" auf Deutsch?', 'profitieren von', ['leiden unter', 'profitieren von', 'abwägen']),
+              exSelect('„Die Entwicklung ist positiv, ___ die Risiken bleiben." Welche Konjunktion passt am besten?', 'jedoch', ['jedoch', 'damit', 'sodass'])
+            ])
+          },
+          {
+            icon: '🏷️', title: 'Consumption and ethics',
+            explanation:
+              '<p>Trade is not only about prices. Since 2023, large German companies have been required to check their suppliers for human-rights and environmental risks under the ' +
+              '<span class="de">Lieferkettensorgfaltspflichtengesetz</span>, known in short as the <span class="de">Lieferkettengesetz</span>. The debate around it shows the vocabulary of responsibility: ' +
+              'a company <span class="de">übernimmt Verantwortung</span> for its suppliers, <span class="de">verpflichtet sich</span> to certain standards, and must be <span class="de">transparent</span> about what it finds.</p>' +
+              '<p>Ethical claims in German often use the <strong>zu-Infinitiv</strong> with a verb of obligation or intention: <span class="de">Die Unternehmen sind verpflichtet, die Standards einzuhalten.</span> ' +
+              'Note the position: with a separable verb, <em>zu</em> goes between the prefix and the stem — <span class="de">einzuhalten</span>, <span class="de">durchzuführen</span>. ' +
+              'And a modal with the passive combines as usual: <span class="de">Die Standards müssen kontrolliert werden.</span></p>',
+            vocab: vocabTable([
+              ['die Verantwortung', 'the responsibility'],
+              ['die Lieferkette', 'the supply chain'],
+              ['die Menschenrechte', 'human rights'],
+              ['die Umweltstandards', 'environmental standards'],
+              ['die Sorgfaltspflicht', 'the duty of care, due diligence'],
+              ['das Siegel', 'the seal, the label'],
+              ['die Kennzeichnung', 'the labelling'],
+              ['die Transparenz', 'transparency'],
+              ['der Verbraucher', 'the consumer'],
+              ['fairer Handel', 'fair trade'],
+              ['nachhaltig', 'sustainable'],
+              ['einhalten', 'to comply with, to observe'],
+              ['kontrollieren', 'to check, to control'],
+              ['sich verpflichten', 'to commit oneself'],
+              ['übernehmen', 'to take on'],
+              ['unabhängig', 'independent'],
+              ['glaubwürdig', 'credible']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              '<p><strong>zu-Infinitiv with obligation verbs.</strong> Use <em>zu</em> with verbs and adjectives of obligation, intention or commitment:</p>' +
+              formTable('', ['Pattern', 'Example'], [
+                ['verpflichtet sein / sich verpflichten, zu + Infinitiv', 'Sie <strong>verpflichten sich</strong>, Umweltstandards <strong>einzuhalten</strong>.'],
+                ['die Aufgabe / Pflicht, etwas zu tun', 'Es ist ihre Pflicht, die Zulieferer <strong>zu prüfen</strong>.'],
+                ['Modal + Passiv', 'Die Standards <strong>müssen kontrolliert werden</strong>. (not: <em>müssen kontrolliert wurden</em>)'],
+                ['separable verb: zu in the middle', 'ein<strong>zu</strong>halten · durch<strong>zu</strong>führen · auf<strong>zu</strong>decken']
+              ]) +
+              '<p class="note">With a separable verb the <em>zu</em> sits inside the verb, never in front of it: <span class="de">Sie versuchen, die Regeln einzuhalten</span> — not <em>zu einhalten</em>.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exInput('Das Gesetz zu Sorgfaltspflichten in Lieferketten heißt kurz: das ___________.', 'Lieferkettengesetz'),
+              exSelect('Welche Form stimmt? „Sie verpflichten sich, Umweltstandards ___________."', 'einzuhalten', ['einhalten', 'einzuhalten', 'einzuhaltend']),
+              exSelect('„nachhaltig" bedeutet:', 'sustainable, long-lasting', ['cheap', 'sustainable, long-lasting', 'local']),
+              exSelect('Welcher Satz verwendet Modal + Passiv korrekt?', 'Die Standards müssen kontrolliert werden.', ['Die Standards müssen kontrolliert wurden.', 'Die Standards müssen kontrolliert werden.', 'Die Standards werden müssen kontrolliert.']),
+              exInput('Ein Zeichen, das faire Produktion bestätigt, nennt man ein ___________.', 'Siegel'),
+              exSelect('Welche Form ist richtig? Es ist unsere Pflicht, die Zulieferer ___________.', 'zu prüfen', ['prüfen', 'zu prüfen', 'prüfen zu'])
+            ])
+          }
+        ],
 
-      U('🖥️ Unit 5 — Digitalisation and AI', 'Digitalisierung', [
-        t('🤖', 'AI in public debate', 'Hype, risk, regulation'),
-        t('🔐', 'Data protection', 'DSGVO in plain German'),
-        t('👥', 'Work and automation', 'Which jobs change, and how'),
-        t('🧠', 'Algorithms and bias', 'Explaining a complex idea simply'),
-        t('🗣️', 'A panel-style discussion', 'Moderating and summarising others')
-      ], ['Explain a technical topic to a non-expert', 'Moderate and summarise a group discussion'],
-         ['Concessive and restrictive connectors: zwar, allerdings, insofern', 'Modal particles in argument']),
+        drillIntro: '<p>Mixed practice over the whole unit: supply-chain cause and consequence, genitive constructions, contrast structures and ethical obligation.</p>',
+        exercises: exerciseList([
+          exInput('Die Lieferung kam spät, ___________ das Werk stillstand.', 'sodass'),
+          exInput('Die Abhängigkeit war ___________ groß, dass ein Ausfall alles lahmlegte.', 'so'),
+          exInput('___________ der Krise sank die Nachfrage. (article + noun, Genitiv)', 'Während'),
+          exInput('Trotz ___________ (das Wachstum) stieg die Arbeitslosigkeit.', 'des'),
+          exInput('Die Inflation ___________ Landes steigt. (Genitiv von „das Land")', 'des'),
+          exSelect('Welches Wort bedeutet „in contrast to"?', 'im Gegensatz zu', ['im Gegensatz zu', 'infolgedessen', 'unter dem Strich']),
+          exInput('Einerseits steigt der Wohlstand, ___________ wächst die Ungleichheit.', 'andererseits'),
+          exSelect('Welche Präposition mit Genitiv passt? „___ des Exports stiegen die Gewinne."', 'Aufgrund', ['Aufgrund', 'Damit', 'Bis']),
+          exInput('Sie verpflichten sich, Umweltstandards ___________ (einhalten).', 'einzuhalten'),
+          exSelect('„Verantwortung übernehmen" bedeutet:', 'to take on responsibility', ['to avoid responsibility', 'to take on responsibility', 'to pay a fine']),
+          exSelect('Welches Verb steht für „to relocate"?', 'verlagern', ['verlagern', 'verzögern', 'verflechten']),
+          exSelect('„Das Gerät ist gesperrt" bedeutet:', 'blocked, closed', ['blocked, closed', 'on sale', 'delivered']),
+          exInput('Ein Gesetz gegen Menschenrechtsverletzungen in Lieferketten heißt kurz: das ___________.', 'Lieferkettengesetz')
+        ]),
 
-      U('🏛️ Unit 6 — Politics and Civil Society', 'Politik und Gesellschaft', [
-        t('🗳️', 'The political system of Germany', 'Bundestag, Länder, Koalition'),
-        t('📣', 'Protest and participation', 'Demonstration, Petition, Lobby'),
-        t('📰', 'Reading political commentary', 'Separating argument from rhetoric'),
-        t('⚖️', 'Rights and the constitution', 'Grundgesetz in outline'),
-        t('💬', 'Debating a contested issue', 'Rules for a fair debate')
-      ], ['Follow and discuss political commentary', 'Defend a position against counter-arguments'],
-         ['Konzessivsätze: obwohl, auch wenn, selbst wenn', 'Rhetorical questions', 'Emphasis structures']),
+        reading: {
+          intro: 'An economics column about a supply-chain problem. Read for the <strong>cause-and-consequence</strong> links and for the balance the author tries to strike.',
+          words: 330, minutes: 8,
+          text: readingText('Lieferketten: Wie viel Sicherheit kostet Abhängigkeit?', [
+            'Ein Container, der im Hafen von Rotterdam feststeckt, ist für die meisten Verbraucher unsichtbar. Erst wenn im Supermarkt die Regale leer bleiben oder ein Autohersteller die Produktion drosselt, wird deutlich, wie eng die Lieferketten der Gegenwart miteinander verflochten sind. Die Pandemie und der Krieg in der Ukraine haben diese Verwundbarkeit eindrucksvoll vor Augen geführt.',
+            'Ökonomen sprechen von einer Abhängigkeit, die lange als Vorteil galt. Solange Vorprodukte billig und verlässlich aus Asien kamen, lohnte es sich kaum, Zulieferer in der Nähe aufzubauen. Die Folge war eine hohe Effizienz, aber auch eine geringe Reserve: Fällt ein einzelner Knotenpunkt aus, steht oft die ganze Produktion still.',
+            'Die Antwort der Unternehmen heißt inzwischen oft Diversifizierung. Statt auf einen Lieferanten setzen sie auf mehrere, und manche verlagern Teile der Fertigung zurück nach Europa oder nach Mexiko. Das verteuert die Produktion, weshalb Kritiker warnen, die Globalisierung werde nicht zurückgedreht, sondern nur teurer. Befürworter halten dagegen, dass Resilienz einen Preis habe, der sich lohne.',
+            'Ob sich die Umstellung auszahlt, hängt laut einer aktuellen Branchenumfrage stark von der Größe des Betriebs ab. Während Chemiekonzerne ihre Lager bereits erweitert haben, bleibt der Mittelstand oft bei knappen Beständen, weil ihm das Kapital fehlt. Die Ökonomin Anja Sommer fasst es so zusammen: „Große Konzerne können sich Sicherheit leisten, kleine Betriebe müssen sie sich erst erarbeiten."'
+          ], 'Wirtschaftskolumne, fiktiv — im Stil der deutschen Wirtschaftspresse'),
+          glossary: vocabTable([
+            ['die Lieferkette', 'the supply chain'],
+            ['drosseln', 'to throttle, to reduce'],
+            ['verflechten', 'to interlink'],
+            ['die Verwundbarkeit', 'the vulnerability'],
+            ['das Vorprodukt', 'the component'],
+            ['der Knotenpunkt', 'the node, the hub'],
+            ['die Resilienz', 'resilience'],
+            ['die Umstellung', 'the change, the switch'],
+            ['knapp', 'scarce, tight'],
+            ['die Bestände', 'the stocks, the inventory'],
+            ['sich leisten', 'to afford']
+          ]),
+          questions: exerciseList([
+            exSelect('Was bleibt für die meisten Verbraucher unsichtbar?', 'der Container im Hafen', ['die Preise der Autos', 'der Container im Hafen', 'die Löhne im Mittelstand']),
+            exInput('Welche zwei Ereignisse nennt der Text als Beispiele für die Verwundbarkeit? (zwei Wörter)', 'Pandemie und Krieg|die Pandemie und der Krieg|Pandemie und der Krieg'),
+            exTF('Früher lohnte es sich für Firmen meist, Zulieferer in der Nähe aufzubauen.', false),
+            exSelect('Was ist laut Text der Nachteil der hohen Effizienz?', 'eine geringe Reserve', ['eine geringe Reserve', 'hohe Kosten', 'zu viele Zulieferer']),
+            exInput('Wie nennt man es, wenn Unternehmen auf mehrere Lieferanten setzen? (Fremdwort)', 'Diversifizierung'),
+            exSelect('Was kritisieren Kritiker an der Rückverlagerung?', 'Sie macht die Produktion teurer.', ['Sie macht die Produktion teurer.', 'Sie ist gesetzlich verboten.', 'Sie erhöht die Arbeitslosigkeit im Ausland.']),
+            exSelect('Was antworten die Befürworter?', 'Resilienz habe einen Preis, der sich lohne.', ['Globalisierung sei nicht mehr nötig.', 'Resilienz habe einen Preis, der sich lohne.', 'Lieferketten seien unwichtig.']),
+            exInput('Warum fehlt dem Mittelstand oft die Reserve? Weil ihm das ___________ fehlt. (ein Wort)', 'Kapital'),
+            exSelect('Welche Aussage über Chemiekonzerne stimmt laut Text?', 'Sie haben ihre Lager bereits erweitert.', ['Sie haben ihre Lager bereits erweitert.', 'Sie haben die Produktion ganz eingestellt.', 'Sie haben keine Lieferanten mehr.'])
+          ])
+        },
+
+        listening: {
+          title: 'Wirtschaftsradio — Lieferketten im Mittelstand',
+          intro: 'A short interview with a supply-chain consultant. Listen <strong>once</strong>, then answer; the transcript is for checking afterwards.',
+          lines: [
+            ['Moderator', 'Frau Lehmann, Sie beraten Mittelständler bei ihren Lieferketten. Was hat sich seit der Pandemie geändert?'],
+            ['Lehmann', 'Vor allem das Bewusstsein. Früher wurde nur nach dem Preis eingekauft. Heute fragen die Firmen auch, woher die Vorprodukte kommen und wie lange sie unterwegs sind.'],
+            ['Moderator', 'Und das Lieferkettengesetz? Viele Betriebe klagen über Bürokratie.'],
+            ['Lehmann', 'Das stimmt, für kleine Firmen ist der Aufwand erheblich. Dabei verlangt das Gesetz vor allem, dass man die Risiken kennt und reagiert, wenn es Verstöße gibt.'],
+            ['Moderator', 'Was raten Sie einem Betrieb mit zwanzig Beschäftigten?'],
+            ['Lehmann', 'Zunächst die wichtigsten Zulieferer kartieren. Dann sollte man mit zwei oder drei Lieferanten sprechen, bevor man ganz wechselt. Das senkt das Risiko, ohne die Kosten zu verdoppeln.'],
+            ['Moderator', 'Verbraucher wollen aber vor allem billig einkaufen.'],
+            ['Lehmann', 'Das ist der Konflikt. Aber ich beobachte, dass Kunden bereit sind, mehr zu zahlen, wenn sie die Herkunft nachvollziehen können. Transparenz ist inzwischen ein Verkaufsargument.'],
+            ['Moderator', 'Gibt es ein Siegel, dem man vertrauen kann?'],
+            ['Lehmann', 'Siegel helfen, aber man sollte genau hinschauen, wer sie vergibt. Nicht jedes Label hält einer unabhängigen Kontrolle stand.']
+          ],
+          questions: exerciseList([
+            exSelect('Was hat sich laut Lehmann vor allem verändert?', 'Das Bewusstsein für die Herkunft der Vorprodukte', ['Die Löhne', 'Das Bewusstsein für die Herkunft der Vorprodukte', 'Die Zahl der Lieferanten']),
+            exTF('Das Lieferkettengesetz verlangt laut Lehmann vor allem, dass Unternehmen ihre Risiken kennen.', true),
+            exSelect('Wie empfindet Lehmann den Aufwand für kleine Firmen?', 'erheblich', ['gering', 'erheblich', 'unbedeutend']),
+            exInput('Zunächst die wichtigsten Zulieferer ___________. (ein Verb, Fachbegriff)', 'kartieren'),
+            exSelect('Warum rät sie, mit mehreren Lieferanten zu sprechen?', 'um das Risiko zu senken', ['um die Kosten zu verdoppeln', 'um das Risiko zu senken', 'um Bürokratie zu vermeiden']),
+            exTF('Lehmann sagt, Kunden zahlen nie mehr für faire Produkte.', false),
+            exSelect('Was ist laut Lehmann inzwischen ein Verkaufsargument?', 'Transparenz', ['der niedrige Preis', 'Transparenz', 'ein Gütesiegel allein']),
+            exSelect('Worauf sollte man bei Siegeln achten?', 'wer sie vergibt und ob eine unabhängige Kontrolle stattfindet', ['ob sie bunt sind', 'wer sie vergibt und ob eine unabhängige Kontrolle stattfindet', 'wie teuer sie sind'])
+          ])
+        },
+
+        writing: {
+          title: 'Erörterung — Abhängigkeit oder Autarkie?',
+          textType: 'Analytische Erörterung (Argumentation mit Gegenargument und Fazit)',
+          minWords: 220, maxWords: 280, minutes: 45,
+          expect: ['arguments', 'counter', 'conclusion', 'nominal'],
+          task: '<p>Die Regierung diskutiert, ob Deutschland bei wichtigen Gütern wie Medikamenten, Halbleitern und Energie unabhängiger von einzelnen Ländern werden sollte.</p>' +
+            '<p>Schreiben Sie eine <strong>Erörterung</strong> zu der Frage: <em>Sollte Deutschland seine Abhängigkeit von einzelnen Ländern bei wichtigen Gütern verringern, auch wenn das teurer wird?</em></p>' +
+            '<p>Stellen Sie die Argumente beider Seiten dar, nehmen Sie <strong>begründet</strong> Stellung und ziehen Sie ein Fazit.</p>',
+          plainTask: 'Write an analytical essay in German (220–280 words) on whether Germany should reduce its dependence on single countries for key goods such as medicines, semiconductors and energy, even if this is more expensive. Present arguments on both sides, include at least one counter-argument to your own position, and end with a clear conclusion.',
+          bullets: [
+            'Beginnen Sie mit einer <strong>Einleitung</strong>: Thema nennen und die Leitfrage formulieren.',
+            'Stellen Sie <strong>Pro-Argumente</strong> und <strong>Contra-Argumente</strong> in je einem Absatz dar.',
+            'Entwickeln Sie mindestens ein Argument mit einem <strong>Beispiel</strong> (z. B. Medikamente, Halbleiter).',
+            'Schreiben Sie ein <strong>Gegenargument</strong> zu Ihrer eigenen Position und entkräften Sie es.',
+            'Schließen Sie mit einem <strong>Fazit</strong>, das Ihre Position klar nennt.',
+            'Sachlich bleiben: kein „ich finde, dass …" als Dauerformel, sondern begründete Aussagen.'
+          ],
+          usefulPhrases: formTable('', ['Funktion', 'Redemittel'], [
+            ['Einleiten', 'Die Frage, ob … , gewinnt angesichts der Lage an Bedeutung. · Im Mittelpunkt steht die Frage, …'],
+            ['Pro-Argument', 'Ein wesentlicher Vorteil liegt in der <strong>Versorgungssicherheit</strong>. · Für eine größere Unabhängigkeit spricht die <strong>Verringerung des Risikos</strong>.'],
+            ['Contra-Argument', 'Gegen eine solche Politik spricht die <strong>Verteuerung</strong> der Produktion. · Kritiker verweisen auf <strong>den Verlust von Effizienz</strong>.'],
+            ['Gegenargument', 'Zwar ist dieser Einwand ernst zu nehmen, doch … · Dennoch lässt sich entgegnen, dass …'],
+            ['Schluss', 'Abschließend lässt sich festhalten, dass … · Unter dem Strich überwiegt meines Erachtens …']
+          ]),
+          criteria: [
+            'Die Einleitung nennt das Thema und die Leitfrage.',
+            'Es gibt Argumente für UND gegen die Position.',
+            'Mindestens ein Argument ist mit einem konkreten Beispiel belegt.',
+            'Ein Gegenargument zur eigenen Position wird genannt und entkräftet.',
+            'Das Fazit nennt die eigene Position klar und begründet sie.',
+            'Verbindungen wie einerseits / andererseits, zum einen / zum anderen, sodass oder infolgedessen sind korrekt gebaut.',
+            'Der Stil ist sachlich: Nominalstil wo passend (z. B. die Verringerung der Abhängigkeit).',
+            'Ich liege zwischen 220 und 280 Wörtern.'
+          ]
+        },
+
+        culture:
+          '<p><strong>Germany is a trading nation by necessity.</strong> With few raw materials of its own, the country exports machinery, cars and chemicals and imports much of its energy and many inputs, so the debate about dependence is an old one.</p>' +
+          '<p><strong>The Mittelstand is the backbone.</strong> Many of the world-market leaders in niche products are medium-sized family firms, often called <span class="de">Hidden Champions</span>. ' +
+          'They are the businesses for which a single broken supply link can be most dangerous, because they lack the reserves of a large group.</p>' +
+          '<p><strong>The social market economy is the frame.</strong> The <span class="de">Soziale Marktwirtschaft</span>, associated with Ludwig Erhard, combines free markets with social protection and co-determination. ' +
+          'Unions and employers negotiate wages through <span class="de">Tarifverträge</span>, and that tradition shapes how companies talk about fairness in their supply chains.</p>' +
+          '<p><strong>Ethics has become a legal duty.</strong> The <span class="de">Lieferkettengesetz</span> turned responsibility for suppliers into a legal obligation for large firms, while the <span class="de">Fair-Trade-Siegel</span> remains voluntary. ' +
+          'In German debates, the question you hear most is <span class="de">Wer kontrolliert die Kontrolleure?</span> — who checks the checkers — which is a good reflex when you read any certificate.</p>' +
+          '<p><strong>Consumers are caught between price and principle.</strong> Surveys often show more willingness to pay for ethical products than sales figures suggest, and German supermarkets have reacted with labels, reduced-sugar ranges and clearer origin information.</p>',
+
+        recap: [
+          { group: '🚢 Handel und Lieferketten', rows: [
+            ['die Lieferkette', 'the supply chain'],
+            ['der Engpass', 'the bottleneck'],
+            ['die Abhängigkeit', 'the dependence'],
+            ['der Lieferant', 'the supplier'],
+            ['das Vorprodukt', 'the component'],
+            ['die Ausfuhr', 'the export'],
+            ['die Einfuhr', 'the import'],
+            ['der Zoll', 'the customs duty'],
+            ['die Verwundbarkeit', 'the vulnerability'],
+            ['die Diversifizierung', 'diversification'],
+            ['verlagern', 'to relocate'],
+            ['lahmlegen', 'to paralyse'],
+            ['verzögern', 'to delay'],
+            ['sodass', 'so that (consequence)'],
+            ['infolgedessen', 'as a consequence']
+          ] },
+          { group: '🏦 Wirtschaft', rows: [
+            ['die Konjunktur', 'the business cycle'],
+            ['der Aufschwung', 'the upswing'],
+            ['die Rezession', 'the recession'],
+            ['das Wachstum', 'the growth'],
+            ['die Inflation', 'the inflation'],
+            ['die Kaufkraft', 'purchasing power'],
+            ['die Arbeitslosenquote', 'the unemployment rate'],
+            ['die Nachfrage', 'the demand'],
+            ['die Binnennachfrage', 'domestic demand'],
+            ['der Mittelstand', 'small and medium-sized businesses'],
+            ['schrumpfen', 'to shrink'],
+            ['sich erholen', 'to recover'],
+            ['trotz / wegen / während + Genitiv', 'despite / because of / during']
+          ] },
+          { group: '⚖️ Abwägen', rows: [
+            ['der Vorteil', 'the advantage'],
+            ['der Nachteil', 'the disadvantage'],
+            ['die Chance', 'the opportunity'],
+            ['das Risiko', 'the risk'],
+            ['die Ungleichheit', 'inequality'],
+            ['der Wohlstand', 'prosperity'],
+            ['profitieren von', 'to benefit from'],
+            ['leiden unter', 'to suffer from'],
+            ['das Gegenargument', 'the counter-argument'],
+            ['im Gegensatz zu', 'in contrast to'],
+            ['einerseits … andererseits', 'on the one hand … on the other'],
+            ['zum einen … zum anderen', 'firstly … secondly'],
+            ['Unter dem Strich', 'on balance']
+          ] },
+          { group: '🏷️ Verantwortung und Konsum', rows: [
+            ['die Verantwortung', 'the responsibility'],
+            ['das Lieferkettengesetz', 'the supply-chain act'],
+            ['die Menschenrechte', 'human rights'],
+            ['die Umweltstandards', 'environmental standards'],
+            ['das Siegel', 'the seal, the label'],
+            ['die Transparenz', 'transparency'],
+            ['der Verbraucher', 'the consumer'],
+            ['nachhaltig', 'sustainable'],
+            ['einhalten', 'to comply with'],
+            ['übernehmen', 'to take on'],
+            ['sich verpflichten', 'to commit oneself'],
+            ['unabhängig', 'independent']
+          ] }
+        ],
+
+        sentences: [
+          { de: 'Der Hafen war gesperrt, sodass die Preise stiegen', en: 'The port was closed, so prices rose' },
+          { de: 'Infolgedessen stand das Werk eine Woche still', en: 'As a consequence, the plant stood still for a week' },
+          { de: 'Trotz des Wachstums blieb die Arbeitslosigkeit hoch', en: 'Despite the growth, unemployment stayed high' },
+          { de: 'Im Gegensatz zu den Exporten schwächelte der Binnenmarkt', en: 'In contrast to exports, the domestic market weakened' },
+          { de: 'Unter dem Strich überwiegen die Vorteile', en: 'On balance, the advantages outweigh the disadvantages' },
+          { de: 'Die Unternehmen sind verpflichtet, die Standards einzuhalten', en: 'Companies are obliged to comply with the standards' }
+        ]
+      },
+
+      { // ===== B2 UNIT 5 — written out in full =====
+        title: '🖥️ Unit 5 — Digitalisation and AI',
+        subject: 'Digitalisierung',
+        canDo: ['Explain a technical topic such as AI or algorithms to a non-expert',
+                'Discuss data protection rights in German with the right terms',
+                'Argue both sides of the automation debate, conceding points without giving up your own',
+                'Summarise a panel discussion accurately, attributing each position to its speaker'],
+        grammarFocus: ['Concessive connectors: zwar … aber, allerdings', 'Restrictive connectors: insofern, soweit',
+                       'Konjunktiv II in hypothetical scenarios', 'Explaining simply: mit anderen Worten, vereinfacht gesagt'],
+        topics: [
+          {
+            icon: '🤖', title: 'AI in public debate',
+            explanation:
+              '<p>Public debate about artificial intelligence swings between hype and alarm, and German news reporting has its own vocabulary for both. ' +
+              '<span class="de">Künstliche Intelligenz</span> (KI) is the umbrella term; a <span class="de">Sprachmodell</span> is the kind that produces text, and a <span class="de">Regulierung</span> is the set of rules that governs it. ' +
+              'An <span class="de">Hype</span> is an exaggerated wave of enthusiasm, and <span class="de">Desinformation</span> means false information spread on purpose.</p>' +
+              '<p>Balanced German argument relies on the <strong>concessive</strong> pattern. <span class="de">Zwar</span> concedes a point, and <span class="de">aber</span> (or <span class="de">allerdings</span>) turns to the counter-point. ' +
+              'This lets you be fair to the other side without weakening your own position: you give the strength of the argument first, then show its limit.</p>',
+            vocab: vocabTable([
+              ['die Künstliche Intelligenz (KI)', 'artificial intelligence (AI)'],
+              ['das Sprachmodell', 'the language model'],
+              ['die Regulierung', 'the regulation'],
+              ['der Hype', 'the hype'],
+              ['die Desinformation', 'deliberate disinformation'],
+              ['die Fehleinschätzung', 'the misjudgement'],
+              ['überschätzen', 'to overestimate'],
+              ['unterschätzen', 'to underestimate'],
+              ['ersetzen', 'to replace'],
+              ['zugänglich', 'accessible'],
+              ['fehleranfällig', 'prone to errors'],
+              ['die Chance', 'the opportunity'],
+              ['das Risiko', 'the risk'],
+              ['die Gefahr', 'the danger'],
+              ['einordnen', 'to classify, to put into context'],
+              ['verantwortungsvoll', 'responsible'],
+              ['der Nutzen', 'the benefit, the use'],
+              ['die Grenze', 'the limit']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              formTable('', ['Connector', 'Position', 'Example'], [
+                ['<strong>zwar … aber</strong>', 'zwar: verb 2nd · aber: starts the second clause', '<strong>Zwar ist</strong> KI schnell, <strong>aber</strong> fehleranfällig.'],
+                ['<strong>zwar … jedoch</strong>', 'the same frame, more formal', '<strong>Zwar wirkt</strong> der Hype übertrieben, <strong>jedoch</strong> sind die Risiken real.'],
+                ['<strong>allerdings</strong>', 'adverb: verb 2nd, after a full sentence', 'Die Technik ist nützlich. <strong>Allerdings gibt es</strong> Grenzen.'],
+                ['<strong>obwohl</strong>', 'subordinate: verb at the end', '<strong>Obwohl</strong> die Technik nützlich ist, <strong>bleiben</strong> Risiken.']
+              ]) +
+              '<div class="example-box">' +
+              '<strong>Zwar</strong> <u>können</u> Sprachmodelle schnell Texte erstellen, <strong>aber</strong> sie <u>machen</u> häufig sachliche Fehler.<br>' +
+              '<span class="note">zwar: Verb auf Platz 2 · aber: neuer Hauptsatz mit Verb auf Platz 2</span>' +
+              '</div>' +
+              '<p class="note">Do not put <span class="de">zwar</span> alone at the start of a sentence without a counter-part; a German reader waits for the <span class="de">aber</span> and marks the sentence as unfinished.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exInput('___________ ist die Technik nützlich, aber sie hat auch Grenzen. (Konzessiv-Partikel)', 'Zwar'),
+              exInput('Die Technik ist nützlich. ___________ gibt es Risiken. (Adverb)', 'Allerdings'),
+              exSelect('Welcher Satz ist korrekt gebaut?', 'Zwar ist KI schnell, aber fehleranfällig.', ['Zwar ist KI schnell, aber fehleranfällig.', 'Zwar ist KI schnell, fehleranfällig.', 'Zwar ist KI schnell, weil fehleranfällig.']),
+              exSelect('„Hype" bedeutet:', 'an exaggerated wave of enthusiasm', ['a technical error', 'an exaggerated wave of enthusiasm', 'a legal rule']),
+              exInput('Ein Modell, das Texte erzeugt, nennt man ein ___________.', 'Sprachmodell'),
+              exSelect('„Desinformation" bedeutet:', 'deliberately false information', ['deliberately false information', 'a data protection right', 'a technical standard']),
+              exSelect('Was bedeutet „überschätzen"?', 'to overestimate', ['to overestimate', 'to underestimate', 'to replace'])
+            ])
+          },
+          {
+            icon: '🔐', title: 'Data protection (DSGVO)',
+            explanation:
+              '<p>The <span class="de">Datenschutz-Grundverordnung</span> (DSGVO) applies across the EU and is the reference point for almost every German debate about data. ' +
+              'Its key term is <span class="de">personenbezogene Daten</span>: any information that can be linked to a specific person. A company may process them only with a legal basis, most often a <span class="de">Einwilligung</span> (consent), ' +
+              'and only for the purpose it stated. This is the principle of <span class="de">Zweckbindung</span>.</p>' +
+              '<p>People have rights over their data: the <span class="de">Recht auf Auskunft</span> (to know what is stored), the <span class="de">Recht auf Löschung</span> (to have it deleted) and the right to object. ' +
+              'Germans take this seriously partly because of history: the Federal Constitutional Court first described a <span class="de">Recht auf informationelle Selbstbestimmung</span> in 1983, in a judgment about a census.</p>' +
+              '<p>Two small connectors do the careful work in legal German. <span class="de">insofern</span> means <em>in this respect</em> and points back to a condition: <span class="de">Die Regel gilt insofern, als …</span>. ' +
+              '<span class="de">soweit</span> means <em>as far as</em> and limits a claim: <span class="de">Soweit Daten personenbezogen sind, gilt die DSGVO.</span></p>',
+            vocab: vocabTable([
+              ['die Datenschutz-Grundverordnung (DSGVO)', 'the GDPR'],
+              ['personenbezogene Daten', 'personal data'],
+              ['die Einwilligung', 'the consent'],
+              ['die Zweckbindung', 'purpose limitation'],
+              ['die Verarbeitung', 'the processing'],
+              ['das Recht auf Auskunft', 'the right of access'],
+              ['das Recht auf Löschung', 'the right to erasure'],
+              ['der Widerspruch', 'the objection'],
+              ['die Speicherung', 'the storage'],
+              ['das Bußgeld', 'the fine'],
+              ['der Verantwortliche', 'the controller (person responsible)'],
+              ['die Weitergabe', 'the passing on, the disclosure'],
+              ['einwilligen', 'to consent'],
+              ['zustimmen', 'to agree'],
+              ['verlangen', 'to demand'],
+              ['sich beziehen auf', 'to refer to'],
+              ['insofern', 'in this respect'],
+              ['soweit', 'as far as']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              formTable('', ['Word', 'Meaning', 'Example'], [
+                ['<strong>insofern</strong>', 'in this respect (adverb, verb 2nd)', 'Die Daten sind personenbezogen; <strong>insofern gilt</strong> die DSGVO.'],
+                ['<strong>insofern … als</strong>', 'in so far as (a limit)', 'Die Regel gilt <strong>insofern, als</strong> Daten gespeichert werden.'],
+                ['<strong>soweit</strong>', 'as far as (subordinate, verb at the end)', 'Die DSGVO gilt, <strong>soweit</strong> personenbezogene Daten <strong>verarbeitet werden</strong>.']
+              ]) +
+              '<p class="note">Passive with a modal is common in the DSGVO: <span class="de">Daten dürfen nur für den festgelegten Zweck verarbeitet werden.</span> Remember: the modal goes at the end as an infinitive, and the passive infinitive is <em>verarbeitet werden</em>.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exInput('Informationen über eine bestimmte Person sind ___________ Daten.', 'personenbezogene'),
+              exSelect('„Einwilligung" bedeutet:', 'consent', ['a fine', 'consent', 'a contract']),
+              exSelect('Das Recht zu erfahren, welche Daten gespeichert sind, heißt:', 'Recht auf Auskunft', ['Recht auf Löschung', 'Recht auf Auskunft', 'Recht auf Widerspruch']),
+              exInput('Die DSGVO gilt, ___________ personenbezogene Daten verarbeitet werden. (als weit wie)', 'soweit'),
+              exSelect('„insofern" bedeutet hier:', 'in this respect', ['in this respect', 'in spite of this', 'nevertheless']),
+              exInput('Daten dürfen nur für den festgelegten Zweck genutzt werden. Das nennt man ___________.', 'Zweckbindung'),
+              exSelect('Welche Form ist richtig? „Daten dürfen nur ___ werden."', 'verarbeitet', ['verarbeitet', 'verarbeiten', 'verarbeitet worden']),
+              exSelect('Wer gilt rechtlich als „Verantwortlicher"?', 'die Stelle, die über Zweck und Mittel entscheidet', ['die betroffene Person', 'die Stelle, die über Zweck und Mittel entscheidet', 'das Finanzamt'])
+            ])
+          },
+          {
+            icon: '👥', title: 'Work and automation',
+            explanation:
+              '<p>Almost every debate about automation returns to the same question: which jobs change, and who gets the new ones? German employers talk about a <span class="de">Fachkräftemangel</span>, a shortage of skilled workers, ' +
+              'while unions focus on people whose <span class="de">Routinetätigkeiten</span> — tasks that follow the same pattern each day — are most at risk. The usual answers are <span class="de">Weiterbildung</span> (further training) and <span class="de">Umschulung</span> (retraining for a different job).</p>' +
+              '<p>A debate like this is full of hypotheticals, and German expresses them with the <strong>Konjunktiv II</strong>. Compare: <span class="de">Wenn Maschinen Routinearbeit übernehmen, müssen viele Menschen umlernen.</span> describes a likely outcome, ' +
+              'while <span class="de">Wenn Maschinen Routinearbeit übernähmen, müssten viele Menschen umlernen.</span> is the speculative version — the same idea, marked as imagined. ' +
+              'In the Konjunktiv II, <em>müssen</em> becomes <em>müssten</em> and <em>können</em> becomes <em>könnten</em>.</p>',
+            vocab: vocabTable([
+              ['die Automatisierung', 'automation'],
+              ['der Fachkräftemangel', 'the shortage of skilled workers'],
+              ['die Routinetätigkeit', 'the routine task'],
+              ['die Weiterbildung', 'further training'],
+              ['die Umschulung', 'retraining'],
+              ['die Qualifikation', 'the qualification, skill'],
+              ['der Arbeitsplatz / die Stelle', 'the job'],
+              ['Stellen streichen', 'to cut jobs'],
+              ['Stellen schaffen', 'to create jobs'],
+              ['umlernen', 'to retrain, to learn anew'],
+              ['die Beschäftigten', 'the employees'],
+              ['die Gewerkschaft', 'the trade union'],
+              ['die Arbeitgeber', 'the employers'],
+              ['die Tätigkeit', 'the activity, the job'],
+              ['sich wandeln', 'to change, to transform'],
+              ['verdrängen', 'to displace'],
+              ['finanzieren', 'to finance'],
+              ['die Lücke', 'the gap']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              formTable('', ['Realis (likely)', 'Irrealis (imagined)', 'Meaning'], [
+                ['Wenn Maschinen … übernehmen, <strong>müssen</strong> viele umlernen.', 'Wenn Maschinen … übernähmen, <strong>müssten</strong> viele umlernen.', 'likely vs imagined'],
+                ['Wenn es Weiterbildung gibt, <strong>können</strong> Menschen wechseln.', 'Gäbe es mehr Weiterbildung, <strong>könnten</strong> Menschen wechseln.', 'possible vs hypothetical'],
+                ['Wenn die Betriebe sparen, <strong>bleibt</strong> der Plan Theorie.', 'Sparten die Betriebe, <strong>bliebe</strong> der Plan Theorie.', 'the same condition, imagined']
+              ]) +
+              '<p class="note">Konjunktiv II with <em>würde</em> is always available, but in formal writing the <em>-e</em> forms (<em>übernähmen, gäbe, bliebe</em>) are preferred when they are clear. For the strong verbs, use the simple past stem plus umlaut where it exists.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exSelect('Welche Form passt? „Wenn Maschinen Routinearbeit übernähmen, ___ viele Menschen umlernen."', 'müssten', ['müssen', 'müssten', 'mussten']),
+              exInput('„Gäbe es mehr Weiterbildung, ___________ Menschen leichter wechseln." (können, Konjunktiv II)', 'könnten'),
+              exSelect('„Fachkräftemangel" bedeutet:', 'a shortage of skilled workers', ['a shortage of skilled workers', 'a surplus of teachers', 'a strike in a factory']),
+              exSelect('Was ist eine Routinetätigkeit?', 'eine Aufgabe, die immer nach dem gleichen Schema abläuft', ['eine Aufgabe, die immer nach dem gleichen Schema abläuft', 'eine kreative Aufgabe', 'eine Aufgabe ohne Bezahlung']),
+              exInput('Ein Lernen für einen neuen Beruf, oft nach einer Pause im Berufsleben, nennt man ___________.', 'Umschulung'),
+              exSelect('„Stellen streichen" bedeutet:', 'to cut jobs', ['to create jobs', 'to cut jobs', 'to train staff']),
+              exSelect('Welche Form stimmt? Sparten die Betriebe, ___ der Plan Theorie.', 'bliebe', ['bleibt', 'bliebe', 'geblieben'])
+            ])
+          },
+          {
+            icon: '🧠', title: 'Algorithms and bias',
+            explanation:
+              '<p>A complex idea becomes clear when you can explain it in German without jargon. The standard tools are the phrases that <em>signal</em> a simplification: ' +
+              '<span class="de">vereinfacht gesagt</span> (put simply), <span class="de">mit anderen Worten</span> (in other words), <span class="de">das heißt</span> (that is). Use them before the simpler version, not after the complicated one.</p>' +
+              '<p>An <span class="de">Algorithmus</span> is a fixed sequence of steps for solving a task, like a recipe. A learning system builds its rules from an <span class="de">Datensatz</span>, a set of examples. ' +
+              'If those examples reflect past discrimination, the system repeats it: this is <span class="de">Voreingenommenheit</span>, or bias. Where a system\'s reasoning cannot be followed at all, it is called a <span class="de">Blackbox</span>.</p>' +
+              '<p>A good explanation uses a comparison and a relative clause: <span class="de">Ein Algorithmus ist ein Rezept, das Schritt für Schritt beschreibt, wie man zu einem Ergebnis kommt.</span></p>',
+            vocab: vocabTable([
+              ['der Algorithmus', 'the algorithm'],
+              ['der Datensatz', 'the dataset'],
+              ['die Voreingenommenheit / Verzerrung', 'bias'],
+              ['diskriminieren', 'to discriminate'],
+              ['benachteiligen', 'to disadvantage'],
+              ['nachvollziehbar', 'understandable, traceable'],
+              ['transparent', 'transparent'],
+              ['die Blackbox', 'the black box'],
+              ['die Fehlerquote', 'the error rate'],
+              ['gewichten', 'to weight'],
+              ['vereinfacht gesagt', 'put simply'],
+              ['mit anderen Worten', 'in other words'],
+              ['das heißt', 'that is'],
+              ['das Beispiel', 'the example'],
+              ['vergleichbar mit', 'comparable to'],
+              ['sich vorstellen', 'to imagine']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              '<p><strong>Explaining something simply, in four moves:</strong></p>' +
+              '<ul class="goals">' +
+              '<li>1. Name the thing: <span class="de">Ein Algorithmus ist …</span></li>' +
+              '<li>2. Give the simple version: <span class="de">vereinfacht gesagt, …</span> / <span class="de">mit anderen Worten, …</span></li>' +
+              '<li>3. Compare it with something familiar: <span class="de">ähnlich wie ein Kochrezept</span> or <span class="de">man kann sich das vorstellen wie …</span></li>' +
+              '<li>4. Say why it matters: <span class="de">Das ist wichtig, weil …</span></li>' +
+              '</ul>' +
+              '<div class="example-box">' +
+              'Ein Algorithmus ist eine feste Folge von Schritten. <strong>Vereinfacht gesagt</strong> ist er wie ein Kochrezept: <strong>man</strong> folgt den Anweisungen, <strong>bis</strong> das Ergebnis fertig ist. ' +
+              'Das ist wichtig, <strong>weil</strong> auch eine schlechte Anleitung ein falsches Ergebnis liefert.' +
+              '</div>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exSelect('Ein Algorithmus ist vereinfacht gesagt:', 'eine feste Folge von Schritten zur Lösung einer Aufgabe', ['ein Computerprogramm mit Bildern', 'eine feste Folge von Schritten zur Lösung einer Aufgabe', 'eine Art Datenbank']),
+              exInput('Wenn ein System Gruppen systematisch benachteiligt, spricht man von ___________. (Fachwort, Voreingenommenheit)', 'Voreingenommenheit|Verzerrung|Bias'),
+              exSelect('„nachvollziehbar" bedeutet:', 'understandable, traceable', ['understandable, traceable', 'forgettable', 'unavailable']),
+              exInput('Die Beispiele, mit denen ein System lernt, heißen ___________.', 'Datensatz'),
+              exSelect('„Mit anderen Worten" leitet ein:', 'eine einfachere Erklärung', ['einen Gegensatz', 'eine einfachere Erklärung', 'eine Zeitangabe']),
+              exInput('Ein System, dessen Denkweg niemand erklären kann, nennt man eine ___________.', 'Blackbox'),
+              exSelect('Welcher Satz erklärt einfach?', 'Ein Algorithmus ist wie ein Kochrezept: Schritt für Schritt.', ['Ein Algorithmus ist ein Modul der Heuristik.', 'Ein Algorithmus ist wie ein Kochrezept: Schritt für Schritt.', 'Algorithmen sind obsolet.'])
+            ])
+          }
+        ],
+
+        drillIntro: '<p>Mixed practice over the whole unit: concessive connectors, data-protection terms, Konjunktiv II for scenarios and simple explanations.</p>',
+        exercises: exerciseList([
+          exInput('___________ ist KI schnell, aber fehleranfällig. (Konzessiv)', 'Zwar'),
+          exInput('Die Regel gilt ___________, als Daten gespeichert werden. (insofern … als)', 'insofern'),
+          exSelect('Welche Konjunktion passt? „Die Technik ist nützlich, ___ sie hat Grenzen." (Gegensatz)', 'aber', ['aber', 'damit', 'sodass']),
+          exInput('Informationen über eine bestimmte Person sind ___________ Daten.', 'personenbezogene'),
+          exInput('Die DSGVO gilt, ___________ personenbezogene Daten verarbeitet werden. (soweit)', 'soweit'),
+          exSelect('Welches Recht verlangt die Löschung von Daten?', 'Recht auf Löschung', ['Recht auf Auskunft', 'Recht auf Löschung', 'Recht auf Zustimmung']),
+          exInput('Wenn Maschinen Routinearbeit übernähmen, ___________ viele Menschen umlernen. (müssen, Konjunktiv II)', 'müssten'),
+          exSelect('„Fachkräftemangel" bedeutet:', 'a shortage of skilled workers', ['a shortage of skilled workers', 'a surplus of teachers', 'a strike']),
+          exInput('Vereinfacht gesagt ist ein Algorithmus eine feste Folge von ___________.', 'Schritten|Schritte'),
+          exSelect('„Mit anderen Worten" leitet ein:', 'eine einfachere Erklärung', ['einen Gegensatz', 'eine einfachere Erklärung', 'einen Zeitpunkt']),
+          exInput('Ein System, das Gruppen systematisch ___________ (benachteiligen, Präsens, 3. Person Singular: „es …"), ist voreingenommen.', 'benachteiligt'),
+          exSelect('„Stellen streichen" bedeutet:', 'to cut jobs', ['to create jobs', 'to cut jobs', 'to train staff'])
+        ]),
+
+        reading: {
+          intro: 'A feature on automated decisions in banking. Read for the <strong>concessive</strong> structures: the author grants a point, then limits it.',
+          words: 340, minutes: 8,
+          text: readingText('Wer entscheidet, wenn der Computer entscheidet?', [
+            'Wenn ein Bankberater heute einen Kredit ablehnt, steckt oft ein Algorithmus dahinter. Er berechnet aus Hunderten von Merkmalen eine Zahl, die die Kreditwürdigkeit abbildet, und der Berater folgt ihr meist. Das spart Zeit und scheint objektiv zu sein. Ob es gerecht ist, ist eine andere Frage.',
+            'Das Problem liegt in den Daten. Ein System lernt aus vergangenen Entscheidungen, und wenn diese Entscheidungen Vorurteile enthielten, übernimmt das Modell sie. Mehrere Untersuchungen haben gezeigt, dass Bewerbungssysteme Frauen seltener zu Gesprächen einluden, weil sie auf Lebensläufe aus der Vergangenheit trainiert waren. Die Technik hat die Ungleichheit also nicht erfunden, sondern fortgeschrieben.',
+            'Die Hersteller entgegnen, man könne Verzerrungen herausrechnen. Das ist zwar möglich, allerdings nur dann, wenn man weiß, wonach man sucht. Hinzu kommt ein zweites Problem: Viele Modelle sind so komplex, dass selbst Entwickler nicht genau erklären können, warum sie zu einem Ergebnis kommen. Man spricht dann von einer Blackbox.',
+            'Juristen fordern deshalb ein Recht auf eine verständliche Begründung. Insofern ist die Debatte weniger eine über Technik als über Verantwortung: Wer eine Entscheidung trifft, muss sie erklären können — auch dann, wenn ein Computer den größten Teil der Arbeit erledigt hat.'
+          ], 'Wirtschaftsfeature, fiktiv — im Stil der deutschen Qualitätspresse'),
+          glossary: vocabTable([
+            ['das Merkmal', 'the characteristic, the feature'],
+            ['die Kreditwürdigkeit', 'creditworthiness'],
+            ['objektiv', 'objective'],
+            ['das Vorurteil', 'the prejudice'],
+            ['fortschreiben', 'to carry forward, to perpetuate'],
+            ['entgegnen', 'to reply, to counter'],
+            ['herausrechnen', 'to filter out (by calculation)'],
+            ['die Begründung', 'the justification, the reasoning'],
+            ['der größte Teil', 'the largest part'],
+            ['erledigen', 'to complete, to handle']
+          ]),
+          questions: exerciseList([
+            exSelect('Was berechnet der Algorithmus laut Text?', 'eine Zahl, die die Kreditwürdigkeit abbildet', ['einen Zinssatz für jeden Kunden', 'eine Zahl, die die Kreditwürdigkeit abbildet', 'den Wohnort des Kunden']),
+            exTF('Der Berater folgt dem Algorithmus meist nicht.', false),
+            exInput('Woran liegt das Problem laut Text? (ein Wort)', 'Daten'),
+            exSelect('Was zeigt das Beispiel der Bewerbungssysteme?', 'Frauen wurden seltener eingeladen.', ['Frauen wurden seltener eingeladen.', 'Männer wurden seltener eingeladen.', 'Bewerbungen wurden nie gelesen.']),
+            exSelect('Was bedeutet „die Technik hat die Ungleichheit fortgeschrieben"?', 'Sie hat sie übernommen und weitergeführt.', ['Sie hat sie erfunden.', 'Sie hat sie übernommen und weitergeführt.', 'Sie hat sie beendet.']),
+            exInput('Man muss wissen, wonach man ___________, um Verzerrungen herauszurechnen. (suchen)', 'sucht'),
+            exSelect('Warum ist eine Blackbox problematisch?', 'Niemand kann genau erklären, wie das Ergebnis zustande kommt.', ['Sie ist zu teuer.', 'Niemand kann genau erklären, wie das Ergebnis zustande kommt.', 'Sie ist verboten.']),
+            exTF('Juristen fordern eine verständliche Begründung von Entscheidungen.', true),
+            exSelect('Was ist laut Text die eigentliche Frage der Debatte?', 'Wer für eine Entscheidung verantwortlich ist', ['Wie schnell Computer rechnen', 'Wer für eine Entscheidung verantwortlich ist', 'Ob Banken Kredite vergeben'])
+          ])
+        },
+
+        listening: {
+          title: 'Podiumsdiskussion — KI und Arbeit',
+          intro: 'Excerpt from a panel discussion with a union representative and a researcher. Listen <strong>once</strong>, then answer; the transcript is for checking afterwards.',
+          lines: [
+            ['Moderatorin', 'Herr Brandt, Sie vertreten Beschäftigte im Maschinenbau. Ist KI eine Bedrohung für Arbeitsplätze?'],
+            ['Brandt', 'Zwar wird es viele neue Tätigkeiten geben, allerdings nicht automatisch für dieselben Menschen. Wer heute Routinearbeit macht, braucht eine echte Chance zur Umschulung.'],
+            ['Moderatorin', 'Frau Dr. Kessler, sehen Sie das ähnlich?'],
+            ['Kessler', 'Teilweise. Insofern hat Herr Brandt recht, als die Übergänge schwierig sind. Aber die Geschichte zeigt, dass Technik mehr Berufe verändert als vernichtet.'],
+            ['Brandt', 'Das ist mir zu einfach. Die Geschichte hilft den Menschen nicht, die heute ihre Stelle verlieren.'],
+            ['Moderatorin', 'Wie sollte die Politik reagieren?'],
+            ['Kessler', 'Vor allem mit Weiterbildung, und zwar früh. Wer erst kündigt und dann umlernt, ist meist zu spät dran.'],
+            ['Brandt', 'Das klingt gut, kostet aber Geld. Wer zahlt die Weiterbildung, wenn die Betriebe sparen?'],
+            ['Kessler', 'Da stimme ich zu: Ohne Finanzierung bleibt jeder Plan Theorie. Das ist für mich die eigentliche Lücke.'],
+            ['Moderatorin', 'Vielen Dank. Fassen wir zusammen: Weiterbildung ist nötig, über das Geld wird gestritten.']
+          ],
+          questions: exerciseList([
+            exSelect('Was ist Brandts Hauptsorge?', 'Dass die neuen Stellen nicht automatisch denselben Menschen zugutekommen', ['Dass Computer zu teuer sind', 'Dass die neuen Stellen nicht automatisch denselben Menschen zugutekommen', 'Dass es zu viele Bücher gibt']),
+            exSelect('Was hält Kessler für besonders wichtig?', 'Weiterbildung, und zwar früh', ['Weiterbildung, und zwar früh', 'Kündigungen', 'weniger Technik']),
+            exTF('Kessler meint, Technik vernichte mehr Berufe, als sie verändere.', false),
+            exSelect('Womit ist Brandt nicht einverstanden?', 'mit dem Verweis auf die Geschichte', ['mit dem Verweis auf die Geschichte', 'mit der Weiterbildung', 'mit dem Wort Automatisierung']),
+            exInput('Welches Problem nennt Kessler am Ende als Lücke? (ein Wort)', 'Finanzierung'),
+            exSelect('Worauf haben sich beide offenbar geeinigt?', 'Weiterbildung ist nötig.', ['Die KI soll verboten werden.', 'Weiterbildung ist nötig.', 'Der Staat soll alles bezahlen.']),
+            exSelect('Was sagt Kessler über Umschulung erst nach einer Kündigung?', 'Man ist meist zu spät dran.', ['Man ist meist zu spät dran.', 'Sie ist die beste Lösung.', 'Sie wird vom Staat verboten.']),
+            exInput('Wann, sagt Kessler, sollte man mit Weiterbildung beginnen? (ein Wort)', 'früh')
+          ])
+        },
+
+        writing: {
+          title: 'Zusammenfassung — Eine Podiumsdiskussion',
+          textType: 'Zusammenfassung einer Diskussion (indirekte Rede, sachlich)',
+          minWords: 180, maxWords: 230, minutes: 35,
+          expect: ['indirect', 'conclusion', 'nominal'],
+          task: '<p>Sie haben die Podiumsdiskussion <em>„KI und Arbeit"</em> gehört (Hören, diese Einheit).</p>' +
+            '<p>Schreiben Sie eine <strong>Zusammenfassung</strong> für Ihre Kolleginnen und Kollegen. Geben Sie die Position jeder Person in <strong>indirekter Rede</strong> wieder und schließen Sie mit dem Punkt, in dem sich alle einig sind, und dem Punkt, in dem sie es nicht sind.</p>',
+          plainTask: 'Write a neutral summary in German (180–230 words) of a panel discussion on AI and work. A union representative argues that retraining chances are not automatically offered to the people whose routine jobs are at risk. A researcher says history shows technology changes more jobs than it destroys, but agrees that the transitions are hard, argues for early further training and admits that financing is the real gap. Report each position in indirect speech, and end with what the speakers agree on and where they disagree.',
+          bullets: [
+            'Beginnen Sie mit dem Standardsatz: „In der Podiumsdiskussion ging es um …"',
+            'Geben Sie jede Position mit <strong>Konjunktiv I</strong> wieder, zum Beispiel: Herr Brandt sagt, …',
+            'Benennen Sie den <strong>Punkt der Einigung</strong> und den <strong>Punkt des Streits</strong>.',
+            'Keine eigene Meinung, kein „ich".',
+            'Nominalstil wo passend: „die Verringerung der Arbeitsplätze", „die Notwendigkeit der Weiterbildung".'
+          ],
+          usefulPhrases: formTable('', ['Funktion', 'Redemittel'], [
+            ['Einleiten', 'In der Podiumsdiskussion ging es um … · Die Teilnehmenden diskutierten die Frage, …'],
+            ['Position', 'Herr Brandt <strong>sehe</strong> die Gefahr … · Frau Dr. Kessler <strong>halte</strong> die Geschichte für aufschlussreich.'],
+            ['Konzession', 'Zwar <strong>räume</strong> er ein, dass … · Sie <strong>gebe</strong> zu, dass die Übergänge schwierig <strong>seien</strong>.'],
+            ['Einigung', 'Einigkeit bestand darin, dass … · Alle Beteiligten <strong>hielten</strong> Weiterbildung für notwendig.'],
+            ['Streit', 'Uneinigkeit herrschte bei der Frage der Finanzierung · Umstritten blieb, wer die Kosten <strong>trage</strong>.'],
+            ['Schluss', 'Abschließend lässt sich festhalten, dass … · Offen blieb, …']
+          ]),
+          criteria: [
+            'Der erste Satz nennt das Thema und die Runde.',
+            'Jede Person ist mit ihrer Position genannt (Moderation nicht vergessen, aber kurz).',
+            'Die Positionen stehen in indirekter Rede; Konjunktiv I ist korrekt gebildet.',
+            'Konzessionen (zwar … aber) sind korrekt wiedergegeben.',
+            'Der Punkt der Einigung und der Punkt des Streits sind genannt.',
+            'Keine eigene Meinung, kein „ich", keine Wertung.',
+            'Ich liege zwischen 180 und 230 Wörtern.'
+          ]
+        },
+
+        culture:
+          '<p><strong>Germany came late to digital administration.</strong> Many citizens still hand in paper forms, and the <span class="de">Onlinezugangsgesetz</span> (OZG) was passed to force public services online. ' +
+          'Progress has been slower than the law intended, which is a common joke in German news about the <span class="de">Digitalisierung</span> of government.</p>' +
+          '<p><strong>Privacy is a national reflex.</strong> A 1983 census triggered a Constitutional Court ruling that gave citizens a right to decide what happens to their data. ' +
+          'That history explains why German debates about data protection are often sharper than in other countries, and why a privacy setting or a consent banner is rarely treated as a formality.</p>' +
+          '<p><strong>Industry is the centre of the automation debate.</strong> The term <span class="de">Industrie 4.0</span> describes factories that connect machines and data. ' +
+          'Many small and medium-sized firms are still catching up, and that gap is at the heart of the discussion about training and the <span class="de">Fachkräftemangel</span>.</p>' +
+          '<p><strong>Social partners shape the outcome.</strong> Unions and employers negotiate training and change through collective agreements, so new technology is usually discussed as a matter of <span class="de">Mitbestimmung</span> (co-determination) rather than as something handed down by management.</p>',
+
+        recap: [
+          { group: '🤖 KI-Debatte', rows: [
+            ['die Künstliche Intelligenz', 'artificial intelligence'],
+            ['das Sprachmodell', 'the language model'],
+            ['die Regulierung', 'the regulation'],
+            ['der Hype', 'the hype'],
+            ['die Desinformation', 'deliberate disinformation'],
+            ['die Fehleinschätzung', 'the misjudgement'],
+            ['überschätzen', 'to overestimate'],
+            ['unterschätzen', 'to underestimate'],
+            ['fehleranfällig', 'prone to errors'],
+            ['die Gefahr', 'the danger'],
+            ['zwar … aber', 'admittedly … but'],
+            ['allerdings', 'however, though']
+          ] },
+          { group: '🔐 Daten und Recht', rows: [
+            ['die Datenschutz-Grundverordnung', 'the GDPR'],
+            ['personenbezogene Daten', 'personal data'],
+            ['die Einwilligung', 'the consent'],
+            ['die Zweckbindung', 'purpose limitation'],
+            ['die Verarbeitung', 'the processing'],
+            ['das Recht auf Auskunft', 'the right of access'],
+            ['das Recht auf Löschung', 'the right to erasure'],
+            ['der Widerspruch', 'the objection'],
+            ['das Bußgeld', 'the fine'],
+            ['insofern', 'in this respect'],
+            ['soweit', 'as far as']
+          ] },
+          { group: '👥 Arbeit und Automatisierung', rows: [
+            ['die Automatisierung', 'automation'],
+            ['der Fachkräftemangel', 'the shortage of skilled workers'],
+            ['die Routinetätigkeit', 'the routine task'],
+            ['die Weiterbildung', 'further training'],
+            ['die Umschulung', 'retraining'],
+            ['die Qualifikation', 'the qualification'],
+            ['Stellen streichen', 'to cut jobs'],
+            ['Stellen schaffen', 'to create jobs'],
+            ['die Gewerkschaft', 'the trade union'],
+            ['verdrängen', 'to displace'],
+            ['die Lücke', 'the gap']
+          ] },
+          { group: '🧠 Algorithmen erklären', rows: [
+            ['der Algorithmus', 'the algorithm'],
+            ['der Datensatz', 'the dataset'],
+            ['die Voreingenommenheit', 'bias'],
+            ['diskriminieren', 'to discriminate'],
+            ['nachvollziehbar', 'understandable, traceable'],
+            ['die Blackbox', 'the black box'],
+            ['die Fehlerquote', 'the error rate'],
+            ['vereinfacht gesagt', 'put simply'],
+            ['mit anderen Worten', 'in other words'],
+            ['das heißt', 'that is']
+          ] }
+        ],
+
+        sentences: [
+          { de: 'Zwar ist die Technik nützlich, aber sie hat Grenzen', en: 'Admittedly the technology is useful, but it has limits' },
+          { de: 'Die Regel gilt insofern, als Daten gespeichert werden', en: 'The rule applies in so far as data is stored' },
+          { de: 'Daten dürfen nur für den festgelegten Zweck verarbeitet werden', en: 'Data may only be processed for the stated purpose' },
+          { de: 'Wenn Maschinen Routinearbeit übernähmen, müssten viele umlernen', en: 'If machines took over routine work, many would have to retrain' },
+          { de: 'Vereinfacht gesagt ist ein Algorithmus ein Rezept', en: 'Put simply, an algorithm is a recipe' },
+          { de: 'Die Finanzierung ist die eigentliche Lücke', en: 'Financing is the real gap' }
+        ]
+      },
+
+      { // ===== B2 UNIT 6 — written out in full =====
+        title: '🏛️ Unit 6 — Politics and Civil Society',
+        subject: 'Politik und Gesellschaft',
+        canDo: ['Explain how the German political system works, in German',
+                'Describe ways citizens can take part and what each one can achieve',
+                'Tell a commentary apart from a report and name its rhetorical moves',
+                'Defend a position against counter-arguments using concessive structures'],
+        grammarFocus: ['Passive in political descriptions', 'Verbs with prepositions: sich einsetzen für, sich wenden gegen',
+                       'Konzessivsätze: obwohl, auch wenn, selbst wenn', 'Emphasis and rhetorical questions'],
+        topics: [
+          {
+            icon: '🗳️', title: 'The political system of Germany',
+            explanation:
+              '<p>The Federal Republic is a parliamentary democracy, and most of its institutions are easier to understand once you know which one does what. ' +
+              'The <span class="de">Bundestag</span> is the parliament that is elected directly by the people, and it elects the <span class="de">Bundeskanzler</span> (chancellor). ' +
+              'The <span class="de">Bundesrat</span> represents the sixteen <span class="de">Länder</span> through their state governments. Federal laws almost always need the Bundesrat, so the Länder have real influence.</p>' +
+              '<p>Because no party usually wins an absolute majority, governments are formed as a <span class="de">Koalition</span>. The parties write a <span class="de">Koalitionsvertrag</span>, a long agreement that sets out the programme. ' +
+              'Everyone outside the government is the <span class="de">Opposition</span>, and its job is to criticise, to propose alternatives and to check the government.</p>',
+            vocab: vocabTable([
+              ['der Bundestag', 'the federal parliament'],
+              ['der Bundesrat', 'the Federal Council (the Länder)'],
+              ['der Bundeskanzler / die Bundeskanzlerin', 'the federal chancellor'],
+              ['das Land / die Länder', 'the federal state(s)'],
+              ['die Koalition', 'the coalition'],
+              ['der Koalitionsvertrag', 'the coalition agreement'],
+              ['die Opposition', 'the parties not in government'],
+              ['die Wahlperiode', 'the term of office'],
+              ['der Gesetzentwurf', 'the draft bill'],
+              ['beschließen', 'to pass, to resolve'],
+              ['zustimmen', 'to approve'],
+              ['die Mehrheit', 'the majority'],
+              ['der Abgeordnete / die Abgeordnete', 'the member of parliament'],
+              ['die Landesregierung', 'the state government'],
+              ['wählen', 'to elect'],
+              ['laut', 'according to (+ Dativ)'],
+              ['gemäß', 'in accordance with (+ Dativ)'],
+              ['die Fünf-Prozent-Hürde', 'the five-percent threshold']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              '<p><strong>Passive in institutional descriptions.</strong> German political texts describe what institutions do with the passive, because the institution is the agent and the sentence is about the process:</p>' +
+              formTable('', ['Active (the actor is named)', 'Passive (the process is named)'], [
+                ['Der Bundestag wählt den Kanzler.', '<strong>Der Kanzler wird</strong> vom Bundestag <strong>gewählt</strong>.'],
+                ['Der Bundesrat stimmt dem Gesetz zu.', '<strong>Das Gesetz muss</strong> vom Bundesrat <strong>gebilligt werden</strong>.'],
+                ['Die Parteien beschließen den Vertrag.', '<strong>Der Vertrag wird</strong> von den Parteien <strong>beschlossen</strong>.']
+              ]) +
+              '<p><strong>laut</strong> and <strong>gemäß</strong> introduce a source in formal writing: <span class="de">laut Grundgesetz</span> (according to the Basic Law), <span class="de">gemäß Artikel 63</span> (in accordance with Article 63). Both take the dative.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exInput('Der Kanzler ___________ vom Bundestag gewählt.', 'wird'),
+              exSelect('„Die Opposition" bedeutet:', 'the parties not in government', ['the parties not in government', 'the government spokesperson', 'the federal court']),
+              exInput('Die Vertretung der Länder im Bund heißt ___________.', 'Bundesrat'),
+              exSelect('„laut Grundgesetz" bedeutet:', 'according to the Basic Law', ['against the Basic Law', 'according to the Basic Law', 'despite the Basic Law']),
+              exSelect('Welche Form passt? „Gesetze ___ heute im Bundestag beschlossen."', 'werden', ['werden', 'wurden', 'worden']),
+              exInput('Eine Regierung aus mehreren Parteien heißt ___________.', 'Koalition'),
+              exSelect('Wie lange dauert eine Wahlperiode des Bundestages in der Regel?', 'vier Jahre', ['vier Jahre', 'zwei Jahre', 'sechs Jahre'])
+            ])
+          },
+          {
+            icon: '📣', title: 'Protest and participation',
+            explanation:
+              '<p>Germans have several formal ways to take part between elections, and the vocabulary is worth knowing precisely. A <span class="de">Demonstration</span> is protected by the Versammlungsfreiheit (Article 8 of the Basic Law). ' +
+              'A <span class="de">Petition</span> is a written request to the Bundestag, protected by the Petitionsrecht (Article 17). A <span class="de">Bürgerinitiative</span> is a group of citizens who campaign for a local issue. ' +
+              'A <span class="de">Lobby</span> or a <span class="de">Verband</span> represents the interests of an industry or a group, usually with a permanent office in Berlin.</p>' +
+              '<p>Campaigning verbs take fixed prepositions, and these are the ones you must learn with the verb: <span class="de">sich einsetzen <strong>für</strong></span> (to campaign for) takes the accusative, ' +
+              '<span class="de">sich wenden <strong>gegen</strong></span> (to oppose) takes the accusative, and <span class="de">sich beschweren <strong>über</strong></span> (to complain about) also takes the accusative.</p>',
+            vocab: vocabTable([
+              ['die Demonstration', 'the demonstration'],
+              ['die Versammlungsfreiheit', 'the freedom of assembly'],
+              ['die Petition', 'the petition'],
+              ['das Petitionsrecht', 'the right of petition'],
+              ['die Bürgerinitiative', 'the citizens\' initiative (local)'],
+              ['der Volksentscheid', 'the referendum (Länder level)'],
+              ['die Lobby / der Verband', 'the lobby / the association'],
+              ['das Anliegen', 'the concern, the request'],
+              ['sich engagieren', 'to get involved'],
+              ['sich einsetzen für', 'to campaign for'],
+              ['sich wenden gegen', 'to oppose'],
+              ['sich beschweren über', 'to complain about'],
+              ['die Forderung', 'the demand'],
+              ['fordern', 'to demand'],
+              ['aufmerksam machen auf', 'to draw attention to'],
+              ['die Unterschrift', 'the signature'],
+              ['unterstützen', 'to support']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              formTable('', ['Verb + preposition', 'Case', 'Example'], [
+                ['sich einsetzen <strong>für</strong>', 'Akkusativ', 'Sie setzen sich <strong>für bessere Schulen</strong> ein.'],
+                ['sich wenden <strong>gegen</strong>', 'Akkusativ', 'Die Bürger wenden sich <strong>gegen die Pläne</strong>.'],
+                ['sich beschweren <strong>über</strong>', 'Akkusativ', 'Er beschwert sich <strong>über den Lärm</strong>.'],
+                ['sich engagieren <strong>in</strong>', 'Dativ', 'Viele engagieren sich <strong>in der Bürgerinitiative</strong>.']
+              ]) +
+              '<p class="note">In a question with a preposition verb, the pronoun is a <em>da</em>-compound: <span class="de">Wofür setzt du dich ein?</span> — <span class="de">Dafür</span> (for it), <span class="de">dagegen</span> (against it).</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exInput('Ich setze mich ___________ bessere Schulen ein. (Präposition)', 'für'),
+              exInput('Die Bürger wenden sich ___________ die Kürzungen. (Präposition)', 'gegen'),
+              exSelect('Wie heißt das Recht, sich schriftlich an den Bundestag zu wenden?', 'Petitionsrecht', ['Versammlungsfreiheit', 'Petitionsrecht', 'Meinungsfreiheit']),
+              exSelect('Welche Form der Beteiligung gibt es nur auf Landesebene?', 'Volksentscheid', ['Volksentscheid', 'Bundesrat', 'Petition']),
+              exInput('Eine Gruppe von Bürgern, die sich vor Ort für ein Anliegen einsetzt, nennt man eine ___________.', 'Bürgerinitiative'),
+              exSelect('„Lobby" bedeutet im politischen Alltag:', 'Interessenvertretung', ['Interessenvertretung', 'Parlamentsgebäude', 'Wahlkampf']),
+              exSelect('Welche Präposition passt? „Er beschwert sich ___ den Lärm."', 'über', ['über', 'für', 'gegen'])
+            ])
+          },
+          {
+            icon: '📰', title: 'Reading political commentary',
+            explanation:
+              '<p>The first skill in political reading is telling a <span class="de">Bericht</span> (report, which describes what happened) from a <span class="de">Kommentar</span> (commentary, which gives the author\'s judgement). ' +
+              'Both can appear on the same page, and a commentary is often disguised as a report. Look for <span class="de">Wertungen</span>: words that judge rather than describe, such as <em>skandalös</em>, <em>mutig</em> or <em>endlich</em>.</p>' +
+              '<p>Commentaries use rhetorical tools to make a point stick. A <span class="de">Metapher</span> makes an image out of a situation: <span class="de">Die Koalition steckt in der Sackgasse</span>. ' +
+              'A <span class="de">Pauschalisierung</span> lumps people together: <span class="de">die Politiker</span>. A <span class="de">Suggestivfrage</span> presents its own answer as a question. ' +
+              '<span class="de">Ironie</span> says the opposite of what it means. Noticing these tools is what lets you separate the argument from the rhetoric.</p>',
+            vocab: vocabTable([
+              ['der Kommentar', 'the commentary'],
+              ['der Bericht', 'the report'],
+              ['die Wertung', 'the judgement, the evaluation'],
+              ['die Metapher', 'the metaphor'],
+              ['die Pauschalisierung', 'generalisation'],
+              ['die Suggestivfrage', 'the leading question'],
+              ['die Ironie', 'irony'],
+              ['die Polemik', 'polemic'],
+              ['der Standpunkt', 'the point of view'],
+              ['die Sackgasse', 'the dead end'],
+              ['die Blockade', 'the blockade, the deadlock'],
+              ['der Kompromiss', 'the compromise'],
+              ['skandalös', 'scandalous'],
+              ['mutig', 'bold, courageous'],
+              ['die Behauptung', 'the claim'],
+              ['belegen', 'to back up with evidence'],
+              ['zuspitzen', 'to sharpen, to exaggerate'],
+              ['ausweichen', 'to evade']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              '<p><strong>Emphasis structures</strong> that commentaries use to signal what matters most:</p>' +
+              formTable('', ['Structure', 'Meaning', 'Example'], [
+                ['<strong>Es ist nicht zu bestreiten, dass …</strong>', 'It cannot be denied that …', 'Es ist nicht zu bestreiten, dass die Lage ernst ist.'],
+                ['<strong>Gerade das ist …</strong>', 'That is precisely …', '<strong>Gerade das ist</strong> das Problem.'],
+                ['<strong>Das Entscheidende ist, dass …</strong>', 'The decisive thing is that …', 'Das Entscheidende ist, dass niemand Verantwortung übernimmt.']
+              ]) +
+              '<p class="note">A rhetorical question presents its own answer: <span class="de">Wer soll das bezahlen?</span> does not want information; it means <em>nobody can pay for this</em>.</p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exSelect('Welche Textsorte enthält persönliche Wertungen?', 'Kommentar', ['Bericht', 'Kommentar', 'Protokoll']),
+              exInput('„Die Koalition steckt in der Sackgasse" ist eine ___________. (Bildsprache)', 'Metapher'),
+              exSelect('Was ist eine Suggestivfrage?', 'eine Frage, die schon die gewünschte Antwort nahelegt', ['eine echte Umfrage', 'eine Frage, die schon die gewünschte Antwort nahelegt', 'eine Frage ohne Antwort']),
+              exSelect('„Pauschalisierung" bedeutet:', 'generalisation, lumping together', ['generalisation, lumping together', 'a precise statistic', 'a legal decision']),
+              exInput('Wer ein Argument mit beißendem Spott lächerlich macht, benutzt ___________. (Ironie)', 'Ironie'),
+              exSelect('„Es ist nicht zu bestreiten, dass …" ist eine Form der:', 'Betonung', ['Betonung', 'Entschuldigung', 'Frage']),
+              exSelect('Welches Wort ist eine Wertung, kein neutraler Begriff?', 'skandalös', ['Gesetz', 'Bundestag', 'skandalös'])
+            ])
+          },
+          {
+            icon: '⚖️', title: 'Rights and the constitution',
+            explanation:
+              '<p>The <span class="de">Grundgesetz</span> was adopted in 1949 after the Nazi dictatorship, and its first article is its most famous: <span class="de">Die Würde des Menschen ist unantastbar.</span> ' +
+              'Several rights matter for political life. Article 3 guarantees equality before the law, Article 5 protects freedom of opinion, press and broadcasting, Article 8 protects freedom of assembly, and Article 17 gives the right of petition.</p>' +
+              '<p>Argument often turns on <strong>concession</strong>: you grant that something is true, and then show that it does not change the conclusion. German uses three conjunctions for this, and they are not interchangeable. ' +
+              '<span class="de">obwohl</span> states a fact that is surprising (<em>although</em>). <span class="de">auch wenn</span> concedes a condition that may or may not apply (<em>even if</em>). ' +
+              '<span class="de">selbst wenn</span> is the strongest, hypothetical version (<em>even if, in the extreme case</em>).</p>',
+            vocab: vocabTable([
+              ['das Grundgesetz', 'the Basic Law (German constitution)'],
+              ['die Menschenwürde', 'human dignity'],
+              ['unantastbar', 'inviolable'],
+              ['die Gleichheit vor dem Gesetz', 'equality before the law'],
+              ['die Meinungsfreiheit', 'freedom of opinion'],
+              ['die Pressefreiheit', 'freedom of the press'],
+              ['die Versammlungsfreiheit', 'freedom of assembly'],
+              ['das Recht', 'the right, the law'],
+              ['schützen', 'to protect'],
+              ['garantieren', 'to guarantee'],
+              ['verletzen', 'to violate'],
+              ['einschränken', 'to restrict'],
+              ['obwohl', 'although (a fact)'],
+              ['auch wenn', 'even if (a real condition)'],
+              ['selbst wenn', 'even if (hypothetical, strongest)'],
+              ['zugestehen', 'to concede'],
+              ['das Argument', 'the argument']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              formTable('', ['Conjunction', 'Meaning', 'Example'], [
+                ['<strong>obwohl</strong>', 'although — a fact', '<strong>Obwohl das Gesetz umstritten ist</strong>, wird es verabschiedet.'],
+                ['<strong>auch wenn</strong>', 'even if — a real possibility', '<strong>Auch wenn es regnet</strong>, findet die Demo statt.'],
+                ['<strong>selbst wenn</strong>', 'even if — the extreme case', '<strong>Selbst wenn</strong> der Bundesrat zustimmt, bleibt die Frage offen.']
+              ]) +
+              '<p class="note">All three send the verb to the end of the subordinate clause. The main clause then starts with the verb: <span class="de">Obwohl das Gesetz umstritten ist, <strong>wird</strong> es verabschiedet.</span></p>' +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exSelect('Welche Konjunktion passt? „___ das Gesetz nicht verabschiedet wird, bleibt die Debatte offen." (der extremste Fall)', 'Selbst wenn', ['Obwohl', 'Selbst wenn', 'Damit']),
+              exInput('Obwohl das Gesetz umstritten ist, ___________ es verabschiedet. (Verb auf Platz 2)', 'wird'),
+              exSelect('Welcher Satz ist korrekt?', 'Obwohl das Gesetz umstritten ist, wird es verabschiedet.', ['Obwohl das Gesetz umstritten ist, es wird verabschiedet.', 'Obwohl das Gesetz umstritten ist, wird es verabschiedet.', 'Obwohl das Gesetz umstritten, ist es wird verabschiedet.']),
+              exSelect('Welcher Artikel des Grundgesetzes schützt die Meinungsfreiheit?', 'Artikel 5', ['Artikel 1', 'Artikel 5', 'Artikel 17']),
+              exInput('Die Würde des Menschen ist ___________ (Art. 1). (unverletzlich, „nicht zu verletzen")', 'unantastbar'),
+              exSelect('Welche Konjunktion drückt eine echte Möglichkeit aus?', 'auch wenn', ['obwohl', 'auch wenn', 'damit'])
+            ])
+          },
+          {
+            icon: '💬', title: 'Debating a contested issue',
+            explanation:
+              '<p>A fair debate has rules that German speakers take seriously: let others finish, answer the argument rather than the person, and name your sources. ' +
+              'Breaking these rules is itself a point against you, and experienced speakers use the rules to expose the other side.</p>' +
+              '<p>The structure of a good contribution is simple: state your position, give your reasons, then <em>take up</em> the strongest objection and answer it. ' +
+              'The phrase <span class="de">Es geht nicht darum, ob …, sondern darum, wie …</span> is a useful way to shift a debate from whether to how, and <span class="de">Das Entscheidende ist, dass …</span> marks your central point.</p>',
+            vocab: vocabTable([
+              ['die Debatte', 'the debate'],
+              ['der Einwand', 'the objection'],
+              ['entkräften', 'to refute, to defuse'],
+              ['aussprechen lassen', 'to let someone finish'],
+              ['unterbrechen', 'to interrupt'],
+              ['die Sachlichkeit', 'objectivity, matter-of-factness'],
+              ['die Quelle', 'the source'],
+              ['belegen', 'to back up'],
+              ['die Position', 'the position'],
+              ['Stellung nehmen', 'to take a position'],
+              ['abwägen', 'to weigh up'],
+              ['das Gegenargument', 'the counter-argument'],
+              ['zuhören', 'to listen'],
+              ['sich auf etwas einlassen', 'to engage with something']
+            ]),
+            grammar:
+              '<div class="grammar-point">' +
+              formTable('', ['Structure', 'Use', 'Example'], [
+                ['<strong>Es geht nicht darum, ob …, sondern darum, wie …</strong>', 'shift from whether to how', 'Es geht nicht darum, ob wir handeln, <strong>sondern darum</strong>, wie.'],
+                ['<strong>Das Entscheidende ist, dass …</strong>', 'mark your central point', 'Das Entscheidende ist, dass alle beteiligt werden.'],
+                ['<strong>Gerade deshalb …</strong>', 'emphasise a reason', 'Gerade deshalb ist die Frage wichtig.']
+              ]) +
+              '</div>',
+            dialogs: '',
+            exercises: exerciseList([
+              exInput('Es geht nicht darum, ob wir handeln, ___________ darum, wie. (sondern)', 'sondern'),
+              exSelect('„Das Entscheidende ist, dass …" leitet ein:', 'die wichtigste Aussage', ['die wichtigste Aussage', 'eine Entschuldigung', 'eine Zeitangabe']),
+              exSelect('Welche Regel gehört zu einer fairen Debatte?', 'Man lässt andere ausreden.', ['Man lässt andere ausreden.', 'Man unterbricht die Gegenseite.', 'Man greift die Person an.']),
+              exSelect('„Wer soll das bezahlen?" bedeutet in einem Kommentar meist:', 'Die Antwort ist eigentlich eine Aussage: niemand kann es bezahlen.', ['Man möchte die Antwort wissen.', 'Die Antwort ist eigentlich eine Aussage: niemand kann es bezahlen.', 'Es wird eine neue Partei gegründet.']),
+              exInput('Einen Einwand zu widerlegen heißt, ihn zu ___________. (entkräften)', 'entkräften')
+            ])
+          }
+        ],
+
+        drillIntro: '<p>Mixed practice over the whole unit: institutions and the passive, campaigning prepositions, reading commentary, concession and fair debate.</p>',
+        exercises: exerciseList([
+          exInput('Der Kanzler ___________ vom Bundestag gewählt. (Passiv)', 'wird'),
+          exInput('Die Länder wirken im ___________ mit. (Vertretung der Länder)', 'Bundesrat'),
+          exSelect('„laut Grundgesetz" bedeutet:', 'according to the Basic Law', ['according to the Basic Law', 'against the Basic Law', 'despite the Basic Law']),
+          exInput('Ich setze mich ___________ Umweltschutz ein. (Präposition)', 'für'),
+          exInput('Die Bürger wenden sich ___________ den Bau der Straße. (Präposition)', 'gegen'),
+          exSelect('Welche Form ist ein Recht aus Art. 17?', 'Petitionsrecht', ['Petitionsrecht', 'Versammlungsfreiheit', 'Pressefreiheit']),
+          exSelect('„Die Koalition steckt in der Sackgasse" ist eine:', 'Metapher', ['Metapher', 'Statistik', 'Gesetzesfrist']),
+          exInput('Wer Menschen pauschal über einen Kamm schert, betreibt ___________.', 'Pauschalisierung'),
+          exInput('___________ das Gesetz umstritten ist, wird es verabschiedet. (Tatsache)', 'Obwohl'),
+          exSelect('„Selbst wenn …" drückt aus:', 'den extremsten Fall', ['eine Tatsache', 'den extremsten Fall', 'einen Grund']),
+          exInput('Es geht nicht darum, ob, ___________ darum, wie. (Gegensatz)', 'sondern'),
+          exSelect('Welche Regel ist fair?', 'aussprechen lassen', ['aussprechen lassen', 'unterbrechen', 'die Person angreifen'])
+        ]),
+
+        reading: {
+          intro: 'A political commentary on a stalled coalition project. Read for the <strong>judgements</strong> the author makes, and for the rhetorical tools that carry them.',
+          words: 330, minutes: 8,
+          text: readingText('Die Koalition muss liefern', [
+            'Es ist nicht zu bestreiten, dass die Regierung seit Monaten in der Sackgasse steckt. Der Gesetzentwurf zur Modernisierung der Verwaltung liegt auf Eis, und jede Seite schiebt die Schuld auf die andere. Gerade das ist das Problem: Die Bürgerinnen und Bürger erwarten Ergebnisse, nicht Schuldzuweisungen.',
+            'Man hört immer wieder, die Koalition sei eben zerstritten. Doch wer soll das den Menschen erklären, die seit Jahren auf einen Termin im Bürgeramt warten? Die Verwaltung sei zu langsam, heißt es, und die Politiker sprächen lieber über Symbolik als über Taten. Diese Pauschalisierung hilft niemandem, trifft aber einen wahren Kern.',
+            'Natürlich ist Kompromiss das Wesen der Demokratie. Auch wenn sich die Parteien unterschiedlich positionieren, muss am Ende ein Gesetz stehen. Selbst wenn die Opposition den Entwurf ablehnt, bleibt der Regierung die Pflicht, ihn zu Ende zu bringen. Das ist keine Schwäche des Systems, sondern dessen Kern.',
+            'Das Entscheidende ist, dass die Koalition ihr Versprechen einlöst. Ob der Entwurf gut ist, darüber lässt sich streiten; dass er überhaupt vorankommt, ist die Mindestanforderung. Wer jetzt weiter blockiert, sollte sich fragen, wofür er eigentlich gewählt wurde.'
+          ], 'Politischer Kommentar, fiktiv — im Stil der deutschen Qualitätspresse'),
+          glossary: vocabTable([
+            ['auf Eis liegen', 'to be on hold'],
+            ['die Schuldzuweisung', 'the blame'],
+            ['zerstritten', 'divided, at odds'],
+            ['die Verwaltung', 'the public administration'],
+            ['das Bürgeramt', 'the citizens\' registration office'],
+            ['die Symbolik', 'symbolism'],
+            ['die Pauschalisierung', 'generalisation'],
+            ['sich positionieren', 'to take a stance'],
+            ['einlösen', 'to deliver on (a promise)'],
+            ['die Mindestanforderung', 'the minimum requirement'],
+            ['blockieren', 'to block']
+          ]),
+          questions: exerciseList([
+            exSelect('Worum geht es im Kommentar vor allem?', 'Eine Regierung kommt bei einem Projekt nicht voran.', ['Eine Regierung kommt bei einem Projekt nicht voran.', 'Ein neues Gesetz wird gefeiert.', 'Eine Wahl steht bevor.']),
+            exTF('Der Gesetzentwurf zur Verwaltung ist schon in Kraft.', false),
+            exSelect('Was erwarten die Bürger laut Kommentar?', 'Ergebnisse statt Schuldzuweisungen', ['Ergebnisse statt Schuldzuweisungen', 'mehr Symbolik', 'weniger Gesetze']),
+            exInput('Auf welchen Bereich bezieht sich das Wort „Bürgeramt"? (ein Wort)', 'Verwaltung'),
+            exSelect('Welche Textstelle ist eine Pauschalisierung?', '„die Politiker sprächen lieber über Symbolik"', ['„der Gesetzentwurf liegt auf Eis"', '„die Politiker sprächen lieber über Symbolik"', '„am Ende muss ein Gesetz stehen"']),
+            exSelect('Was sagt der Kommentar über den Kompromiss?', 'Er ist das Wesen der Demokratie.', ['Er ist das Wesen der Demokratie.', 'Er ist eine Schwäche des Systems.', 'Er ist überflüssig.']),
+            exSelect('Welcher Satz hat ein Wort mit Wertung?', 'Die Verwaltung sei zu langsam', ['Der Entwurf hat zwölf Artikel.', 'Die Verwaltung sei zu langsam', 'Die Sitzung war am Dienstag.']),
+            exSelect('Welche Frage im Kommentar ist eine Suggestivfrage?', 'Wer soll das den Menschen erklären?', ['Wer soll das den Menschen erklären?', 'Wie lange dauert ein Termin?', 'Was kostet der Entwurf?']),
+            exSelect('Was ist laut Kommentar die Mindestanforderung?', 'dass der Entwurf vorankommt', ['dass der Entwurf perfekt ist', 'dass der Entwurf vorankommt', 'dass niemand widerspricht'])
+          ])
+        },
+
+        listening: {
+          title: 'Radiobeitrag — Eine Bürgerinitiative kämpft um ihre Straße',
+          intro: 'A local radio report about a citizens\' initiative and a planned road. Listen <strong>once</strong>, then answer; the transcript is for checking afterwards.',
+          lines: [
+            ['Moderator', 'In Kleinmachnow hat sich eine Bürgerinitiative gegründet, die sich gegen den Bau einer neuen Umgehungsstraße wendet. Frau Schulz, warum?'],
+            ['Schulz', 'Die Straße würde direkt an unserem Wohngebiet vorbeiführen. Wir fordern, dass die Stadt Alternativen prüft, bevor sie irgendetwas beschließt.'],
+            ['Moderator', 'Die Stadt sagt, die Straße sei nötig, um den Verkehr im Zentrum zu entlasten.'],
+            ['Schulz', 'Das bestreiten wir nicht. Aber der Verkehr würde nur verlagert. Gerade deshalb brauchen wir ein Gesamtkonzept und keine Einzelmaßnahme.'],
+            ['Moderator', 'Haben Sie Unterstützung aus der Politik?'],
+            ['Schulz', 'Einige Stadtverordnete haben sich uns angeschlossen, obwohl ihre Partei den Bau unterstützt. Das zeigt, dass der Streit nicht einfach entlang der Parteigrenzen verläuft.'],
+            ['Moderator', 'Wie wollen Sie Ihre Forderung durchsetzen?'],
+            ['Schulz', 'Mit einer Unterschriftenliste und mit einer Petition an den Stadtrat. Auch wenn das langsam geht, ist es der legale Weg, und den nutzen wir.'],
+            ['Moderator', 'Und wenn der Rat trotzdem beschließt?'],
+            ['Schulz', 'Dann prüfen wir, ob ein Bürgerbegehren möglich ist. Das ist das Entscheidende: Die Leute sollen wissen, dass sie gehört werden können.']
+          ],
+          questions: exerciseList([
+            exSelect('Gegen was richtet sich die Bürgerinitiative?', 'den Bau einer Umgehungsstraße', ['den Bau einer Umgehungsstraße', 'eine neue Schule', 'einen Bahnhof']),
+            exTF('Frau Schulz bestreitet, dass die Straße den Verkehr entlasten würde.', false),
+            exSelect('Was fordert die Initiative zuerst?', 'dass Alternativen geprüft werden', ['dass die Straße sofort gebaut wird', 'dass Alternativen geprüft werden', 'dass die Stadt die Initiative auflöst']),
+            exSelect('Warum sagt Schulz „Das zeigt, dass der Streit nicht einfach entlang der Parteigrenzen verläuft"?', 'Auch Politiker einer Partei, die den Bau unterstützt, sind dagegen.', ['Alle Parteien sind gegen die Straße.', 'Auch Politiker einer Partei, die den Bau unterstützt, sind dagegen.', 'Die Stadt hat die Partei verboten.']),
+            exInput('Nenne eines der beiden Mittel, die Schulz für den legalen Weg nennt. (ein Wort)', 'Unterschriftenliste|Unterschriften|Petition'),
+            exTF('Schulz sagt, der Weg über die Petition sei schnell.', false),
+            exSelect('Welche Konjunktion zeigt eine Konzession bei Schulz?', 'auch wenn', ['auch wenn', 'damit', 'sodass']),
+            exSelect('Was wäre der nächste Schritt, wenn der Rat trotzdem beschließt?', 'ein mögliches Bürgerbegehren prüfen', ['ein mögliches Bürgerbegehren prüfen', 'die Initiative auflösen', 'die Straße selbst bauen'])
+          ])
+        },
+
+        writing: {
+          title: 'Leserbrief — Zu einem Kommentar Stellung nehmen',
+          textType: 'Leserbrief (formell, begründete Meinung, Gegenargument)',
+          minWords: 180, maxWords: 230, minutes: 40,
+          expect: ['opinion', 'arguments', 'counter', 'conclusion'],
+          task: '<p>Sie haben den Kommentar <em>„Die Koalition muss liefern"</em> gelesen (Lesen, diese Einheit).</p>' +
+            '<p>Schreiben Sie einen <strong>Leserbrief</strong> an die Redaktion. Nehmen Sie zu einer zentralen Aussage des Kommentars Stellung, begründen Sie Ihre Meinung und gehen Sie auf mindestens <strong>ein Gegenargument</strong> ein.</p>',
+          plainTask: 'Write a letter to the editor in German (180–230 words) responding to the commentary "Die Koalition muss liefern". Take a clear position on one central claim, support it with at least two reasons, address one counter-argument the author might raise (for example that coalitions must compromise), and end with a conclusion. Use a formal opening and closing.',
+          bullets: [
+            'Beginnen Sie mit <strong>Anrede und Bezug</strong>: „Sehr geehrte Damen und Herren, zu Ihrem Kommentar vom … möchte ich …"',
+            'Nennen Sie Ihre <strong>Meinung</strong> klar in einem Satz.',
+            'Begründen Sie mit mindestens zwei Argumenten; ein Beispiel stärkt jeden Punkt.',
+            'Nehmen Sie ein <strong>Gegenargument</strong> ernst und begegnen Sie ihm.',
+            'Schließen Sie mit einem Fazit und einer höflichen Schlussformel.'
+          ],
+          usefulPhrases: formTable('', ['Funktion', 'Redemittel'], [
+            ['Bezug', 'Ihr Kommentar „…" hat mich zum Nachdenken gebracht. · Zu Ihrer Aussage, dass …, möchte ich Stellung nehmen.'],
+            ['Meinung', 'Meines Erachtens ist … · Ich bin der Auffassung, dass …'],
+            ['Argument', 'Ein wesentlicher Grund ist, dass … · Hinzu kommt, dass …'],
+            ['Gegenargument', 'Zwar mag man einwenden, dass … · Obwohl dieser Einwand verständlich ist, …'],
+            ['Schluss', 'Abschließend bleibt festzuhalten, dass … · Mit freundlichen Grüßen']
+          ]),
+          criteria: [
+            'Anrede und Bezug auf den Kommentar sind korrekt.',
+            'Die eigene Meinung ist in einem Satz klar genannt.',
+            'Mindestens zwei Argumente sind begründet.',
+            'Ein Gegenargument wird genannt und entkräftet oder abgewogen.',
+            'Konzessionen (obwohl, auch wenn, selbst wenn) stehen mit korrekter Verbstellung.',
+            'Der Ton ist sachlich und höflich; keine Beleidigungen oder Pauschalisierungen.',
+            'Ich liege zwischen 180 und 230 Wörtern.'
+          ]
+        },
+
+        culture:
+          '<p><strong>The Grundgesetz is the country\'s civic anchor.</strong> Adopted in 1949 as a response to dictatorship, it is more stable than most constitutions in Europe, and its first article is quoted in almost every serious political debate.</p>' +
+          '<p><strong>Coalitions are the normal case.</strong> Since most federal governments are formed by two or more parties, coalition talks can take weeks or months, and the result is a long contract that everyone must defend. ' +
+          'Compromise is not a sign of weakness in German politics; a government that cannot agree is treated as a problem to solve.</p>' +
+          '<p><strong>The five-percent hurdle matters.</strong> A party must win at least five percent of the vote, or three direct seats, to enter the Bundestag. This keeps the parliament manageable, but it also means smaller movements try to organise outside the parties through citizens\' initiatives and petitions.</p>' +
+          '<p><strong>The 1989 demonstrations are part of the memory.</strong> The Monday demonstrations in Leipzig and other cities helped bring down the GDR, and the phrase <span class="de">Wir sind das Volk</span> remains a reference point for what peaceful protest can achieve.</p>' +
+          '<p><strong>Protest is seen as a right, not a disturbance.</strong> Demonstrations are routine in German cities, and the Versammlungsfreiheit means a city usually must allow a protest and can only restrict it for a serious reason.</p>',
+
+        recap: [
+          { group: '🗳️ Institutionen', rows: [
+            ['der Bundestag', 'the federal parliament'],
+            ['der Bundesrat', 'the Federal Council'],
+            ['das Land / die Länder', 'the federal state(s)'],
+            ['die Koalition', 'the coalition'],
+            ['der Koalitionsvertrag', 'the coalition agreement'],
+            ['die Opposition', 'the opposition'],
+            ['die Wahlperiode', 'the term of office'],
+            ['der Gesetzentwurf', 'the draft bill'],
+            ['die Mehrheit', 'the majority'],
+            ['laut / gemäß', 'according to / in accordance with'],
+            ['die Fünf-Prozent-Hürde', 'the five-percent threshold']
+          ] },
+          { group: '📣 Mitwirkung', rows: [
+            ['die Demonstration', 'the demonstration'],
+            ['die Petition', 'the petition'],
+            ['die Bürgerinitiative', 'the citizens\' initiative'],
+            ['der Volksentscheid', 'the referendum (Länder)'],
+            ['die Lobby / der Verband', 'the lobby / the association'],
+            ['das Anliegen', 'the concern'],
+            ['sich einsetzen für', 'to campaign for'],
+            ['sich wenden gegen', 'to oppose'],
+            ['sich beschweren über', 'to complain about'],
+            ['die Forderung', 'the demand'],
+            ['unterstützen', 'to support']
+          ] },
+          { group: '📰 Kommentar und Rhetorik', rows: [
+            ['der Kommentar', 'the commentary'],
+            ['die Wertung', 'the judgement'],
+            ['die Metapher', 'the metaphor'],
+            ['die Pauschalisierung', 'generalisation'],
+            ['die Suggestivfrage', 'the leading question'],
+            ['die Ironie', 'irony'],
+            ['die Polemik', 'polemic'],
+            ['die Sackgasse', 'the dead end'],
+            ['der Kompromiss', 'the compromise'],
+            ['zuspitzen', 'to sharpen'],
+            ['Es ist nicht zu bestreiten, dass …', 'It cannot be denied that …']
+          ] },
+          { group: '⚖️ Recht und Konzession', rows: [
+            ['das Grundgesetz', 'the Basic Law'],
+            ['die Menschenwürde', 'human dignity'],
+            ['unantastbar', 'inviolable'],
+            ['die Meinungsfreiheit', 'freedom of opinion'],
+            ['die Versammlungsfreiheit', 'freedom of assembly'],
+            ['schützen', 'to protect'],
+            ['obwohl', 'although (a fact)'],
+            ['auch wenn', 'even if (a real condition)'],
+            ['selbst wenn', 'even if (the extreme case)'],
+            ['zugestehen', 'to concede'],
+            ['entkräften', 'to refute']
+          ] }
+        ],
+
+        sentences: [
+          { de: 'Der Kanzler wird vom Bundestag gewählt', en: 'The chancellor is elected by the Bundestag' },
+          { de: 'Ich setze mich für bessere Schulen ein', en: 'I campaign for better schools' },
+          { de: 'Die Bürger wenden sich gegen die Kürzungen', en: 'The citizens oppose the cuts' },
+          { de: 'Obwohl das Gesetz umstritten ist, wird es verabschiedet', en: 'Although the law is disputed, it will be passed' },
+          { de: 'Es geht nicht darum, ob, sondern darum, wie', en: 'It is not about whether, but about how' },
+          { de: 'Das Entscheidende ist, dass alle gehört werden', en: 'The decisive thing is that everyone is heard' }
+        ]
+      },
 
       U('🎭 Unit 7 — Art, Literature and Film', 'Kunst, Literatur und Film', [
         t('📖', 'Reading a literary excerpt', 'Narrative voice, atmosphere, subtext'),
@@ -1676,7 +2905,60 @@
         t('🤔', 'Ethical dilemmas', 'Structuring a moral argument'),
         t('🧾', 'Formal complaint and appeal', 'Widerspruch with full justification'),
         t('⚔️', 'Rights in conflict', 'Freedom vs. security as a debate'),
-        t('🗣️', 'Arguing a hypothetical case', 'Konjunktiv II at full stretch')
+        {
+          icon: '🗣️', title: 'Arguing a hypothetical case', note: 'Konjunktiv II at full stretch',
+          explanation:
+            '<p>Ethical and legal arguments live on hypotheticals: <em>what would have happened if …?</em> <em>What would you have done in his place?</em> This is where the <strong>Konjunktiv II of the past</strong> does its work — and where you need to hear the difference between what <em>was</em> (indicative), what someone <em>claims</em> (Konjunktiv I, Unit 1) and what <em>never happened</em> (Konjunktiv II).</p>' +
+            '<p>The past form is built from <strong>hätte / wäre + Partizip II</strong>: <span class="de">Wenn man früher gehandelt hätte, wäre der Schaden geringer gewesen.</span> Both halves of the sentence use it. Pick <span class="de">wäre</span> for <span class="de">sein</span> and verbs of movement or change, <span class="de">hätte</span> for the rest. With a modal verb the pattern becomes <span class="de">hätte … + Infinitiv + Modal</span>: <span class="de">Sie hätten den Vorfall melden müssen.</span></p>' +
+            '<p>Two refinements make the argument sound polished. <strong>1. Drop wenn:</strong> put the verb first — <span class="de">Hätte man früher gehandelt, wäre …</span>. <strong>2. als ob / als wenn</strong> describe an imagined comparison: <span class="de">Er tut, als ob er nichts gewusst hätte.</span> or, with the verb moved up, <span class="de">… als hätte er nichts gewusst.</span></p>',
+          vocab: vocabTable([
+            ['Hätte man früher gehandelt, wäre …', 'Had they acted earlier, … would have been'],
+            ['An seiner Stelle hätte ich …', 'In his place I would have …'],
+            ['Wäre das Gesetz anders gefasst gewesen, …', 'Had the law been worded differently, …'],
+            ['Er tut so, als ob / als wäre …', 'He acts as if …'],
+            ['Angenommen, …', 'Suppose …'],
+            ['gesetzt den Fall, dass …', 'assuming that …'],
+            ['das Dilemma', 'the dilemma'],
+            ['die Verantwortung tragen', 'to bear responsibility'],
+            ['die Pflicht', 'the duty'],
+            ['abwägen', 'to weigh up'],
+            ['rechtfertigen', 'to justify'],
+            ['fahrlässig', 'negligent']
+          ]),
+          grammar:
+            '<div class="grammar-point">' +
+            '<p><strong>Three ways to say the same unreal past condition:</strong></p>' +
+            '<div class="example-box">' +
+            'Wenn man früher <strong>gehandelt hätte</strong>, <strong>wäre</strong> der Schaden geringer <strong>gewesen</strong>.<br>' +
+            '<strong>Hätte</strong> man früher <strong>gehandelt</strong>, <strong>wäre</strong> der Schaden geringer <strong>gewesen</strong>. <span class="note">(without wenn — verb first)</span><br>' +
+            'Bei früherem Handeln <strong>wäre</strong> der Schaden geringer <strong>gewesen</strong>. <span class="note">(nominal — formal)</span>' +
+            '</div>' +
+            '<p><strong>als ob / als wenn / als</strong> — imagined comparison, always Konjunktiv II (or I in formal reports):</p>' +
+            '<div class="example-box">' +
+            'Er verhält sich, <strong>als ob</strong> er der Chef <strong>wäre</strong>. <span class="note">(verb at the end)</span><br>' +
+            'Er verhält sich, <strong>als wäre</strong> er der Chef. <span class="note">(verb right after als)</span>' +
+            '</div>' +
+            '<p class="note">Do not mix up Konjunktiv II of the past with Perfekt: <span class="de">er hat gehandelt</span> says it happened; <span class="de">er hätte gehandelt</span> says it did <em>not</em>.</p>' +
+            '</div>',
+          dialogs: dialogBox('Aus einem Seminar — Fall einer Whistleblowerin', [
+            ['Dozentin', 'Angenommen, eine Mitarbeiterin entdeckt Betrug in ihrer Firma. Was hätte sie tun müssen?'],
+            ['Student A', 'Sie hätte sofort die Behörden informieren müssen. Hätte sie geschwiegen, wäre sie mitschuldig gewesen.'],
+            ['Student B', 'Das sehe ich anders. An ihrer Stelle hätte ich zuerst intern nachgefragt.'],
+            ['Student A', 'Und wenn man sie dann entlassen hätte?'],
+            ['Student B', 'Dann hätte sie sich immer noch an die Öffentlichkeit wenden können.'],
+            ['Dozentin', 'Sie argumentieren, als ob es nur eine richtige Lösung gäbe. Genau das ist hier die Frage.']
+          ]),
+          exercises: exerciseList([
+            exInput('Wenn man früher gehandelt ___________, wäre der Schaden geringer gewesen. (haben)', 'hätte'),
+            exInput('Without wenn: ___________ man früher gehandelt, wäre der Schaden geringer gewesen. (haben)', 'hätte'),
+            exInput('Er tut, als ___________ er nichts gewusst. (haben — Konjunktiv II der Vergangenheit)', 'hätte'),
+            exInput('Er verhält sich, als ___________ er der Chef. (sein)', 'wäre'),
+            exInput('Sie ___________ den Vorfall melden müssen. (haben, Konjunktiv II der Vergangenheit)', 'hätten'),
+            exInput('Wäre sie nicht gewarnt worden, ___________ der Unfall passiert. (sein)', 'wäre'),
+            exSelect('Which auxiliary? Wenn er rechtzeitig abgefahren ___, wäre er pünktlich angekommen.', 'wäre', ['wäre', 'hätte']),
+            exSelect('„Er sieht aus, als wäre er krank“ means:', 'He looks as if he were ill (maybe he is not).', ['He is ill.', 'He looks as if he were ill (maybe he is not).', 'He was ill yesterday.'])
+          ])
+        }
       ], ['Argue an ethical position rigorously', 'Write a formal appeal with justification'],
          ['Konjunktiv II in the past: hätte … gemacht', 'Irrealis of comparison: als ob / als wenn', 'Legal-register nominalisation']),
 

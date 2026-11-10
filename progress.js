@@ -56,7 +56,7 @@ window.DK = (function () {
     };
   }
   function defaults() {
-    const p = { name: '', display: 'genders', explainLang: 'en', levels: {} };
+    const p = { name: '', display: 'genders', explainLang: 'en', levels: {}, guides: {} };   // guides: study-guide quiz answers, by section id
     LEVEL_CODES.forEach(function (c) { p.levels[c] = emptyLevel(); });
     return p;
   }
@@ -66,6 +66,7 @@ window.DK = (function () {
     base.name = p.name || '';
     base.display = p.display === 'plain' ? 'plain' : 'genders';
     base.explainLang = p.explainLang === 'de' ? 'de' : 'en';
+    base.guides = (p.guides && typeof p.guides === 'object') ? p.guides : {};
     LEVEL_CODES.forEach(function (c) {
       base.levels[c] = Object.assign(emptyLevel(), (p.levels && p.levels[c]) || {});
     });
@@ -126,37 +127,66 @@ window.DK = (function () {
   }
   function deEq(given, expected, keepCase) { return fold(given, keepCase) === fold(expected, keepCase); }
 
-  let voices = [];
-  function pickVoice() {
-    voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
-    return voices.filter(function (v) { return /^de/i.test(v.lang); })[0] || null;
+  // German voice choice: only de-* voices, best quality first (Premium/Enhanced/Neural/Natural, then
+  // well-known names). Voices load lazily, so every call re-reads the list.
+  function germanVoices() {
+    const all = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+    function score(v) {
+      let n = 0;
+      if (/^de[-_]DE/i.test(v.lang)) n += 5;
+      else if (/^de[-_](AT|CH)/i.test(v.lang)) n += 2;
+      if (/premium|enhanced|neural|natural|online/i.test(v.name)) n += 10;
+      if (/google/i.test(v.name)) n += 6;
+      if (/^anna\b/i.test(v.name)) n += 4;
+      if (/grandma|grandpa|rocko|shelley|sandy/i.test(v.name)) n -= 6;
+      if (/anna|petra|markus|viktor|yannick|katja|conrad|amala|vicki|hedda/i.test(v.name)) n += 3;
+      if (v.localService === false) n += 1;
+      return n;
+    }
+    return all.filter(function (v) { return /^de([-_]|$)/i.test(v.lang) || /german|deutsch/i.test(v.name); })
+      .sort(function (a, b) { return score(b) - score(a); });
   }
-  if (window.speechSynthesis) { speechSynthesis.onvoiceschanged = pickVoice; }
+  function pickVoice(i) {
+    const g = germanVoices();
+    if (!g.length) return null;
+    return g[(i || 0) % Math.min(g.length, 2)] || g[0];
+  }
+  function hasGermanVoice() { return germanVoices().length > 0; }
+  if (window.speechSynthesis) { speechSynthesis.onvoiceschanged = function () {}; speechSynthesis.getVoices(); }
+  function noVoiceHint() {
+    return 'No German voice is installed. On Mac: System Settings → Accessibility → Spoken Content → System voice → Manage Voices → German (Anna, Premium). Then reload this page.';
+  }
   function speak(text) {
     if (!window.speechSynthesis) return;
     const u = new SpeechSynthesisUtterance(String(text).replace(/\s*\(.*?\)\s*/g, ' '));
     u.lang = 'de-DE';
-    const v = pickVoice();
-    if (v) u.voice = v;
+    const v = pickVoice(0);
+    if (!v) { alert(noVoiceHint()); return; }
+    u.voice = v;
+    u.lang = v.lang;
     u.rate = 0.9;
     speechSynthesis.cancel();
     speechSynthesis.speak(u);
   }
 
   let seqCancelled = false;
-  function speakLines(lines, rate, onLine, onDone) {
+  function speakLines(lines, rate, onLine, onDone, speakers) {
     if (!window.speechSynthesis) { if (onDone) onDone('no-voice'); return; }
     speechSynthesis.cancel();
     seqCancelled = false;
-    const v = pickVoice();
+    if (!pickVoice(0)) { if (onDone) onDone('no-voice'); return; }
     let i = 0;
+    const spk = {};
     function next() {
       if (seqCancelled) { if (onDone) onDone('stopped'); return; }
       if (i >= lines.length) { if (onDone) onDone('done'); return; }
       if (onLine) onLine(i);
       const u = new SpeechSynthesisUtterance(String(lines[i]).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
-      u.lang = 'de-DE';
-      if (v) u.voice = v;
+      const who = speakers && speakers[i];
+      if (who != null && !(who in spk)) spk[who] = Object.keys(spk).length;
+      const v = pickVoice(who != null ? spk[who] : 0);
+      u.voice = v;
+      u.lang = v.lang;
       u.rate = rate || 0.95;
       u.onend = function () { i++; setTimeout(next, 220); };
       u.onerror = function () { i++; setTimeout(next, 220); };
@@ -178,6 +208,6 @@ window.DK = (function () {
     get: function () { return data; },
     level: function (code) { return data.levels[code] || (data.levels[code] = emptyLevel()); },
     esc: esc, shuffle: shuffle, fold: fold, deEq: deEq, speak: speak,
-    speakLines: speakLines, stopSpeaking: stopSpeaking, hasVoice: function () { return !!window.speechSynthesis; }
+    speakLines: speakLines, stopSpeaking: stopSpeaking, hasVoice: function () { return !!window.speechSynthesis; }, hasGermanVoice: hasGermanVoice, noVoiceHint: noVoiceHint
   };
 })();

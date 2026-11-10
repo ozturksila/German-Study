@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <div class="wrap">
@@ -27,7 +27,7 @@
 
   <div class="draft-banner">
     <strong>🚧 Draft outline.</strong> The structure, levels, subjects and exercise engine are in place.
-    Lesson content — explanations, vocabulary, dialogues and exercises — is still to be written, one topic at a time.
+    <strong>A1 is complete</strong> (all 18 units). The other levels are still being written, one topic at a time.
     Every page that has no content yet says so instead of pretending otherwise.
   </div>
 
@@ -42,23 +42,23 @@
       <div class="lv-foot"><a class="lv-btn" href="exam.html">Open exam guide →</a><span class="lv-stat">all six levels</span></div>
     </div>
     <div class="level-card" style="border-top-color:#c4801f">
-      <h2>📐 Grammar Reference <span class="lv-tag">all levels</span></h2>
-      <p class="lv-goal">Every table in one place — cases, verb forms, word order, adjective endings, prepositions — independent of the unit you are on.</p>
-      <div class="lv-foot"><a class="lv-btn" href="grammar.html">Open reference →</a><span class="lv-stat">outline only</span></div>
+      <h2>📐 Grammar by Topic <span class="lv-tag">all levels</span></h2>
+      <p class="lv-goal">Pick a grammar subject — Konjunktiv II, cases, passive, word order … — and see every lesson on it, explanations and exercises together, split by level.</p>
+      <div class="lv-foot"><a class="lv-btn" href="grammar-topics.html">Open grammar →</a><span class="lv-stat">17 topics</span></div>
     </div>
   </div>
 
   <footer class="page-foot">Runs from a static folder — no build step, no server needed beyond <code>./serve.sh</code>.</footer>
 </div>
 
-<script src="progress.js"></script>
-<script src="builders.js"></script>
-<script src="data/a1.js"></script>
-<script src="data/a2.js"></script>
-<script src="data/b1.js"></script>
-<script src="data/b2.js"></script>
-<script src="data/c1.js"></script>
-<script src="data/c2.js"></script>
+<script src="progress.js?v=5"></script>
+<script src="builders.js?v=4"></script>
+<script src="data/a1.js?v=5"></script>
+<script src="data/a2.js?v=4"></script>
+<script src="data/b1.js?v=4"></script>
+<script src="data/b2.js?v=4"></script>
+<script src="data/c1.js?v=4"></script>
+<script src="data/c2.js?v=4"></script>
 <script>
 (function () {
   const esc = DK.esc;
@@ -126,5 +126,6 @@
   });
 })();
 </script>
+<script src="nav.js?v=4"></script>
 </body>
 </html>

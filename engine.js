@@ -460,7 +460,7 @@
   function dialogBoxFromLines(title, lines) {
     let h = '<div class="dialog-box"><h4>' + esc(title || 'Transkript') + '</h4>';
     (lines || []).forEach(function (l, i) {
-      h += '<p class="dialog-line" id="aLine' + i + '"><span class="speaker">' + esc(l[0]) + '</span>' + l[1] + '</p>';
+      h += '<p class="dialog-line" id="aLine' + i + '"><span class="speaker">' + esc(l[0]) + '</span><span class="line-text">' + l[1] + '</span></p>';
     });
     return h + '</div>';
   }
@@ -521,7 +521,7 @@
     if (!l) return;
     const status = document.getElementById('aStatus');
     const btn = document.getElementById('btnPlay');
-    if (!DK.hasVoice()) { if (status) status.textContent = 'no speech voice in this browser'; return; }
+    if (!DK.hasVoice() || !DK.hasGermanVoice()) { if (status) status.textContent = DK.hasVoice() ? DK.noVoiceHint() : 'no speech voice in this browser'; return; }
     audioOn = true;
     if (btn) btn.disabled = true;
     DK.speakLines(
@@ -537,7 +537,8 @@
         if (btn) btn.disabled = false;
         document.querySelectorAll('.dialog-line.speaking').forEach(function (e) { e.classList.remove('speaking'); });
         if (status) status.textContent = how === 'done' ? 'finished — play it again if you need to' : 'stopped';
-      }
+      },
+      l.lines.map(function (x) { return x[0]; })
     );
   };
   window.stopListening = function () {
@@ -1148,6 +1149,11 @@
     if (cp) view = { kind: 'cp', cp: cp };
     else if (P.lastUnit >= 0 && P.lastUnit < units.length) {
       view = { kind: 'unit', unit: P.lastUnit, page: Math.min(P.lastTopic || 0, unitPageCount(P.lastUnit) - 1) };
+    }
+    // Deep link from the grammar page: course.html?level=a2&unit=16&page=3
+    const qu = parseInt(params.get('unit'), 10), qp = parseInt(params.get('page'), 10);
+    if (qu >= 0 && qu < units.length) {
+      view = { kind: 'unit', unit: qu, page: qp >= 0 ? Math.min(qp, unitPageCount(qu) - 1) : 0 };
     }
     currentView = view;
     renderAll();

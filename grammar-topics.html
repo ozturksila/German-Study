@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammatik nach Thema — Deutschkurs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=4">
+<style>
+  .g-tools { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 6px 0 18px; }
+  .g-chip { font: inherit; font-size: 0.86rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line);
+            background: var(--card-bg); color: inherit; cursor: pointer; }
+  .g-chip small { color: var(--muted); margin-left: 4px; }
+  .g-chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .g-chip.on small { color: rgba(255,255,255,.8); }
+  .g-tools .spacer { flex: 1; }
+  .g-link { font: inherit; font-size: 0.84rem; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 4px 6px; }
+  .g-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; font-size: 0.84rem; }
+  .g-switch span { padding: 5px 9px; color: var(--muted); }
+  .g-switch button { font: inherit; border: 0; background: var(--card-bg); color: inherit; padding: 5px 10px; cursor: pointer; }
+  .g-switch button.on { background: var(--accent); color: #fff; }
+  .g-level { display: flex; align-items: baseline; gap: 10px; margin: 26px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--line); }
+  .g-level b { font-size: 1.15rem; color: var(--accent); }
+  .g-level span { color: var(--muted); font-size: 0.9rem; }
+  .g-lesson { border: 1px solid var(--line); background: var(--card-bg); border-radius: 12px; margin: 0 0 12px; }
+  .g-lesson > summary { list-style: none; cursor: pointer; padding: 13px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .g-lesson > summary::-webkit-details-marker { display: none; }
+  .g-lesson > summary::before { content: '▸'; color: var(--muted); transition: transform .15s; }
+  .g-lesson[open] > summary::before { transform: rotate(90deg); }
+  .g-lesson .gl-title { font-weight: 600; }
+  .g-lesson .gl-unit { color: var(--muted); font-size: 0.85rem; flex: 1; min-width: 180px; }
+  .g-lesson .gl-score { font-size: 0.8rem; padding: 2px 9px; border-radius: 999px; background: var(--accent-soft); white-space: nowrap; }
+  .g-lesson .gl-score.done { background: var(--accent2-soft); }
+  .g-lesson .gl-body { padding: 4px 18px 14px; border-top: 1px solid var(--line); }
+  .g-lesson .gl-more { margin: 0 0 20px; }
+  .g-lesson .gl-more > summary { cursor: pointer; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+  .g-lesson .gl-foot { text-align: right; font-size: 0.88rem; }
+  .g-planned { border: 1px dashed var(--line); border-radius: 12px; padding: 10px 16px; margin: 0 0 12px; font-size: 0.92rem; }
+  .g-planned h5 { margin: 4px 0 6px; font-size: 0.9rem; color: var(--muted); }
+  .g-planned ul { margin: 0; padding-left: 18px; }
+  .g-planned li { margin: 3px 0; }
+  .g-planned a { color: inherit; }
+  .g-planned .u { color: var(--muted); }
+  /* ---- study guides ---- */
+  .g-intro { font-size: 0.98rem; margin: 0 0 16px; }
+  .g-toc { border: 1px solid var(--line); background: var(--card-bg); border-radius: 12px; padding: 12px 16px; margin: 0 0 18px; }
+  .g-toc h5 { margin: 0 0 8px; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
+  .g-toc ol { margin: 0; padding-left: 0; list-style: none; columns: 2 260px; column-gap: 24px; }
+  .g-toc li { margin: 3px 0; break-inside: avoid; font-size: 0.9rem; }
+  .g-toc a { text-decoration: none; }
+  .g-toc a:hover { text-decoration: underline; }
+  .g-chap { border: 1px solid var(--line); background: var(--card-bg); border-radius: 12px; margin: 0 0 12px; scroll-margin-top: 12px; }
+  .g-chap > summary { list-style: none; cursor: pointer; padding: 13px 16px; font-weight: 600; display: flex; gap: 10px; }
+  .g-chap > summary::-webkit-details-marker { display: none; }
+  .g-chap > summary::before { content: '▸'; color: var(--muted); transition: transform .15s; }
+  .g-chap[open] > summary::before { transform: rotate(90deg); }
+  .g-chap .gc-body { padding: 6px 18px 16px; border-top: 1px solid var(--line); overflow-x: auto; }
+  .g-chap table.vocab { margin: 8px 0 12px; }
+  .g-chap table.vocab td { vertical-align: top; }
+  .g-compare { border: 1px solid var(--line-strong); border-radius: 10px; padding: 10px 14px; margin: 12px 0; background: var(--accent-soft); }
+  .g-compare h5 { margin: 0 0 6px; font-size: 0.92rem; color: var(--accent-dark); }
+  .g-compare p { margin: 5px 0; }
+  .g-compare table.vocab { background: var(--card-bg); }
+  .g-warn { border-left: 4px solid var(--amber, #d89a2b); background: var(--amber-soft, #fff4dc); border-radius: 0 10px 10px 0; padding: 9px 13px; margin: 12px 0; font-size: 0.92rem; }
+  .g-v { color: var(--accent2); }
+  .g-k { color: var(--accent); }
+  .g-practice { border: 1px dashed var(--line-strong); border-radius: 12px; padding: 10px 16px; margin: 18px 0 0; }
+  .g-practice h5 { margin: 4px 0 6px; font-size: 0.92rem; }
+  .g-practice ul { margin: 0; padding-left: 18px; }
+  .g-practice li { margin: 4px 0; }
+  .g-practice .u { color: var(--muted); font-size: 0.86rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page-head">
+    <p>Grammatik nach Thema</p>
+    <h1>📐 Grammar by Topic</h1>
+    <p>Every lesson on one grammar subject in one place — explanations and exercises together, split by level.</p>
+    <div class="badges" id="gBadges"></div>
+    <p style="font-size:.78rem;opacity:.8;margin-top:8px">Version: Grammar by Topic · 8 Nov 2026 · v3 (study guides)</p>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav class="course-nav" id="refNav"></nav>
+      <p class="progress-note"><a href="index.html">← All levels</a> · <a href="practice.html">Übungen</a></p>
+    </aside>
+    <main class="lecture" id="refPane"></main>
+  </div>
+  <footer class="page-foot">Deutschkurs · Grammatik nach Thema</footer>
+</div>
+
+<script src="progress.js?v=5"></script>
+<script src="builders.js?v=4"></script>
+<script src="data/a1.js?v=5"></script>
+<script src="data/a2.js?v=4"></script>
+<script src="data/b1.js?v=4"></script>
+<script src="data/b2.js?v=4"></script>
+<script src="data/c1.js?v=4"></script>
+<script src="data/c2.js?v=4"></script>
+<script src="data/explain-de.js?v=4"></script>
+<script src="data/explain-de-a1.js?v=1"></script>
+<script src="data/grammar-map.js?v=6"></script>
+<script src="data/grammar-guides.js?v=5"></script>
+<script>
+(function () {
+  'use strict';
+  const esc = DK.esc;
+  const LV = ['a1', 'a2', 'b1', 'b2', 'c1', 'c2'];
+  const LEVELS = window.LEVELS || {};
+  const PREF = 'deutsch.grammar.view';
+
+  function written(t) { return !!(t && (t.explanation || t.exercises)); }
+  function unitName(u) { return u.title.replace(/^\S+\s+/, ''); }
+
+  /* ---------- resolve the map into lessons + planned items ---------- */
+  const SECTIONS = (window.GRAMMAR_MAP || []).map(function (s) {
+    const lessons = [];
+    const used = {};
+    s.lessons.forEach(function (r) {
+      const L = LEVELS[r[0]], unit = L && L.units[r[1]], topic = unit && unit.topics[r[2]];
+      if (!written(topic)) { console.warn('grammar-map: no written lesson at', r.join('/')); return; }
+      lessons.push({ lv: r[0], u: r[1], t: r[2], unit: unit, topic: topic });
+      used[r[0] + '/' + r[1]] = true;
+    });
+    const planned = [];
+    LV.forEach(function (lv) {
+      const L = LEVELS[lv];
+      if (!L) return;
+      L.units.forEach(function (unit, ui) {
+        if (used[lv + '/' + ui]) return;
+        if (unit.topics.every(written)) return;            // fully written units are covered by `lessons`
+        (unit.grammarFocus || []).forEach(function (g) {
+          if (s.planned && s.planned.test(g)) planned.push({ lv: lv, u: ui, unit: unit, text: g });
+        });
+      });
+    });
+    lessons.sort(function (a, b) { return LV.indexOf(a.lv) - LV.indexOf(b.lv) || a.u - b.u || a.t - b.t; });
+    return Object.assign({}, s, { lessons: lessons, planned: planned });
+  });
+
+  function levelsOf(s) {
+    return LV.filter(function (lv) {
+      return s.lessons.some(function (l) { return l.lv === lv; }) || s.planned.some(function (p) { return p.lv === lv; });
+    });
+  }
+  function levelSpan(s) {
+    const l = s.lessons.map(function (x) { return x.lv; });
+    if (!l.length) return 'planned only';
+    const a = l[0].toUpperCase(), b = l[l.length - 1].toUpperCase();
+    return a === b ? a : a + '–' + b;
+  }
+
+  /* ---------- state ---------- */
+  let active = 0, lvFilter = 'all';
+  function readPref() {
+    const h = decodeURIComponent(location.hash.replace(/^#/, ''));
+    let id = '', lv = '';
+    if (h) { id = h.split('/')[0]; lv = h.split('/')[1] || ''; }
+    else { try { const p = JSON.parse(localStorage.getItem(PREF) || '{}'); id = p.id || ''; lv = p.lv || ''; } catch (e) {} }
+    const i = SECTIONS.findIndex(function (s) { return s.id === id; });
+    if (i >= 0) active = i;
+    lvFilter = LV.indexOf(lv) >= 0 ? lv : 'all';
+  }
+  function writePref() {
+    const s = SECTIONS[active];
+    try { localStorage.setItem(PREF, JSON.stringify({ id: s.id, lv: lvFilter })); } catch (e) {}
+    history.replaceState(null, '', '#' + s.id + (lvFilter === 'all' ? '' : '/' + lvFilter));
+  }
+
+  /* ---------- exercise progress, shared with the course pages ---------- */
+  function exKey(l, idx) { return 'u' + l.u + '_t' + l.t + '_e' + idx; }
+  function lessonScore(l) {
+    const ex = DK.level(l.lv).exercises;
+    const n = ((l.topic.exercises || '').match(/<li>/g) || []).length;
+    let ok = 0;
+    for (let i = 0; i < n; i++) if (ex[exKey(l, i)] && ex[exKey(l, i)].correct === true) ok++;
+    return { ok: ok, n: n };
+  }
+  function scoreHtml(l) {
+    const s = lessonScore(l);
+    if (!s.n) return '';
+    return '<span class="gl-score' + (s.ok === s.n ? ' done' : '') + '">' + s.ok + ' / ' + s.n + ' ✓</span>';
+  }
+  function persist(li, value, ok) {
+    if (li.hasAttribute('data-guide')) {
+      const s = SECTIONS[active];
+      guideStore(s)[li.getAttribute('data-q')] = { value: value, correct: ok };
+      DK.save();
+      const sc = guideScore(s), el = document.getElementById('gQuizScore');
+      if (el) { el.textContent = sc.ok + ' / ' + sc.n + ' ✓'; el.className = 'gl-score' + (sc.ok === sc.n ? ' done' : ''); }
+      renderNav();
+      return;
+    }
+    const lv = li.getAttribute('data-lv');
+    DK.level(lv).exercises[li.getAttribute('data-ex-key')] = { value: value, correct: ok };
+    DK.save();
+    const card = li.closest('.g-lesson');
+    const l = SECTIONS[active].lessons[+card.getAttribute('data-i')];
+    const sc = card.querySelector('.gl-score');
+    if (sc) sc.outerHTML = scoreHtml(l);
+    renderNav();
+  }
+  function mark(fb, ok) {
+    fb.className = 'feedback ' + (ok ? 'correct' : 'wrong');
+    fb.textContent = ok ? '✓ Richtig' : '✗ Try again';
+  }
+  window.checkAnswer = function (btn) {
+    const li = btn.closest('li'), input = li.querySelector('input[type="text"]');
+    const ok = input.getAttribute('data-answer').split('|').some(function (a) {
+      return DK.deEq(input.value, a, input.hasAttribute('data-case'));
+    });
+    mark(li.querySelector('.feedback'), ok);
+    persist(li, input.value, ok);
+  };
+  window.checkSelect = function (btn) {
+    const li = btn.closest('li'), sel = li.querySelector('select');
+    const ok = DK.deEq(sel.value, sel.getAttribute('data-answer'), sel.hasAttribute('data-case'));
+    mark(li.querySelector('.feedback'), ok);
+    persist(li, sel.value, ok);
+  };
+  function restoreExercises(pane) {
+    pane.querySelectorAll('.g-lesson').forEach(function (card) {
+      const l = SECTIONS[active].lessons[+card.getAttribute('data-i')];
+      const store = DK.level(l.lv).exercises;
+      card.querySelectorAll('.exercise li').forEach(function (li, idx) {
+        const key = exKey(l, idx);
+        li.setAttribute('data-ex-key', key);
+        li.setAttribute('data-lv', l.lv);
+        const saved = store[key];
+        if (!saved) return;
+        const input = li.querySelector('input[type="text"]'), sel = li.querySelector('select');
+        if (input) input.value = saved.value || '';
+        if (sel && saved.value) sel.value = saved.value;
+        if (saved.correct === true || saved.correct === false) mark(li.querySelector('.feedback'), saved.correct);
+      });
+    });
+  }
+
+  /* ---------- rendering ---------- */
+  function wantsGerman() { return DK.get().explainLang === 'de'; }
+  function deText(l) {
+    const un = ((window.DE_TEXT || {})[l.lv] || {})[l.u];
+    return un && un.topics && un.topics[l.t] || null;
+  }
+  function courseLink(lv, u, p) { return 'course.html?level=' + lv + '&unit=' + u + '&page=' + p; }
+
+  /* ---------- study guides ---------- */
+  function guideOf(s) { return s.guide && (window.GRAMMAR_GUIDES || {})[s.guide] || null; }
+  function guideStore(s) { const g = DK.get().guides; return g[s.id] || (g[s.id] = {}); }
+  function guideScore(s) {
+    const g = guideOf(s);
+    if (!g) return { ok: 0, n: 0 };
+    const st = (DK.get().guides || {})[s.id] || {};
+    let ok = 0;
+    g.quiz.forEach(function (q, i) { if (st[i] && st[i].correct === true) ok++; });
+    return { ok: ok, n: g.quiz.length };
+  }
+  function sectionScore(s) {
+    let ok = 0, n = 0;
+    s.lessons.forEach(function (l) { const x = lessonScore(l); ok += x.ok; n += x.n; });
+    const gq = guideScore(s); ok += gq.ok; n += gq.n;
+    return { ok: ok, n: n };
+  }
+  function guideHtml(s, g) {
+    let h = '<div class="g-intro">' + g.intro + '</div>';
+    h += '<nav class="g-toc"><h5>Contents</h5><ol>' +
+      g.chapters.map(function (c) { return '<li><a href="#" onclick="return goChapter(\'' + c.id + '\')">' + esc(c.title) + '</a></li>'; }).join('') +
+      '<li><a href="#" onclick="return goChapter(\'quiz\')">📝 Test yourself</a></li>' +
+      (s.lessons.length ? '<li><a href="#" onclick="return goChapter(\'practice\')">📚 Practise in the course</a></li>' : '') +
+      '</ol></nav>';
+    g.chapters.forEach(function (c) {
+      h += '<details class="g-chap" id="ch-' + c.id + '" open><summary>' + esc(c.title) + '</summary><div class="gc-body">' + c.html + '</div></details>';
+    });
+    const sc = guideScore(s);
+    h += '<details class="g-chap" id="ch-quiz" open><summary>📝 Test yourself <span class="gl-score' + (sc.ok === sc.n ? ' done' : '') + '" id="gQuizScore" style="margin-left:auto">' + sc.ok + ' / ' + sc.n + ' ✓</span></summary>' +
+      '<div class="gc-body"><ol class="exercise" id="gQuiz">' + g.quiz.join('') + '</ol></div></details>';
+    if (s.lessons.length) {
+      h += '<div class="g-practice" id="ch-practice"><h5>📚 Practise in the course — lessons that use ' + esc(s.title) + '</h5><ul>' +
+        s.lessons.map(function (l) {
+          return '<li><a href="' + courseLink(l.lv, l.u, l.t) + '">' + l.topic.icon + ' ' + esc(l.topic.title) + '</a> <span class="u">· ' + esc(unitName(l.unit)) + '</span></li>';
+        }).join('') + '</ul></div>';
+    }
+    return h;
+  }
+  function restoreGuide(s) {
+    const st = guideStore(s);
+    document.querySelectorAll('#gQuiz > li').forEach(function (li, idx) {
+      li.setAttribute('data-guide', s.id);
+      li.setAttribute('data-q', idx);
+      const saved = st[idx];
+      if (!saved) return;
+      const input = li.querySelector('input[type="text"]'), sel = li.querySelector('select');
+      if (input) input.value = saved.value || '';
+      if (sel && saved.value) sel.value = saved.value;
+      if (saved.correct === true || saved.correct === false) mark(li.querySelector('.feedback'), saved.correct);
+    });
+  }
+  window.goChapter = function (id) {
+    const el = document.getElementById('ch-' + id);
+    if (el) { if (el.tagName === 'DETAILS') el.open = true; window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset - 70); }
+    return false;
+  };
+
+  function renderNav() {
+    document.getElementById('refNav').innerHTML = SECTIONS.map(function (s, i) {
+      const sc = sectionScore(s), ok = sc.ok, n = sc.n;
+      const meta = guideOf(s) ? '📘 Study guide · all levels' : s.lessons.length
+        ? s.lessons.length + ' lesson' + (s.lessons.length === 1 ? '' : 's') + ' · ' + levelSpan(s)
+        : (s.planned.length ? 'planned only' : 'not written yet');
+      return '<button class="nav-item' + (i === active ? ' active' : '') + '" onclick="openSection(' + i + ')">' +
+        '<span class="ni-title">' + s.icon + ' ' + esc(s.title) + '</span>' +
+        '<span class="ni-meta">' + meta + '</span>' +
+        (n ? '<span class="ni-bar"><span style="width:' + Math.round(ok / n * 100) + '%"></span></span>' : '') + '</button>';
+    }).join('');
+  }
+
+  function lessonHtml(l, i, open) {
+    const t = l.topic;
+    let body = '';
+    if (t.explanation) {
+      const de = wantsGerman() ? deText(l) : null;
+      body += de
+        ? '<div class="lecture-block"><h4>📖 Erklärung <span class="script-tag">auf Deutsch · ' + l.lv.toUpperCase() + '</span></h4>' + de + '</div>'
+        : '<div class="lecture-block"><h4>📖 Explanation' + (wantsGerman() ? ' <span class="script-tag">deutsche Fassung fehlt noch</span>' : '') + '</h4>' + t.explanation + '</div>';
+    }
+    if (t.grammar) body += '<div class="lecture-block"><h4>✏️ Grammar</h4>' + t.grammar + '</div>';
+    if (t.vocab || t.dialogs) {
+      body += '<details class="gl-more"><summary>📚 Vocabulary' + (t.dialogs ? ' and dialog' : '') + '</summary>' +
+        (t.vocab ? '<div class="lecture-block">' + t.vocab + '</div>' : '') +
+        (t.dialogs ? '<div class="lecture-block">' + t.dialogs + '</div>' : '') + '</details>';
+    }
+    if (t.exercises) body += '<div class="lecture-block"><h4>📝 Exercises</h4>' + t.exercises + '</div>';
+    body += '<p class="gl-foot"><a href="' + courseLink(l.lv, l.u, l.t) + '">Open in the course →</a></p>';
+    return '<details class="g-lesson" data-i="' + i + '"' + (open ? ' open' : '') + '>' +
+      '<summary><span class="gl-title">' + t.icon + ' ' + esc(t.title) + '</span>' +
+      '<span class="gl-unit">' + esc(unitName(l.unit)) + '</span>' + scoreHtml(l) + '</summary>' +
+      '<div class="gl-body">' + body + '</div></details>';
+  }
+
+  function renderPane() {
+    const s = SECTIONS[active];
+    const g = guideOf(s);
+    if (g) {
+      lvFilter = 'all';
+      let gh = '<div class="lecture-crumb">Grammatik nach Thema · Study guide · all levels</div>' +
+        '<h3 class="lecture-title">' + s.icon + ' ' + esc(s.title) + '</h3>' +
+        '<div class="g-tools"><span class="spacer"></span>' +
+        '<button class="g-link" onclick="toggleAll(true)">Expand all</button><button class="g-link" onclick="toggleAll(false)">Collapse all</button></div>' +
+        guideHtml(s, g) + navButtons();
+      document.getElementById('refPane').innerHTML = gh;
+      restoreGuide(s);
+      return;
+    }
+    const lvls = levelsOf(s);
+    if (lvFilter !== 'all' && lvls.indexOf(lvFilter) < 0) lvFilter = 'all';
+    const shown = lvFilter === 'all' ? lvls : [lvFilter];
+    const few = s.lessons.filter(function (l) { return shown.indexOf(l.lv) >= 0; }).length <= 2;
+
+    let h = '<div class="lecture-crumb">Grammatik nach Thema · ' + levelSpan(s) + '</div>' +
+      '<h3 class="lecture-title">' + s.icon + ' ' + esc(s.title) + '</h3>';
+
+    h += '<div class="g-tools">';
+    if (lvls.length) {
+      h += '<button class="g-chip' + (lvFilter === 'all' ? ' on' : '') + '" onclick="filterLevel(\'all\')">All levels</button>';
+      lvls.forEach(function (lv) {
+        const n = s.lessons.filter(function (l) { return l.lv === lv; }).length;
+        h += '<button class="g-chip' + (lvFilter === lv ? ' on' : '') + '" onclick="filterLevel(\'' + lv + '\')">' +
+          lv.toUpperCase() + '<small>' + (n || 'planned') + '</small></button>';
+      });
+    }
+    h += '<span class="spacer"></span>';
+    if (s.lessons.length) h += '<button class="g-link" onclick="toggleAll(true)">Expand all</button><button class="g-link" onclick="toggleAll(false)">Collapse all</button>';
+    h += '<span class="g-switch" title="Language of the explanations"><span>Erklärung</span>' +
+      ['en', 'de'].map(function (m) {
+        return '<button class="' + (DK.get().explainLang === m ? 'on' : '') + '" onclick="setExplain(\'' + m + '\')">' + (m === 'en' ? 'English' : 'Deutsch') + '</button>';
+      }).join('') + '</span></div>';
+
+    if (!lvls.length) {
+      h += '<div class="pending-box"><span class="pb-ico">🚧</span><strong>No lessons on this topic yet</strong>' +
+        '<p>Lessons will appear here as soon as a unit that teaches it is written.</p></div>';
+    }
+    shown.forEach(function (lv) {
+      const L = LEVELS[lv];
+      h += '<div class="g-level"><b>' + L.label + '</b><span>' + esc(L.name) + '</span></div>';
+      s.lessons.forEach(function (l, i) { if (l.lv === lv) h += lessonHtml(l, i, few); });
+      const pl = s.planned.filter(function (p) { return p.lv === lv; });
+      if (pl.length) {
+        h += '<div class="g-planned"><h5>🚧 Planned at ' + L.label + ' — not written yet</h5><ul>' +
+          pl.map(function (p) {
+            return '<li><a href="' + courseLink(lv, p.u, 0) + '">' + esc(p.text) + '</a> <span class="u">· ' + esc(unitName(p.unit)) + '</span></li>';
+          }).join('') + '</ul></div>';
+      }
+    });
+    if (s.reference && s.reference.length) {
+      h += '<details class="gl-more" style="margin-top:22px"><summary>📋 Reference tables planned for this topic</summary><ul class="goals">' +
+        s.reference.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></details>';
+    }
+    h += navButtons();
+
+    const pane = document.getElementById('refPane');
+    pane.innerHTML = h;
+    restoreExercises(pane);
+  }
+
+  function navButtons() {
+    return '<div class="lecture-nav">' +
+      '<button onclick="openSection(' + (active - 1) + ')" ' + (active === 0 ? 'disabled' : '') + '>◀ Zurück</button>' +
+      '<div class="lecture-dots"></div>' +
+      '<button onclick="openSection(' + (active + 1) + ')" ' + (active === SECTIONS.length - 1 ? 'disabled' : '') + '>Weiter ▶</button></div>';
+  }
+  function renderAll() { renderNav(); renderPane(); writePref(); }
+  window.openSection = function (i) {
+    if (i < 0 || i >= SECTIONS.length) return;
+    active = i; lvFilter = 'all'; renderAll();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  window.filterLevel = function (lv) { lvFilter = lv; renderPane(); writePref(); };
+  window.toggleAll = function (open) {
+    document.querySelectorAll('#refPane .g-lesson, #refPane .g-chap').forEach(function (d) { d.open = open; });
+  };
+  window.setExplain = function (m) {
+    const openIdx = [].map.call(document.querySelectorAll('#refPane .g-lesson'), function (d) { return d.open; });
+    DK.get().explainLang = m === 'de' ? 'de' : 'en';
+    DK.save();
+    renderPane();
+    document.querySelectorAll('#refPane .g-lesson').forEach(function (d, i) { d.open = !!openIdx[i]; });
+  };
+  window.addEventListener('hashchange', function () { readPref(); renderAll(); });
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    await DK.load();
+    const total = SECTIONS.reduce(function (n, s) { return n + s.lessons.length; }, 0);
+    document.getElementById('gBadges').innerHTML =
+      '<span>A1 – C2</span><span>' + SECTIONS.length + ' topics</span><span>' + total + ' lesson links</span>' +
+      '<span>' + SECTIONS.filter(guideOf).length + ' study guides</span>';
+    readPref();
+    renderAll();
+  });
+})();
+</script>
+<script src="nav.js?v=4"></script>
+</body>
+</html>
